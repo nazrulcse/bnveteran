@@ -36,9 +36,9 @@
             <h4><%= @news.title %></h4>
             <% if @news.photo.present? %>
                 <% if @news.photo.path.downcase.end_with?('.pdf') %>
-                    <iframe src=<%= @news.photo.url %> width="600" height="780" style="border: none;"> </iframe>
+                    <iframe src='<%= @news.photo.url %>' width="600" height="780" style="border: none;"> </iframe>
                 <% elsif @news.is_doc? %>
-                    <iframe src='http://docs.google.com/viewer?embedded=true&url=<%= @news.doc_url(request.host) %>' width='600' height='780' style='border: none;'>
+                    <iframe src='https://docs.google.com/viewer?embedded=true&url=<%= @news.doc_url(request.host) %>' width='600' height='780' style='border: none;'>
                     </iframe>
                 <% else %>
                     <a href="<%= asset_url @news.photo.url %>" data-lightbox="Gallery 1">

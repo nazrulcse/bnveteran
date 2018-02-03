@@ -56,7 +56,7 @@
                             <!--<iframe src=<%#= news.photo.url %> width="360" height="250" style="border: none;"> </iframe>-->
                             <%= image_tag news.photo.present? ? news.photo.url(:large_thumb_pdf) : 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"250", class: 'img-thumbnail'%>
                         <% elsif news.is_doc? %>
-                            <iframe src='http://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width='360' height='240' style='border: none;'>
+                            <iframe src='https://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width='360' height='240' style='border: none;'>
                             </iframe>
                         <% else %>
                             <a href="<%= asset_url news.photo.url %>" data-lightbox="Gallery 1">

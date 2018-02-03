@@ -177,7 +177,7 @@
                                 <% if news.photo.path.downcase.end_with?('.pdf') %>
                                     <%= image_tag news.photo.present? ? news.photo.url(:large_thumb_pdf) : 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"360", class: 'img-thumbnail'%>
                                 <%elsif news.is_doc? %>
-                                    <iframe src='http://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width="360" height="300" style='border: none;'>
+                                    <iframe src='https://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width="360" height="300" style='border: none;'>
                                     </iframe>
                                 <% else %>
                                     <%= image_tag news.photo.present? ? news.photo.url : 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"250",  class: 'img-thumbnail' %>

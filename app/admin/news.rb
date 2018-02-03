@@ -12,7 +12,7 @@ ActiveAdmin.register News do
             image_tag(news.photo_url(:medium_thumb_pdf))
           end
         elsif news.is_doc?
-          raw("<iframe src='http://docs.google.com/viewer?embedded=true&url=#{news.photo.url }' width='150' height='100' style='border: none;'>
+          raw("<iframe src='https://docs.google.com/viewer?embedded=true&url=#{news.doc_url(request.host) }' width='150' height='100' style='border: none;'>
           </iframe>")
         else
           link_to news.photo_url, target: '_blank' do
@@ -55,7 +55,7 @@ ActiveAdmin.register News do
                 image_tag(news.photo_url(:medium_thumb_pdf))
               end
             elsif news.is_doc?
-              raw("<iframe src='http://docs.google.com/viewer?embedded=true&url=#{news.photo.url }' width='150' height='100' style='border: none;'>
+              raw("<iframe src='https://docs.google.com/viewer?embedded=true&url=#{news.doc_url(request.host) }' width='150' height='100' style='border: none;'>
           </iframe>")
             else
               link_to news.photo_url, target: '_blank' do

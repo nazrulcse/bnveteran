@@ -16,7 +16,7 @@ class News < ApplicationRecord
   end
 
   def doc_url(host)
-    "#{host}#{photo.url}"
+    "https://#{host}#{photo.url}"
   end
 
 end
