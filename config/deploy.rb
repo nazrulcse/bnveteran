@@ -39,7 +39,7 @@ set :stages, %w(production staging)
 lock "3.8.2"
 
 set :application, "bnveteran"
-set :repo_url, 'git@bitbucket.org:exitolabs/bnveteran.git'
+set :repo_url, 'git@github.com:nazrulcse/bnveteran.git'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
