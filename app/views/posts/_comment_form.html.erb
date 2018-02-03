@@ -1,0 +1,26 @@
+
+<div class="modal-header clearfix">
+  <a class="close pull-right" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </a>
+  <h4 class="modal-title">Type your comment</h4>
+</div>
+
+
+  <div id="mentionable-data" data-content="<%= mentionable_user_path(current_user) %>"></div>
+  <%= form_tag comments_path(commentable_type: commentable.class.to_s, commentable_id: commentable.id), id: 'new_comment', method: :post, remote: true do %>
+    <div class="modal-body">
+  <%#= form_tag comments_path(commentable_id: 1), id: 'new_comment', method: :post, remote: true do %>
+      <div class="form-group">
+        <div id="comment-text" contenteditable="true" class="editable form-control input-mentionable" placeholder="Enter Comment"></div>
+        <%= hidden_field_tag :comment_text, nil, placeholder: 'Enter Comment', class: 'form-control input-mentionable' %>
+      </div>
+
+      </div>
+
+      <div class="modal-footer">
+      <%= submit_tag :comment, class: 'btn btn-primary' %>
+        <a class="btn btn-default pull-right" data-dismiss='modal' style="margin-top: 3px">Cancel</a>
+      </div>
+
+<% end %>

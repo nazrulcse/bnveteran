@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <div class="actions">
+    <div class="row post-row">
+      <div class="like-btn-box like">
+         <!-- <%#= render 'likes/form', likeable: resource %> -->
+      </div>
+      <div class="comment-btn-box comment">
+        <%= link_to resource, class: 'btn btn-block comment-btn-count' do %>
+          <%= fa_icon 'comment' %> comment
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<% if params[:cover].present? %>
+$(".cover_img_tag").attr('src', "<%= current_user.cover.url %>");
+$('#cover_img').html("<%= escape_javascript(render :partial => '/users/cover_img') %>");
+<% end %>
+
+<% if params[:avatar].present? %>
+$(".profile_img_tag").attr('src', "<%= current_user.avatar.url %>");
+$(".nav_img_class").attr("src","<%= current_user.avatar.url %>")
+$('#profile_img').html("<%= escape_javascript(render :partial => '/users/profile_img') %>");
+<% else %>
+$('#user-info').replaceWith("<%= escape_javascript(render 'shared/user_info') %>");
+$('#global-modal').modal('hide');
+<% end %>

@@ -1,0 +1,51 @@
+<div class="bg-color left-1">
+  <div class="top-pp-bg">
+    <%#= image_tag current_user.cover.url || 'default-cover.png', class: 'img-responsive' %>
+    <%= image_tag current_user.cover.present? ? current_user.cover.url : 'default-cover.png', class: 'img-responsive' %>
+  </div>
+
+  <div class="profile profile-mar30">
+<div>
+    <%= link_to user_path(current_user), remote: true do %>
+        <%#= image_tag current_user.avatar.url || 'default-profile-picture.png', class: 'img-responsive img-circle' %>
+        <%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle ' %>
+    <% end %>
+</div>
+
+<div class="name-bx-area" style="padding-left: 73px; width: 235px;">
+    <%= link_to user_path(current_user), remote: true do %>
+        <h3><%=current_user.name %></h3>
+    <% end %>
+</div>
+    <% unless current_user.rank.blank? %>
+        <%= link_to user_path(current_user), remote: true do %>
+           <div  class="desig-bx-area" style="padding-left: 73px;"> <span > <%= get_rank(current_user.designation_type, current_user.rank) if current_user.designation_type.present? && current_user.rank.present? %> (RETD) </span></div>
+        <% end %>
+    <% end %>
+    <span class="clearfix"></span>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12 summary-info", style="width: 25.3%">
+    <a href="">
+      Posts
+      <span class="clearfix"></span>
+      <strong id="Posts"><%= current_user.posts_count %></strong>
+    </a>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12 summary-info" style="width: 37.3%">
+    <a href="<%= my_followers_path(follow: 'followings') %>" data-remote="true">
+      Following
+      <span class="clearfix"></span>
+      <strong id="Following"><%= @user.following_users.count %></strong>
+    </a>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12 summary-info" style="width: 37.3%">
+    <a href="<%= my_followers_path(follow: 'followers') %>" data-remote="true">
+      Followers
+      <span class="clearfix"></span>
+      <strong id="Followers"><%= @user.user_followers.count %></strong>
+    </a>
+  </div>
+</div>

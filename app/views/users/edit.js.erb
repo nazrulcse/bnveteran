@@ -1,0 +1,4 @@
+$("#main-content").html("<%= escape_javascript(render 'users/update_form').html_safe %>");
+$('#item').removeClass('open');
+
+history.pushState("", "", "<%= edit_user_path(@user) %>");

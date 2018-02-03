@@ -1,0 +1,15 @@
+<div class="bg-color tp-sp">
+  <div class="title-bar col-md-3 col-sm-3 col-xs-12">
+    <form id="user_avatar">
+      <div class="file-input-wrapper profile-camera upload-cv">
+        <button class="btn-file-input"><i class="fa fa-file-text-o"></i></button>
+        <input type="file" title="Upload CV" id="upload_btn">
+
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-6 col-sm-3 col-xs-12">
+    <%= render 'shared/avatar_pdf', user: @user %>
+  </div>
+</div>

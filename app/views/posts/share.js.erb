@@ -1,0 +1,3 @@
+<% if @share_post.present? %>
+$('#bnveteran-modal-large').modal('show').find('.modal-content').html("<%= escape_javascript(render 'share_form').html_safe %>");
+<% end %>

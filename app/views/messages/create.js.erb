@@ -1,0 +1,4 @@
+$(".msg-modal-body").find('ul').append("<%= escape_javascript(render 'messages/message_list').html_safe %>");
+$('#message_content').val('');
+$('#messageBody').scrollTop($('#messageBody').prop("scrollHeight"));
+

@@ -1,0 +1,120 @@
+<div class="main-container">
+  <section class="text-center imagebg parallax banner_height" data-overlay="4">
+    <div class="background-image-holder">
+      <div>
+      </div>
+      <%= image_tag('new/photo-11.jpg')  %>
+      <!--<img alt="background" src="img/new/photo-11.jpg" />-->
+    </div>
+
+    <div class="img-space">
+    </div>
+    <!--end of container-->
+
+  </section>
+  <%#= render 'layouts/slider' %>
+
+  <span class="clearfix"></span>
+
+  <div class="container " style="padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Facilities', facilities_path %></li>
+      <li class="active">   Facilities from Armed Services Board  </li>
+    </ol>
+  </div>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left">
+      <div class="masonry">
+        <div class="masonry__container">
+          <div class="masonry__item col-md-12 filter-people">
+            <h4>
+              Facilities from Armed Services Board
+            </h4>
+            <p>
+              Armed Services Board generally provides following facilities to the retired personnel: <br />
+              1.	Financial help for retired Armed Forces personnel. <br />
+              2.	Micro credit loan.<br />
+
+
+
+            </p>
+								<span class="clearfix">
+								</span>
+            <div class="boxed boxed--border">
+              <h4>
+                For detail, follow this link.
+              </h4>
+              <a class="btn btn--primary" href="<%= armed_form_service_path('pdf') %>">
+									<span class="btn__text">
+									Download Here
+									</span>
+              </a>
+            </div>
+
+
+            <div class="boxed boxed--border   boxed--lg box-shadow">
+              <h4>Visit  Armed Services Board  for  more</h4>
+              <p class="ext-link">
+                <i class="fa fa-external-link" aria-hidden="true"></i> <a href="">www.link.com</a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+        <!--end masonry filters-->
+        <%#= render 'layouts/template/notification_image' %>
+        <!--end masonry container-->
+      </div>
+      <span class="clearfix"></span>
+    </div>
+    <div class="col-md-4 col-sm-4  col-xs-12 right-sidebar">
+      <%= render 'layouts/template/latest_news' %>
+      <%= render 'layouts/template/gallery_photo' %>
+    </div>
+  </div>
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>
+<a href="" style="position: fixed;bottom: 0;right: 0;"><%= image_tag('chat.png') %></a>
+
+<script src="js/jquery-3.1.1.min.js">
+</script>
+<script src="js/flickity.min.js">
+</script>
+<script src="js/easypiechart.min.js">
+</script>
+<script src="js/parallax.js">
+</script>
+<script src="js/typed.min.js">
+</script>
+<script src="js/datepicker.js">
+</script>
+<script src="js/isotope.min.js">
+</script>
+<script src="js/ytplayer.min.js">
+</script>
+<script src="js/lightbox.min.js">
+</script>
+<script src="js/granim.min.js">
+</script>
+<script src="js/jquery.steps.min.js">
+</script>
+<script src="js/countdown.min.js">
+</script>
+<script src="js/twitterfetcher.min.js">
+</script>
+<script src="js/spectragram.min.js">
+</script>
+<script src="js/smooth-scroll.min.js">
+</script>
+<script src="js/scripts.js">
+</script>
+</body>
+
+</html>

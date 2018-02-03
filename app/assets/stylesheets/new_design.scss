@@ -1,0 +1,271 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *=require new_design/bootstrap
+ *=require new_design/custom
+ *=require new_design/flickity
+ *=require new_design/font-frankruhl-firasans
+ *=require new_design/font-karla
+ *=require new_design/font-merriweather-ptsans
+ *=require new_design/font-raleway
+ *=require new_design/font-roboto
+ *=require new_design/font-robotoslab
+ *=require new_design/font-rubiklato
+ *=require new_design/font-sourcesanspro
+ *=require new_design/iconsmind
+ *=require new_design/jquery.steps
+ *=require new_design/lightbox.min
+ *=require new_design/socicon
+ *=require new_design/stack-interface
+ *=require new_design/theme
+ *=require jquery.datetimepicker
+ *=require custom-responsive
+ *= require dropzone/dropzone
+ */
+
+.alert-dismissable{
+    width: 310px;
+    position: absolute;
+    z-index: 99999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    //height: 50px;
+    background-color: rgba(217, 237,247, 0.9 ) !important;
+    top:5px;
+}
+.alert-dismissable .close{
+  top:-36px !important;
+}
+#navbar .input-group-addon{
+	border:1px solid #ccc !important;
+	border-left:0px !important;
+	background:transparent;
+	border-radius:40px;
+	border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+#navbar .input-group-addon button{
+	height:auto;
+}
+#navbar  .input-group input.form-control {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border:1px solid #ccc !important;
+    border-right: 0 !important;
+}
+.btn-submit-custom.submit-post-btn{
+    width:65px;
+    font-weight:normal !important;
+}
+.btn-submit-custom.submit-post-btn:hover{
+    margin-bottom:0;
+}
+.who button {
+    border-radius: 40px;
+    font-weight: 300;
+    background: #fff;
+    padding: 2px 9px;
+    border: 1px solid #eee;
+    margin-left: 5px;
+    margin-top: 5px;
+    color: #4a90e2;
+    height:initial;
+}
+.title-bar strong{
+    font-weight:normal;
+}
+.title-bar strong small a{
+    font-weight:normal !important;
+}
+.summary-info a{
+    font-weight:normal;    
+}
+.profile span{
+    font-weight:normal;
+}
+.btn:hover{
+    -webkit-transform:inherit !important;
+}
+.who button:hover{
+    border-color:#eee !important;
+}
+.profile{
+    margin-bottom:0 !important;
+}
+.share-other a{
+    font-weight:normal !important;
+}
+.single-post-show img{
+    margin-top:0;
+}
+.like-btn-count{
+    border: none !important;
+    width: 68px !important;
+    padding: 0;
+    height: 25px;
+    margin-top:5px !important;
+    position:absolute;
+    top:-28px;
+    width:30px !important;
+    left:18px;
+}
+.like-btn-count i{
+    font-size:16px;
+}
+.like-btn-box{
+    float:left;
+}
+.comment-btn-box{
+    float:left;
+    position: absolute;
+    top: -26px;
+    left: 60px;
+}
+.comment-btn-box i{
+    font-size:16px;
+}
+.comment-btn-box a{
+    width:40px !important;
+}
+.comment-btn-count{
+    border: none !important;
+    width: 95px !important;
+    padding: 0;
+    height: 25px;
+
+}
+.post-row{
+    width:auto;
+    display:inline-block;
+    float:left;
+}
+.edit-post-row{
+    float:right;
+}
+.create-at-report{
+    margin-top:0px;
+}
+
+/* New modal design */
+
+.new-modal-wrap {
+  .modal-content {
+    //color: $white-color;
+    border-radius: 0;
+    border: 5px solid grey;
+    border-top: none;
+    .modal-header {
+      background-color: grey;
+      margin-left: -5px;
+      margin-right: -5px;
+      border-bottom: none;
+      //min-height: 55px;
+      .close {
+        color: #f7f7f7;
+        text-shadow: none;
+        font-weight: normal;
+        opacity: 0.8;
+        &:hover {
+          color: #f7f7f7;
+          opacity: 1;
+        }
+      }
+      .modal-title, h4 {
+        color: white !important;
+        text-shadow: none;
+        padding-left: 50px; font-family: roboto; font-weight: 400; font-size: 17px;
+        //padding-top: 4px;
+      }
+      i {
+        float: left;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        width: 50px;
+        color: white;
+      }
+    }
+
+    .modal-body {
+      color: #666;
+      .form-control {
+        border-radius: 0;
+      }
+    }
+
+    .modal-footer {
+      border-top: none;
+      .btn {
+        border-radius: 0;
+      }
+      input[name="commit"], .btn-success, .btn-primary {
+        background-color: grey;
+        color: white;
+        border: 0;
+        &:hover {
+          background-color: grey;
+        }
+      }
+      .btn-success, a {
+        border: 0;
+      }
+    }
+  }
+}
+
+
+/* Custom slider bg design */
+.main-container > .parallax > .background-image-holder div {
+  background-color: rgba(89, 144, 226, 0.5);
+}
+
+[data-overlay]:before {background: inherit}
+
+
+// for pagination design
+.pagination a, .pagination span.current, .pagination span.gap {
+  float: left;
+  padding: 0 14px;
+  line-height: 38px;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #DDD;
+  //border-left-width: 0;
+}
+.current{
+  background-color: #0275D8;
+  float: left;
+  padding: 0 14px;
+  line-height: 38px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #DDD;
+}
+.previous_page {
+  float: left;
+  padding: 0 14px;
+  line-height: 38px;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #DDD;
+
+}
+
+.next_page {
+  float: left;
+  padding: 0 14px;
+  line-height: 38px;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #DDD;
+}
+

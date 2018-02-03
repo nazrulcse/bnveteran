@@ -1,0 +1,87 @@
+<div class="main-container">
+  <section class="text-center imagebg parallax banner_height" data-overlay="4">
+    <div class="background-image-holder">
+      <div>
+      </div>
+      <%= image_tag('new/photo-16.jpg') %>
+      <!--<img alt="background" src="img/new/photo-16.jpg" />-->
+
+    </div>
+
+    <div class="img-space">
+    </div>
+    <!--end of container-->
+
+  </section>
+
+  <%#= render 'layouts/slider' %>
+
+  <span class="clearfix"></span>
+
+  <div class="container" style="padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Facilities', facilities_path %></li>
+      <li class="active"> <%= @facility.organization_name %> </li>
+    </ol>
+  </div>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left">
+      <div class="masonry">
+        <div class="masonry__container">
+          <div class="masonry__item col-md-12 filter-people">
+
+            <h4><%= @facility.organization_name %></h4>
+            <div class="facility-content" align="justify" style="">
+              <%= raw @facility.description %>
+            </div>
+
+            <span class="clearfix"></span>
+
+            <% @facility.facility_forms.order(:title).each do |facility_form| %>
+         <!--       <div class="boxed boxed&#45;&#45;border">
+                  <p> <%#= facility_form.title %> </p>
+                  <%#= link_to download_facility_form_path(facility_form), class:'btn btn&#45;&#45;primary' do %>
+                      <span class="btn__text">Download Here</span>
+                  <%# end %>
+                </div>-->
+
+                <div class="col-md-4 pdf-forms">
+                  <div>
+                    <i class="fa fa-file-pdf-o  " aria-hidden="true">
+                    </i>
+                    <h5>
+                      <%= facility_form.title %>
+                    </h5>
+                    <%= link_to download_facility_form_path(facility_form), class: 'pull-right btn btn-default btn-sm', style: 'position: absolute; float: none !important; position: 0 !important; left: 70px; top: 210px; right: 55px; bottom: 40px;' do %>
+                        <span style="font-size: 13px;font-weight: bold; color: black;position: absolute;right: 29px;bottom: 3px;">Download</span>
+                    <% end %>
+                  </div>
+                </div>
+
+
+            <% end %>
+          </div>
+        </div>
+        <!--end masonry filters-->
+        <%= render 'layouts/template/notification_image' %>
+        <!--end masonry container-->
+      </div>
+      <span class="clearfix"></span>
+    </div>
+
+    <div class="col-md-4 col-sm-4  col-xs-12 right-sidebar">
+      <%= render 'layouts/template/latest_news' %>
+      <%= render 'layouts/template/gallery_photo' %>
+    </div>
+
+  </div>
+</div>
+
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>

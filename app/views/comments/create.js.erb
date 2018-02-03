@@ -1,0 +1,4 @@
+$("#c-<%= params[:commentable_id] %>").text("<%= Post.find(params[:commentable_id]).comments_count %>");
+$("#<%= @commentable_type.downcase %>-<%= @commentable.id %> .comments").prepend("<%=j render(@comment) %>");
+$("#comment_text").val("");
+$('.no-resource').remove();

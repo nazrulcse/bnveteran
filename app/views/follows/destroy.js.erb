@@ -1,0 +1,4 @@
+$("#user-<%= @user.id %> .follow").html("<%=j render('follows/form', user: @user) %>");
+$("#unfollow-link-<%= @user.id %>").replaceWith('<a class="btn btn-success follow-us-button" id="follow-link-<%= @user.id %>" style="line-height: 10px; display: unset;" data-remote="true" rel="nofollow" data-method="post" href="/follow?user_id=<%= @user.id %>">follow</a>');
+$("#Following").text("<%= current_user.following_users.count %>");
+$('#who-to-follow-user-list').prepend("<%= escape_javascript(render 'shared/who_to_follow_user_content', user: @user).html_safe %>");

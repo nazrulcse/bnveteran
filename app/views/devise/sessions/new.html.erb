@@ -1,0 +1,67 @@
+<div class="text-center txt-top">LOGIN</div>
+<div class="login-container">
+  <div id="output"></div>
+  <div class="avatar"><img class="img-responsive" alt="logo" src="/assets/logo-light.jpg"></div>
+  <div class="form-box">
+    <div id="msg">
+      
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group remove-mar0">
+        <%#= f.label :email %>
+        <%= f.text_field :login, class: 'form-control', autofocus: true, placeholder: 'Email Address' %>
+      </div>
+      <div class="form-group">
+        <%#= f.label :password %>
+        <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'password' %>
+      </div>
+      <%# if devise_mapping.rememberable? -%>
+        <!-- <div class="form-group">
+          <%#= f.check_box :remember_me %>
+          <%#= f.label :remember_me %>
+        </div> -->
+      <%# end %>
+      <div class="actions">
+        <%= f.submit 'LOGIN', class: 'btn btn btn-info btn-block login', id: "login_btn" %>
+      </div>
+    <% end %>
+    <br>
+    <!-- <%#= render 'devise/shared/links' %> -->
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+  $("#login_btn").prop('disabled', true);
+  $("#user_login").val();
+    $("#user_login").focusout(function(){
+      val = $("#user_login").val();
+      $.ajax({
+        type: 'POST',
+        url: "/users/check_status",
+        dataType: 'json',
+        data: {value: val},
+        success: function(response){
+          if (response) {
+            $("#login_btn").prop('disabled', false);
+            $("#user_password").show();
+            $("#msg").html( "<font size=\"3\" color=\"green\">User Authorized for login</font>" );
+          }
+          else{
+            $("#login_btn").prop('disabled', true);
+            $("#user_password").val("");
+            $("#user_password").show();
+            $("#msg").html( "<font size=\"3\" color=\"red\">User Unauthorized for login <br> Please contact admin!</font>" );
+          }
+        }
+      })
+    });
+  });
+
+</script>
+<style type="text/css">
+  .remove-mar0{
+    margin-bottom: 0;
+}
+</style>

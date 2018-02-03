@@ -1,0 +1,4 @@
+$('#no-resource-found').remove();
+$('#post_content').val('');
+$("#activities").prepend("<%= escape_javascript(render_activities(@activity, layout: '/shared/activity')).html_safe %>");
+$('#bnveteran-modal-large').modal('hide');

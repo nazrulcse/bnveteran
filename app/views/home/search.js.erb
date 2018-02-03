@@ -1,0 +1,3 @@
+<% if params[:value].present? %>
+$("#main-content").html("<%= escape_javascript(render 'search_result').html_safe %>");
+<% end %>

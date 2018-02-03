@@ -1,0 +1,60 @@
+<% if current_user.roles.present? %>
+    <div class="bg-color tp-sp jobs">
+      <div class="title-bar">
+        <strong>
+          Jobs
+        </strong>
+      </div>
+      <div role="separator" class="divider">
+      </div>
+      <div class="trend-list">
+        <ul>
+          <% if current_user.has_role? :Job_Seeker %>
+              <li>
+                <%= link_to my_applied_jobs_job_path(current_user), :remote => true do %>
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i> <span>My applied  Jobs</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to search_job_jobs_path, :remote => true do %>
+                    <i class="fa fa-briefcase"></i> Search Jobs</li>
+                <% end %>
+                <li>
+                  <form id="user_avatar">
+                    <div class="file-input-wrapper profile-camera upload-cv">
+                      <button class="btn-file-input"><i class="fa fa-file-text" title="Download CV" id="download_cv"></i> Publish Resume</button>
+                      <% if current_user.avatar_pdf.present? %>
+                          <%= render 'shared/avatar_pdf', user: @user %>
+                      <% end %>
+                      <input type="file" title="Upload CV" id="upload_btn">
+
+                    </div>
+                  </form>
+                </li>
+          <% end %>
+          <% if current_user.has_role? :Employer %>
+              <li>
+                <%= link_to my_jobs_job_path(current_user), method: :post, :remote => true do %>
+                    <i class="fa fa-briefcase" aria-hidden="true"></i> <span>My Jobs</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to post_jobs_job_path(current_user), method: :post, :remote => true do %>
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>Post Jobs</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to search_cvs_jobs_path, :remote => true do %>
+                    <i class="fa fa-search" aria-hidden="true"></i> <span>search cvs</span>
+                <% end %>
+              </li>
+          <% end %>
+          <li>
+            <%= link_to suitable_bnv_for_jobs_jobs_path, :remote => true do %>
+                <i class="fa fa-info-circle" aria-hidden="true"></i> <span>Suitability of BN Veterans for Jobs</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+<% end %>

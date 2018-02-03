@@ -1,0 +1,70 @@
+<div class="bg-color main-content">
+  <div align="center">
+    <br>
+    <div class="input-group stylish-input-group find-people">
+      <input type="text" class="form-control" placeholder="Search" id="search_field2" value="<%= params[:value].present? ? params[:value] : '' %>">
+      <button type="submit" id="search_field_btn2"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+  <div id="user_list">
+    <% if @users.present? %>
+        <% @users.each do |user| %>
+            <% unless user.email == 'reza@solutionart.net' %>
+            <br>
+            <%= render 'users/list_user_item', user: user %>
+                <% end %>
+        <% end %>
+    <% else %>
+        <br>
+        <div class="container-fluid well span6">
+          <div class="no-resource text-center">
+            <% if params[:value].present? %>
+                <h5>No Records Matches With "<%= params[:value] %>"</h5>
+            <% else %>
+                <h5>No Records Found.</h5>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+
+<style type="text/css">
+    .find-people input[type="text"]{
+        border-radius: 5px !important;
+        border:1px solid #ececec !important;
+        width: 87%;
+        margin-right: 4px;
+    }
+    .find-people button{
+        font-size: 16px;
+        height: 33px;
+        background: #fff;
+        border: none;
+        margin-left: 4px;
+        margin: 0 !important;
+        float: left;
+        display: inline-block;
+        width: 25px !important;
+    }
+    .find-people{
+        max-width: 400px;
+        width: 100%;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#search_field_btn2").click(function(){
+            var val = $("#search_field2").val();
+            $.ajax({
+                url: "/users/find_people",
+                method: "get",
+                dataType: 'script',
+                data: {value: val}
+            })
+
+        });
+    });
+</script>
+

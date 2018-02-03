@@ -1,0 +1,51 @@
+<ul class="menu-horizontal text-left top-menu">
+
+<!--  <%# if menu_bar_items.present? %>
+      <%# menu_bar_items.each do |menu| %>
+          <li>
+            <span>
+              <%#= link_to page_banner_path(menu.id), {:style => 'text-shadow: 1px 0px #333;'}  do %>
+              <%#= menu.name %>
+              <%# end %>
+            </span>
+          </li>
+      <%# end %>
+  <%# else %>-->
+
+   <li>
+        <span>
+          <%= link_to 'HOME', root_path, {:style => 'text-shadow: 1px 0px #333;'} %>
+        </span>
+    </li>
+
+    <li>
+        <span>
+          <%= link_to 'FACILITIES', facilities_path, {:style => 'text-shadow: 1px 0px #333;'} %>
+        </span>
+    </li>
+
+    <li>
+        <span>
+          <%= link_to 'FORMS', facility_forms_path, {:style => 'text-shadow: 1px 0px #333;'} %>
+        </span>
+    </li>
+
+    <li>
+        <span>
+          <%= link_to 'GALLERY', galleries_path, {:style => 'text-shadow: 1px 0px #333;'} %>
+        </span>
+    </li>
+
+    <li>
+        <span>
+          <%= link_to 'NEWS & PUBLICATIONS', news_index_path, {:style => 'text-shadow: 1px 0px #333;'} %>
+        </span>
+    </li>
+
+    <li>
+        <span>
+          <%= link_to 'CONTACT', contact_path, {:style => 'text-shadow: 1px 0px #333;'} %>
+        </span>
+    </li>
+  <%# end %>
+</ul>

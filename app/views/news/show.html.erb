@@ -1,0 +1,69 @@
+<div class="main-container">
+
+  <section class="text-center imagebg parallax banner_height" data-overlay="4">
+    <div class="background-image-holder">
+
+      <%= image_tag('new/photo-9.jpg') %>
+      <!--<img alt="background" src="img/new/photo-9.jpg" />-->
+    </div>
+
+    <div class="img-space">
+    </div>
+    <!--end of container-->
+
+  </section>
+<%#= render 'layouts/slider' %>
+
+  <span class="clearfix"></span>
+
+  <div class="container" style="padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'News & Events', news_index_path %></li>
+      <!--<li class="active">Bangladesh Navy Co-operative Housing Society Ltd (BNCHSL) </li>-->
+      <li class="active"><%= @news.title %> </li>
+    </ol>
+  </div>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left">
+      <div class="masonry">
+        <div class="masonry__container">
+
+          <div class="masonry__item col-md-12 filter-people">
+            <h4><%= @news.title %></h4>
+            <% if @news.photo.present? %>
+                <% if @news.photo.path.downcase.end_with?('.pdf') %>
+                    <iframe src=<%= @news.photo.url %> width="600" height="780" style="border: none;"> </iframe>
+                <% elsif @news.is_doc? %>
+                    <iframe src='http://docs.google.com/viewer?embedded=true&url=<%= @news.doc_url(request.host) %>' width='600' height='780' style='border: none;'>
+                    </iframe>
+                <% else %>
+                    <a href="<%= asset_url @news.photo.url %>" data-lightbox="Gallery 1">
+                      <%= image_tag @news.photo.present? ? @news.photo.url : 'facilityinner/gallery_photo/no-image-available.png', class: 'img-responsive img-thumbnail' %>
+                    </a>
+                <% end %>
+            <% else %>
+                <%= image_tag 'facilityinner/gallery_photo/no-image-available.png', class: 'img-responsive img-thumbnail' %>
+            <% end %>
+            <!--<p align="justify"><%#= @news.description %></p>-->
+            <!--<span class="clearfix"></span>-->
+          </div>
+
+        </div>
+        <!--end masonry container-->
+      </div>
+      <span class="clearfix"></span>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 right-sidebar">
+      <%= render 'layouts/template/latest_news' %>
+      <%= render 'layouts/template/gallery_photo' %>
+    </div>
+  </div>
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>

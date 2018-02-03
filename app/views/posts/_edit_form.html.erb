@@ -1,0 +1,118 @@
+<div class="modal-header clearfix">
+  <a class="close pull-right" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </a>
+  <h4 class="modal-title">Edit Post</h4>
+</div>
+
+<!-- <div class="well"> -->
+<div id="mentionable-data" data-content="<%= mentionable_user_path(current_user) %>"></div>
+<div class="modal-body">
+  <%= form_for @post, html: { class: 'post_form' }, id:'post-form', remote:true do |f| %>
+
+      <div class="form-group">
+        <!-- <h4>Update Status</h4> -->
+        <div id="post-content" contenteditable="true" class="editable form-control input-mentionable input-tag-field"  style="border-right:1px solid #ccc !important"></div>
+        <%= f.hidden_field :content, value: @post.content, class: 'form-control input-mentionable', placeholder:"What's up?", autofocus: true %>
+      </div>
+
+      <div id="img-preview" class="form-group hidden" align="center", style="height:115px; width: 100%; border: 1px solid #C5C5C5; border-radius: 5px;">
+        <!--<p align="center">Image Preview</p>-->
+        <img align="center" src="" alt="Preview", style="height: 107px; width: 114px; margin: 3px;" class="img-thumbnail pull-left">
+      </div>
+
+      <%#= f.label :Upload_Image%>
+      <div class="file-input-wrapper profile-camera">
+        <button class="btn-file-input"><i class="fa fa-picture-o"></i></button>
+        <%= f.file_field :attachment %>
+      </div>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <div class="form-group">
+          <!-- <a id="post-attachment" href="javascript:void(0);" class="pull-right btn btn-primary">
+        <%#= fa_icon 'image' %>
+        </a> -->
+          <%#= f.submit 'POST', class: 'pull-right btn btn-sm btn-submit-custom submit-post-btn'%>
+          <button type="submit" class="btn btn--primary type--uppercase sent-post" style="margin-top: 81px;margin-right: 11px;"><i class="fa fa-paper-plane"></i></button>
+        </div>
+
+        <% if @post.attachment.present? %>
+            <div class="attachment">
+              <%= image_tag @post.attachment %>
+            </div>
+        <% end %>
+  <% end %>
+
+  <a class="btn btn-default pull-right" data-dismiss='modal' style="margin-top: 3px">Cancel</a>
+  </div>
+  <!-- </div> -->
+
+  <style type="text/css">
+      .input-tag-field{
+          width: 86%;
+          overflow-y: auto;
+          height: 55px;
+      }
+      .file-input-wrapper {
+          cursor: pointer;
+          float: right;
+          height: 22px;
+          margin: 2px;
+          /* overflow: hidden; */
+          position: relative;
+          right: 36px;
+          top: -62px;
+          width: 26px;
+          text-align: center;
+      }
+      .file-input-wrapper > input[type="file"] {
+          font-size: 40px;
+          position: absolute;
+          top: 0;
+          right: 0;
+          opacity: 0;
+          cursor: pointer;
+          height: 22px;
+          width: 25px;
+          z-index: 9999;
+          padding-left: 0;
+      }
+      .file-input-wrapper .btn-file-input {
+          background-color: transparent;
+          border-radius: 4px;
+          color: black;
+          cursor: pointer;
+          display: inline-block;
+          height: 22px;
+          margin: 0 0 0 -1px;
+          padding-left: 0;
+          border:none;
+          font-size: 25px;
+          color: #337ab7;
+      }
+      .file-input-wrapper:hover > .btn-file-input {
+      //background-color: #494949;
+      }
+      .sent-post{
+          position: absolute;
+          top:11px;
+          width: 30px !important;
+          float: right;
+          right: 0px;
+          border-radius: 50%;
+          height: 30px;
+          color: #fff;
+      }
+      .sent-post i{
+          color:#fff;
+          font-size: 15px;
+          line-height: 19px;
+          text-align: center;
+      }
+      .post-form-area{
+          height: 100px;
+      }
+  </style>

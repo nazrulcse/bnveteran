@@ -1,0 +1,136 @@
+<div class="main-container"  style="background-color: #ffffff" >
+
+<!--  <section class="text-center imagebg parallax  banner_height" data-overlay="4">
+    <div class="background-image-holder">
+      <div>
+      </div>
+      <%#= image_tag 'facilityinner/gallery_photo/photo-8.jpg', alt: 'background' %>
+    </div>
+    <div class="img-space">
+    </div>
+  </section>-->
+
+
+  <section class="text-center imagebg parallax banner_height custom-bg-color-hide" data-overlay="4">
+    <div class="background-image-holder">
+      <div class="asad" style="background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0">
+
+      </div>
+      <%= image_tag 'facilityinner/gallery_photo/photo-8.jpg', alt: 'background' %>
+    </div>
+    <div class="img-space">
+    </div>
+  </section>
+
+  <%#= render 'layouts/slider' %>
+
+  <span class="clearfix"></span>
+
+  <div class="container" style="padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li class="active">News & Events</li>
+    </ol>
+  </div>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left events">
+
+      <% if @all_news.present? %>
+          <% @all_news.each do |news| %>
+
+              <div class="col-sm-6 " style="height: 380px; margin-bottom: 25px; width:352px;">
+                <div class="  feature-1">
+                  <div class="feature__body boxed boxed--border">
+
+                    <h5 style="height: 40px;">
+                      <%= link_to news_path(news) do %>
+                          <%= truncate(news.title, length:60) %>
+                      <% end %>
+                    </h5>
+                    <div class="divider"></div>
+                    <% if news.photo.present? %>
+                        <% if news.photo.path.downcase.end_with?('.pdf') %>
+                            <!--<iframe src=<%#= news.photo.url %> width="360" height="250" style="border: none;"> </iframe>-->
+                            <%= image_tag news.photo.present? ? news.photo.url(:large_thumb_pdf) : 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"250", class: 'img-thumbnail'%>
+                        <% elsif news.is_doc? %>
+                            <iframe src='http://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width='360' height='240' style='border: none;'>
+                            </iframe>
+                        <% else %>
+                            <a href="<%= asset_url news.photo.url %>" data-lightbox="Gallery 1">
+                              <%= image_tag news.photo.present? ? news.photo.url : 'facilityinner/gallery_photo/no-image-available.png', class: 'img-responsive img-thumbnail', height:"250", width: "360" %>
+                            </a>
+                        <% end %>
+                    <% else %>
+                        <%= image_tag 'facilityinner/gallery_photo/no-image-available.png', class: 'img-responsive img-thumbnail', height: 250, width: 360 %>
+                    <% end %>
+
+                    <!--   <p>
+                      <%#= truncate(news.description, length: 100) %>
+                    </p>
+
+                    <%# if news.description.present?%>
+                        <%# unless news.description.length <= 100 %>
+                            <%#= link_to 'Learn more', news_path(news) %>
+                        <%# end %>
+                    <%# end %>-->
+                  </div>
+                </div>
+                <!--end feature-->
+              </div>
+
+              <% unless @all_news.count/2 != 0 %>
+                  <span class="clearfix"></span>
+              <% end %>
+
+          <% end %>
+
+      <% else %>
+
+          <%= render 'shared/no_data_available' %>
+
+      <% end %>
+
+      <%= will_paginate @all_news %>
+
+      <!--<ul class="pagination r-sp event-pagination">-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#" aria-label="Previous">-->
+      <!--<span aria-hidden="true">&laquo;</span>-->
+      <!--<span class="sr-only">Previous</span>-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">1</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">2</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">3</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#" aria-label="Next">-->
+      <!--<span aria-hidden="true">&raquo;</span>-->
+      <!--<span class="sr-only">Next</span>-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--</ul>-->
+
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 right-sidebar">
+      <%= render 'layouts/template/gallery_photo' %>
+    </div>
+
+  </div>
+
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>
+
+<!--<a href="" style="position: fixed;bottom: 0;right: 0;"><%= image_tag('chat.png') %></a>-->
+

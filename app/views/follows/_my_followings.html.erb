@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <h4 class="modal-title">Following</h4>
+</div>
+<div class="modal-body">
+  <ul>
+    <% @followers.each do |following| %>
+        <li>
+          <div class="user-profile">
+            <%= image_tag following.avatar.url || 'avatar.jpg', class: 'img-responsive img-circle' %>
+          </div>
+          <a href="/users/<%= following.id %>"><%= following.name %></a>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<div class="modal-footer">
+</div>

@@ -1,0 +1,141 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="/assets/new_design/normalize.css" >
+<link rel="stylesheet" href="/assets/new_design/tooltip-classic.css" >
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-default navbar-fixed-top sticky-top-nav" style="height:0px;">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">
+          Toggle navigation
+        </span>
+
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse after-login-nav menu-background-color">
+      <ul class="nav navbar-nav left-nav">
+
+        <li class="active">
+          <a href="<%= root_path %>"><i class="fa fa-home"></i> Home</a>
+        </li>
+
+        <li>
+          <a href="<%= notifications_path %>" data-remote="true">
+            <i class="fa fa-bell">
+            <% unless notifications.count<= 0 %>
+                <small style="position: relative;"> <span class="badge" id="unread-notification" style="position: absolute;bottom: -5px;left: 6px;font-size: 12px;padding: 0px;background-color: #2B6FAE; width: 13px; height:13px;"> <%= notifications.count %></span> </small>
+            <% end %>
+          </i>
+            Notification
+          </a>
+        </li>
+
+        <li>
+          <a href="<%= messages_path %>" data-remote="true"><i class="fa fa-envelope-o">
+            <% unless unread_messages.count <= 0 %>
+                <small style="position: relative;"> <span class="badge" id="unread-message" style="position: absolute;bottom: -5px;left: 8px;font-size: 12px;padding: 0px;background-color: #2B6FAE; width: 13px; height:13px;"> <%= unread_messages.count %> </span> </small>
+            <% end %>
+          </i> Message</a>
+        </li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li>
+          <div class="spinner">
+            <div class="sk-circle">
+              <div class="sk-circle1 sk-child"></div>
+              <div class="sk-circle2 sk-child"></div>
+              <div class="sk-circle3 sk-child"></div>
+              <div class="sk-circle4 sk-child"></div>
+              <div class="sk-circle5 sk-child"></div>
+              <div class="sk-circle6 sk-child"></div>
+              <div class="sk-circle7 sk-child"></div>
+              <div class="sk-circle8 sk-child"></div>
+              <div class="sk-circle9 sk-child"></div>
+              <div class="sk-circle10 sk-child"></div>
+              <div class="sk-circle11 sk-child"></div>
+              <div class="sk-circle12 sk-child"></div>
+            </div>
+          </div>
+        </li>
+
+
+          <div class="ajax-load-logo">
+            <%= link_to root_path  do %>
+                <%= image_tag 'bnveteran.png' %>
+            <% end %>
+          </div>
+
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="stylish-input-group">
+          <%= form_tag search_path, method: :get, remote: true do %>
+              <div class="input-group stylish-input-group">
+
+                <input type="text" class="form-control" placeholder="Search" id="search_field" name="value" style="background: white;">
+
+            <span class="input-group-addon">
+              <button type="submit" id="search_field_btn">
+                <span class="glyphicon glyphicon-search">
+                </span>
+              </button>
+            </span>
+
+
+              </div>
+          <% end %>
+        </li>
+        <li class="dropdown circle-proile" id="item">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><!-- <img class="img-responsive img-circle" src="/assets/person-1.jpg" alt="" /> -->
+            <%#= image_tag current_user.avatar.url || '/assets/default-profile-picture-327876e6dc85bc451f302f0034dfb6ec90b4e2af215b313c1a855ab5bd14e94b.png', class: 'img-responsive img-circle nav_img_class', id: 'nav_img' %>
+            <%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle nav_img_class' %>
+          </a>
+          <ul class="dropdown-menu p-dropdown">
+            <li class="u-name">
+              <%= link_to user_path(current_user), remote: true do %>
+                  <h3><%= truncate(current_user.name, length: 20) %></h3>
+                  <small> <%= current_user.email %></small>
+              <% end %>
+            </li>
+            <li role="separator" class="divider">
+            </li>
+            <!-- <li>
+              <a href="/users/cv_upload"><i class="fa fa-file-text-o" aria-hidden="true"></i> Upload CV</a>
+            </li> -->
+            <li>
+              <!--<a href="/users/<%#=current_user.id%>"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>-->
+
+              <%= link_to user_path(current_user), remote: true do %>
+                  <i class="fa fa-user-o" aria-hidden="true"></i> Profile
+              <% end %>
+            </li>
+            <li role="separator" class="divider">
+            <li>
+              <%= link_to edit_user_path(current_user), remote: true do %>
+                  <i class="fa fa-cog" aria-hidden="true"></i> Setting
+              <% end %>
+            </li>
+            <li role="separator" class="divider">
+            </li>
+            <li><%= link_to('Sign out', destroy_user_session_path, :class=>"fa fa-sign-out", method: :delete) %></li>
+          </ul>
+        </li>
+        <li>
+          <a href="<%= root_path %>" class="btn-right btn-customs post-button">Post</a>
+        </li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>
+
+<%= render 'shared/modal' %>

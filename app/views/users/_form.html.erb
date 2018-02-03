@@ -1,0 +1,119 @@
+
+<div class="modal-header clearfix">
+  <a class="close pull-right" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </a>
+  <h4 class="modal-title">Edit Profile</h4>
+</div>
+
+<%= form_for @user, remote: true do |f| %>
+
+    <div class="modal-body" >
+
+      <ul class="nav nav-tabs" id="tabContent">
+        <li class="active"><a href="#personal-info" data-toggle="tab">Personal Info</a></li>
+        <li><a href="#official-info" data-toggle="tab">Official Info</a></li>
+      </ul>
+
+      <div class="tab-content clearfix" style="margin-top: 10px">
+        <div class="tab-pane active" id="personal-info" style="max-height: 300px; overflow: auto">
+          <div class="form-group">
+            <%= f.text_field :name, placeholder: 'Full Name', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_area :about, placeholder: 'About', class: 'form-control text-tag-area' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :location, placeholder: 'Location', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :phone_number, placeholder: 'Phone Number', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :dob, placeholder: 'Date of Birth', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.select :sex, options_for_seasons, class: 'form-control', prompt: 'Select One' %>
+          </div>
+          <div class="form-group">
+            <h4>Select Roles</h4>
+            <%= f.select :roles, options_for_select(["Job_Seeker", "Employer"]), {}, {:multiple => true, :class => "chzn-select", :style => "width:370px;height:45px", placeholder: 'Select Roles'} %>
+          </div>
+          <div class="form-group">
+            <h4>Uplod CV</h4>
+            <%= f.file_field :avatar_pdf %>
+          </div>
+
+          <div class="form-group">
+            <h4>Address</h4>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :permanent_address, placeholder: 'Permanent Address', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :state, placeholder: 'Permanent State', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :city, placeholder: 'Permanent City', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :country, placeholder: 'Permanent Country', class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :present_address, placeholder: 'Present Address', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :present_state, placeholder: 'Present State', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :present_city, placeholder: 'Present City', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :present_country, placeholder: 'Present Country', class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="official-info">
+          <div class="form-group">
+            <%#= f.select :designation_type, User::DESIGNATION_TYPE, class: 'form-control', prompt: 'Select One' %>
+            <%= select_tag "user[designation_type]", options_for_select(User::DESIGNATION_TYPE), prompt: "Select Officer/JcoAndOthers", "data-required" => "true", title: "Select Officer/JcoAndOthers" %>
+          </div>
+          <div class="form-group">
+            <%#= f.select :designation_type, User::DESIGNATION_TYPE, class: 'form-control', prompt: 'Select One' %>
+            <%= select_tag "user[rank]", "data-required" => "true", prompt: "Select Rank", title: "Select Rank" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :officer_no, placeholder: 'Officer No / Personal No', class: 'form-control', title: "Officer No / Personal No" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :batch, placeholder: 'Batch', class: 'form-control', title: "Batch" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :date_joining, placeholder: 'Date of Joining', class: 'form-control', title: "Date of Joining" %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :date_retirement, placeholder: 'Date of Retirement', class: 'form-control', title: "Date of Retirement" %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="clearfix">
+        <div class="pull-right form-group">
+          <%= f.submit 'Update', class: 'btn btn-primary form-control custom-button', style: 'padding-left: 10px; padding-right: 10px;' %>
+        </div>
+
+        <a class="btn btn-default pull-right" data-dismiss='modal' style="margin-right: 10px">Cancel</a>
+      </div>
+    </div>
+<% end %>

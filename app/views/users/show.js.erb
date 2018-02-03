@@ -1,0 +1,8 @@
+$("#main-content").html("<%= escape_javascript(render 'users/user_profile').html_safe %>");
+$('#bnveteran-modal').modal('hide');
+$('#bnveteran-messaging-modal').modal('hide');
+$('#top-menu-btn').removeClass('in');
+$('#item').removeClass('open');
+
+
+history.pushState("", "", "/<%= @user.slug %>");

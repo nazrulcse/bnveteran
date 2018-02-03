@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <h4 class="modal-title">Share</h4>
+</div>
+<div class="modal-body">
+  <div class="form-area">
+    <%= form_for @post, html: {class: 'share_post_form', id: 'share-post-form'}, remote: true do |f| %>
+
+        <%= f.hidden_field :shared_id, value: @share_post.id %>
+
+        <div class="form-group" style="margin-bottom: 0">
+          <!-- <h4>Update Status</h4> -->
+          <div id="share-post-content" contenteditable="true" class="editable form-control input-tag-field" style="border-right:1px solid #ccc !important; width: 92%;"></div>
+          <%= f.hidden_field :content, value: @post.content, class: 'form-control', id: 'share_post_content', placeholder:"What's up?" %>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0">
+          <button type="submit" class="btn btn--primary type--uppercase sent-post"><i class="fa fa-paper-plane"></i></button>
+        </div>
+
+    <% end %>
+  </div>
+
+  <div class="single-post-show share-form-shared-content">
+    <% if @share_post %>
+        <%= render 'posts/shared_post', post: @share_post %>
+    <% else %>
+        <div class="well" id="no-resource-found">
+          <div class="no-resource text-center">
+            <h5>No content found.</h5>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="btn btn-default" data-dismiss='modal'>Cancel</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        $('#share-post-form').submit(function(e) {
+            $('#share_post_content').val($('#share-post-content').html());
+            $('#share-post-content').html('');
+        });
+    });
+</script>

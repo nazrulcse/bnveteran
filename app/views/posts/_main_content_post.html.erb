@@ -1,0 +1,18 @@
+<div class="bg-color main-content" id="newsfeed">
+  <div class="form-area post-form-areaxx">
+    <%= render 'posts/form' %>
+  </div>
+  <div id="img_preview"></div>
+  <div class="post-show">
+    <div id="activities">
+      <% if @activities.empty? %>
+          <div class="well" id="no-resource-found">
+            <%= render('shared/no_resource', resources: 'Activities') %>
+          </div>
+      <% else %>
+          <%= render_activities(@activities, layout: '/shared/activity') %>
+      <% end %>
+    </div>
+    <%= render 'shared/paginate', resources: @activities %>
+  </div>
+</div>

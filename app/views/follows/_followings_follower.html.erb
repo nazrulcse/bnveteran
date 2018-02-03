@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <% if params[:follow].present? && params[:follow] == 'followers' %>
+      <h4 class="modal-title">Followers</h4>
+  <% else %>
+      <h4 class="modal-title">Following</h4>
+  <% end %>
+</div>
+<div class="modal-body">
+  <ul>
+    <% @follows.each do |follow| %>
+        <li>
+          <div class="user-profile">
+            <% if follow.avatar.present? %>
+                <%= image_tag follow.avatar.url, class: 'img-responsive img-circle' %>
+            <% else %>
+                <%= image_tag 'avatar.jpg', class: 'img-responsive img-circle' %>
+            <% end %>
+          </div>
+          <a href="/users/<%= follow.id %>" data-remote="true" ><%= follow.name %></a>
+
+          <%= link_to 'Message', message_path(follow.id), remote: true, class: 'btn btn-success follow-us-button pull-right', style: 'line-height: 10px; display: unset; background-color: green;color: white;border: 0px;' %>
+          <div align="right" class="follow col-md-2 pull-right" style="margin-right: 30px;">
+            <% if follow.followed_by?(current_user) %>
+                <%= link_to 'unfollow', unfollow_path(user_id: follow.id), method: :post, remote: true, class: 'btn btn-success follow-us-button', id: "unfollow-link-#{follow.id}", style: 'line-height: 10px; display: unset;' %>
+            <% else %>
+                <%= link_to 'follow', follow_path(user_id: follow.id), method: :post, remote: true, class: 'btn btn-success follow-us-button', id: "follow-link-#{follow.id}", style: 'line-height: 10px; display: unset;' %>
+            <% end %>
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<div class="modal-footer">
+  <div class="btn btn-default" data-dismiss='modal'>Cancel</div>
+</div>

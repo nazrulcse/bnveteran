@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <button type="button" class="close pull-right close-btn" data-dismiss="modal">&times;</button>
+
+  <%= link_to new_message_path, class:'btn pull-right btn btn-primary new-message-btn', remote:true do %>
+      <span>New Message </span>
+  <% end %>
+  <!--<button type="button" class="pull-right mark-as-all-btn ">-->
+  <!--<i class="fa fa-check" aria-hidden="true"></i>-->
+  <!--</button>-->
+
+  <h4 class="modal-title">Direct Messages</h4>
+
+</div>
+<div class="modal-body msg-modal-body">
+
+  <% @rooms.each do |room| %>
+
+      <% user = Room.connected_user(room, current_user) %>
+      <% message = Message.user_message(room, current_user) %>
+      <% if message.present? %>
+          <% unless user.blank? %>
+              <% unless user.email == 'reza@solutionart.net' %>
+                  <a href="<%= message_path(user.id) %>" data-remote="true">
+
+                    <ul>
+                      <li style="padding: 3px;">
+                        <%#= link_to user_path(user.id) do %>
+                        <div class="user-profile">
+                          <%= image_tag user.avatar.present? ? user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle' %>
+                        </div>
+                        <%# end %>
+                        <div class="user-message-profile">
+                          <small class="pull-right"><%= format_date_chat(message.created_at) %></small>
+                          <h4> <%= user.name %> </h4>
+                          <% if message.user_id == current_user.id %>
+                              <small style="color: #929292;"> You :<%=  message.content %> </small>
+                          <% else %>
+                              <small style="color: #929292;"><%=  message.content %> </small>
+                          <% end %>
+
+                        </div>
+                      </li>
+                    </ul>
+                  </a>
+              <% end %>
+          <% end %>
+      <% end %>
+  <% end %>
+
+</div>
+
+
+<div class="modal-footer">
+</div>

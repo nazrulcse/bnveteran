@@ -1,0 +1,47 @@
+<% @notifications.each do |notification| %>
+      <% topic_creator_image = User.topic_creator_image(notification) %>
+      <ul>
+        <li>
+          <div class="notification-part">
+            <div class="notifier-photo pull-left">
+              <%= image_tag  topic_creator_image.present? ? topic_creator_image.url : 'default-profile-picture.png', height: '25', width: '25', class: 'img-circle' %>
+            </div>
+
+            <div class=" notification-summary pull-left">
+
+              <div class="notifier-name">
+                <%= link_to user_path(notification.topic_creator_id), remote:true do %>
+                    <h5> <%= notification.topic_creator_name %>
+                <% end %>
+
+                <% post = Post.find_by(id: notification.topic_id) %>
+
+                <% if notification.notification_type == 'Post' %>
+                    <%= post.is_share ? ' has shared your ' : 'created a ' %>
+
+                    <%= link_to post_path(notification.topic_id), remote:true do %>
+                        <%= notification.notification_type %> </h5>
+                    <% end %>
+
+                <% elsif notification.notification_type == 'Like'  %>
+                    likes your <%= link_to 'Post', post_path(notification.topic_id), remote:true %>  </h5>
+                <% elsif notification.notification_type == 'Comment'  %>
+                    comments on your <%= link_to 'Post', post_path(notification.topic_id), remote:true %>  </h5>
+                <% else %>
+                    no notification type </h5>
+                <% end %>
+              </div>
+
+              <div class="message-content">
+                <small><% description = strip_tags(post.content) %></small>
+                <small><%= truncate(description, length:90)  %></small>
+                <!--<small><%#= post.content %></small>-->
+              </div>
+
+            </div>
+
+          </div>
+        </li>
+      </ul>
+      <div role="separator" class="divider"></div>
+<% end %>

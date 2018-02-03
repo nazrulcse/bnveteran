@@ -1,0 +1,12 @@
+<% if params[:page].present? && params[:page].to_i > 0 %>
+$(".notification_list").find('#notification-row').append("<%= escape_javascript(render 'notifications/notification_row').html_safe %>");
+<% else %>
+$("#main-content").html("<%= escape_javascript(render 'notifications/notifications').html_safe %>");
+<% end %>
+
+$('#unread-notification').hide();
+history.pushState("", "", "<%= notifications_path %>");
+
+<%= render 'shared/paginate', resources: @notifications %>
+
+

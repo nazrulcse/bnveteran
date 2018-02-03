@@ -1,0 +1,155 @@
+<% if post.user %>
+    <div class="info" >
+      <%= render 'shared/avatar', user: post.user %>
+      <h3 class="name"><%= link_to post.user.name, user_path(post.user), remote: true %>
+        <small class="action" style="font-size: 100%">
+          <% if  post.is_share.present? %>
+              <% unless  post.shared.user.blank? %>
+                  shared <%= link_to post.shared.user.name, user_path(post.shared.user.id), remote:true %>'s <%= link_to 'post', post.shared, remote: true %>
+              <% end %>
+          <% else %>
+              created a <%= link_to 'post', post, remote: true %>
+          <% end %>
+          <%#= post.is_share ? 'shared a ' : 'created a ' %><%#= link_to 'post', post.shared, remote: true %>
+          <%= render 'shared/created_at', activity: post %>
+
+        </small>
+
+        <% if current_user.id == post.user.id %>
+            <small class="dropdown pull-right" style="margin-right: -2px; margin-top: -3px">
+              <label class="dropdown-toggle" type="button" data-toggle="dropdown" style=" font-size: 18px">
+                <span><i class="fa fa-angle-down " aria-hidden="true"></i></span>
+              </label>
+              <ul class="dropdown-menu">
+                <!--<li><%#= link_to 'Edit', edit_post_path(post.id), remote:true %></li>-->
+                <li>
+                  <%= link_to post_path(post), method: :delete, remote: controller_name == 'posts' && action_name == 'show' ? false : true, data: {confirm: 'Are you sure?'} do %>
+                      Delete
+                  <% end %>
+                </li>
+              </ul>
+            </small>
+        <% end %>
+
+      </h3>
+
+    </div>
+    <div class="content">
+      <% description = sanitize(post.content_html) %>
+      <p style="text-align:justify;"><%= description %></p>
+    </div>
+
+    <% if post.post_images.present? %>
+        <div class="post-attachment row" style="margin-top: 45px;">
+
+          <% post.post_images.each_with_index do |post_image, index| %>
+
+              <% if post_image.image.path.downcase.end_with?('.pdf') %>
+                  <iframe src=<%= post_image.image_url %> width="600" height="780" style="border: none;"> </iframe>
+              <% else %>
+                  <div class="attachment <%= index > 3 ? 'hidden' : '' %> col-md-<%= post.post_images.size > 1 ? '6 multiple-image' : '12' %>" style="margin: 0px; padding: 0px;">
+                    <a href="<%= post_image.image_url %>" data-lightbox="Gallery <%= post.id %>">
+
+                      <%= image_tag post_image.image_url , class: 'img-responsive img-rounded post-img'%>
+
+                      <% if post.post_images.count > 4 && index == 3 %>
+                          <div class="more-item-wrapper">
+                            <div class="more-item-container">
+                              <div class="more-item-number">
+                                +<%= post.post_images.count - 4 %>
+                              </div>
+                            </div>
+                          </div>
+                      <% end %>
+                    </a>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+
+    <% elsif post.is_share %>
+        <% if post.shared.present? %>
+            <%= render 'posts/shared_post', post: post.shared %>
+        <% else %>
+            <div class="well" id="no-resource-found" style="margin-top: 45px;">
+              <div class="no-resource text-center">
+                <h5>No content found.</h5>
+              </div>
+            </div>
+        <% end %>
+    <% end %>
+
+
+    <div class="share-other share-other-links">
+      <%= link_to likes_path(post_id: post.id), title: 'Like', method: :post, :remote => true do %>
+          <i id="<%= post.id %>" class="fa fa-heart-o" aria-hidden="true"></i>
+      <% end %>
+      <%= link_to likes_path(post_id: post.id), title: 'Like', :remote => true do %>
+          <span class="like-count" id="p-<%= post.id %>"><%= post.likes.count %></span>
+      <% end %>
+      <%= link_to post, class: '',  title: 'Comment', remote: true do %>
+          <i class="fa fa-comment" aria-hidden="true"></i>
+          <span class="comment-count" id="c-<%= post.id %>"><%= pluralize(post.comments_count, '') %></span>
+      <% end %>
+
+      <%= link_to share_post_path(post), title: 'Share', remote: true do %>
+          <i class="fa fa-share" aria-hidden="true" ></i>
+      <% end %>
+
+      <%= link_to who_shares_post_path(post), title: 'Share', remote: true do %>
+          <span class="share-count" id="share-<%= post.id %>"><%= pluralize(post.share_count, '') %></span>
+      <% end %>
+    </div>
+<% end %>
+
+<style type="text/css">
+    .share-other-links .comment-btn-count{
+        padding-top: 0;
+    }
+    .edti-post-btn{
+        background: none;
+        border: none;
+        padding: 0;
+        float: left;
+        font-size: 14px;
+    }
+    .dlt-post-btn{
+        background: none;
+        border: none;
+        padding: 0;
+        float: left;
+        font-size: 14px;
+    }
+    .dlt-post-btn:hover{
+        background:none !important;
+    }
+    .edti-post-btn:hover{
+        background: none !important;
+    }
+    .like-count-no{
+        margin-left: 30px;
+    }
+    .check-liked i{
+        color:#4a90e2;
+        transition: all 0.3s ease;
+    }
+    .like-btn-count i:hover{
+        color: #4a90e2;
+    }
+    .action-row{
+        position: relative;
+    }
+    .comment-count-no{
+        margin-left: 50px;
+    }
+    .comment-count-no a{
+        width: 40px !important;
+    }
+    .comment-btn-box a i:hover{
+        color:#4a90e2;
+        transition: all 0.3s ease;
+    }
+    .create-at-report{
+        display: inline-block;
+    }
+</style>

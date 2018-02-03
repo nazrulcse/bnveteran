@@ -1,0 +1,113 @@
+<div class="main-container">
+
+  <section class="text-center imagebg parallax banner_height" data-overlay="4">
+    <div class="background-image-holder">
+      <div>
+      </div>
+      <%= image_tag('new/photo-11.jpg') %>
+      <!--<img alt="background" src="img/new/photo-11.jpg" />-->
+    </div>
+
+    <div class="img-space">
+    </div>
+    <!--end of container-->
+
+  </section>
+  <%#= render 'layouts/slider' %>
+  <span class="clearfix"></span>
+
+  <div class="container" style="padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Facilities', facilities_path %></li>
+      <li class="active"> Financial Grant  </li>
+    </ol>
+  </div>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left">
+      <div class="masonry">
+        <div class="masonry__container">
+          <div class="masonry__item col-md-12 filter-people">
+            <h4>
+              Financial Grant
+            </h4>
+            <p>
+              Financial Grant is provided to the retired naval personnel who are in actual distress condition. The grant is provided under following conditions:
+
+            </p>
+            <p>
+              1.	To run/meet family expenditure.<br />
+              2.	Medical treatment of family members.<br />
+              3.	Marriage ceremony of dependent daughter.<br />
+              4.	House reconstruction/construction.
+            </p>
+
+            <span class="clearfix"></span>
+
+            <div class="boxed boxed--border">
+              <p>
+                This is the title of pdf form
+              </p>
+              <a class="btn btn--primary" href="<%= financial_grant_form_path('pdf') %>">
+                <span class="btn__text">Download Here</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+        <!--end masonry filters-->
+        <%#= render 'layouts/template/notification_image' %>
+        <!--end masonry container-->
+      </div>
+      <span class="clearfix"></span>
+    </div>
+    <div class="col-md-4 col-sm-4  col-xs-12 right-sidebar">
+      <%= render 'layouts/template/latest_news' %>
+      <%= render 'layouts/template/gallery_photo' %>
+    </div>
+  </div>
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>
+<a href="" style="position: fixed;bottom: 0;right: 0;"><%= image_tag('chat.png') %></a>
+
+<script src="js/jquery-3.1.1.min.js">
+</script>
+<script src="js/flickity.min.js">
+</script>
+<script src="js/easypiechart.min.js">
+</script>
+<script src="js/parallax.js">
+</script>
+<script src="js/typed.min.js">
+</script>
+<script src="js/datepicker.js">
+</script>
+<script src="js/isotope.min.js">
+</script>
+<script src="js/ytplayer.min.js">
+</script>
+<script src="js/lightbox.min.js">
+</script>
+<script src="js/granim.min.js">
+</script>
+<script src="js/jquery.steps.min.js">
+</script>
+<script src="js/countdown.min.js">
+</script>
+<script src="js/twitterfetcher.min.js">
+</script>
+<script src="js/spectragram.min.js">
+</script>
+<script src="js/smooth-scroll.min.js">
+</script>
+<script src="js/scripts.js">
+</script>
+</body>
+
+</html>

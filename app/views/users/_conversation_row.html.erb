@@ -1,0 +1,40 @@
+
+<ul>
+  <% unless @messages.blank? %>
+      <% @messages.each do |message| %>
+
+          <% unless message.content.blank? %>
+              <% if message.user_id == current_user.id %>
+                  <li>
+                    <div class="user-chat-photo pull-right">
+                      <%#= link_to user_path(message.user.id) do %>
+                      <%= image_tag message.user.avatar.present? ? message.user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle' %>
+                      <%# end %>
+                    </div>
+                    <div class="message-content pull-right">
+                      <p class="user-message-content" >
+                        <%= message.content %>
+                      </p>
+                    </div>
+                  </li>
+                  <span class="pull-right" style="padding-right: 50px;"><%= format_date_chat(message.created_at) %></span>
+              <% else %>
+                  <li>
+                    <div class="user-chat-photo pull-left">
+                      <%#= link_to user_path(message.user.id) do %>
+                      <%= image_tag message.user.avatar.present? ? message.user.avatar.url : 'downloadff.jpg', class: 'img-responsive img-circle' %>
+                      <%# end %>
+                    </div>
+                    <div class="other-message-content pull-left">
+                      <p class="user-message-content" >
+                        <%= message.content %>
+                      </p>
+                    </div>
+                  </li>
+                  <span class="pull-left" style="padding-left: 50px;"><%= format_date_chat(message.created_at) %></span>
+              <% end %>
+
+          <% end %>
+      <% end %>
+  <% end %>
+</ul>

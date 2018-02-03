@@ -1,0 +1,21 @@
+<% message = @message %>
+
+<% unless message.content.blank? %>
+    <% if message.user.id == current_user.id %>
+        <a href="#">
+          <li>
+
+            <div class="user-chat-photo pull-right">
+              <%= image_tag message.user.avatar.present? ? message.user.avatar.url : 'downloadff.jpg', class: 'img-responsive img-circle' %>
+            </div>
+            <div class="message-content pull-right">
+              <p class="user-message-content" >
+                <%= message.content %>
+              </p>
+            </div>
+          </li>
+        </a>
+        <span class="pull-right" style="padding-right: 50px;"><%= format_date_chat(message.created_at) %></span>
+    <% end %>
+
+<% end %>

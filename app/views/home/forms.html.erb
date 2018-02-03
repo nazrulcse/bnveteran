@@ -1,0 +1,76 @@
+<div class="main-container" style="background-color: #ffffff">
+  <section class="text-center imagebg parallax banner_height custom-bg-color-hide" data-overlay="4">
+    <div class="background-image-holder">
+      <div class="asad" style="background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0">
+
+      </div>
+      <%= image_tag 'facilityinner/gallery_photo/photo-16.jpg', alt: 'background' %>
+    </div>
+    <div class="img-space">
+    </div>
+  </section>
+
+  <span class="clearfix"></span>
+
+  <div class="container " style="background-color: #ffffff; padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li class="active">Forms </li>
+    </ol>
+  </div>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left">
+      <div class="masonry">
+        <!--end masonry filters-->
+        <div class="masonry__container masonry--active">
+          <span class="clearfix"></span>
+
+          <div class="col-sm-12 col-md-12 col-xs-12 list-six mg-tps no-padding">
+
+            <% unless @facility_forms.blank? %>
+                <% @facility_forms.each do |facility_form| %>
+                    <% unless facility_form.form.blank? %>
+                        <div class="col-md-4 col-sm-6 col-xs-12 pdf-forms form-download-button">
+                          <div>
+                            <i class="fa fa-file-pdf-o  " aria-hidden="true">
+                            </i>
+                            <h5>
+                              <%= facility_form.title %>
+                            </h5>
+                              <%= link_to download_facility_form_path(facility_form), class: 'pull-right btn btn-default btn-sm btn-md btn-xs btn-lg' do %>
+                                  <span style="font-size: 13px;font-weight: bold; color: black;position: absolute;right: 21%;bottom: 10%;">Download</span>
+                              <% end %>
+                          </div>
+                        </div>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <%= render 'shared/no_data_available' %>
+            <% end %>
+            <!--end feature-->
+          </div>
+        </div>
+        <!--end masonry container-->
+      </div>
+
+      <span class="clearfix"></span>
+
+      <%= will_paginate @facility_forms %>
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 right-sidebar">
+      <%= render 'layouts/template/latest_news' %>
+      <%= render 'layouts/template/gallery_photo' %>
+    </div>
+
+  </div>
+
+</div>
+
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>

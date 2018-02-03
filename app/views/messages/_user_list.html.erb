@@ -1,0 +1,34 @@
+<div class="recent-chatting">
+  <h5 style="margin: 0px;">Select to send</h5>
+  <ul>
+    <% if @users.present? %>
+        <% @users.each do |user| %>
+
+            <% unless user.email == 'reza@solutionart.net' %>
+                <a href="<%= message_path(user.id) %>" data-remote="true" >
+                  <li  style="background-color:#F5F8FA;">
+                    <div class="user-profile">
+                      <%= image_tag user.avatar.present? ? user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle' %>
+                    </div>
+                    <div class="user-message-profile">
+                      <h5> <%= user.name %> </h5>
+                    </div>
+                  </li>
+                </a>
+
+            <% end %>
+        <% end %>
+
+    <% else %>
+
+        <div class="no-resource text-center">
+          <% if params[:q].present? %>
+              <h5>No Records Matches With "<%= params[:q] %>"</h5>
+          <% else %>
+              <h5>No Records Found.</h5>
+          <% end %>
+        </div>
+
+    <% end %>
+  </ul>
+</div>

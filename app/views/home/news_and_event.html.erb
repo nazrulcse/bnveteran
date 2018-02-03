@@ -1,0 +1,139 @@
+<div class="main-container"  style="background-color: #ffffff" >
+
+  <section class="text-center imagebg parallax  banner_height" data-overlay="4">
+    <div class="background-image-holder">
+      <div>
+      </div>
+      <%= image_tag 'facilityinner/gallery_photo/photo-8.jpg', alt: 'background' %>
+    </div>
+    <div class="img-space">
+    </div>
+  </section>
+  <%#= render 'layouts/slider' %>
+
+  <span class="clearfix"></span>
+
+  <div class="container" style="padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li class="active">News & Events</li>
+    </ol>
+  </div>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left events">
+
+      <% if @events.present? %>
+          <% @events.each do |event| %>
+
+              <div class="col-sm-6 " style="height: 500px">
+                <div class="  feature-1">
+                  <%= image_tag event.photo.present? ? event.photo.url : 'facilityinner/gallery_photo/no-image-available.png', class: 'img-responsive', height: 250, width: 360 %>
+                  <div class="feature__body boxed boxed--border">
+                    <h5>
+                      <%= event.name %>
+                    </h5>
+                    <p>
+                      <%= truncate(event.description, length: 60) %>
+                    </p>
+
+                    <% if event.description.present?%>
+                        <% unless event.description.length <= 100 %>
+                            <%= link_to 'Learn more', event_single_path %>
+                        <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <!--end feature-->
+              </div>
+
+              <% unless @events.count/2 != 0 %>
+                  <span class="clearfix"></span>
+              <% end %>
+
+          <% end %>
+
+      <% else %>
+
+          <%= image_tag 'facilityinner/gallery_photo/no-event.jpg' %>
+
+      <% end %>
+
+      <%= will_paginate @events %>
+
+      <!--<ul class="pagination r-sp event-pagination">-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#" aria-label="Previous">-->
+      <!--<span aria-hidden="true">&laquo;</span>-->
+      <!--<span class="sr-only">Previous</span>-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">1</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">2</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">3</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#" aria-label="Next">-->
+      <!--<span aria-hidden="true">&raquo;</span>-->
+      <!--<span class="sr-only">Next</span>-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--</ul>-->
+
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 right-sidebar">
+      <%= render 'layouts/template/gallery_photo' %>
+    </div>
+
+  </div>
+
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>
+
+<a href="" style="position: fixed;bottom: 0;right: 0;"><%= image_tag('chat.png') %></a>
+
+<script src="js/jquery-3.1.1.min.js">
+</script>
+<script src="js/flickity.min.js">
+</script>
+<script src="js/easypiechart.min.js">
+</script>
+<script src="js/parallax.js">
+</script>
+<script src="js/typed.min.js">
+</script>
+<script src="js/datepicker.js">
+</script>
+<script src="js/isotope.min.js">
+</script>
+<script src="js/ytplayer.min.js">
+</script>
+<script src="js/lightbox.min.js">
+</script>
+<script src="js/granim.min.js">
+</script>
+<script src="js/jquery.steps.min.js">
+</script>
+<script src="js/countdown.min.js">
+</script>
+<script src="js/twitterfetcher.min.js">
+</script>
+<script src="js/spectragram.min.js">
+</script>
+<script src="js/smooth-scroll.min.js">
+</script>
+<script src="js/scripts.js">
+</script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+<div class=" single-post-show <%= activity.key.include?("post.create") ? 'single-post-show' : 'hide'%>">
+	<%= render_activity(activity) %>
+</div>
+<style type="text/css">
+	.hide{
+		display: none;
+	}
+</style>

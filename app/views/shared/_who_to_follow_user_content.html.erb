@@ -1,0 +1,18 @@
+<div class="p-info" id="who-to-follow-<%= user.id %>">
+  <%= link_to user_path(user.id), remote: true do %>
+      <%= image_tag user.avatar.present? ? user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle nav_img_class' %>
+      <!--<h3><%#=user.name%> <small><%#=user.email%></small></h3>-->
+      <%# if user.designation_type.present? && user.rank.present? %>
+          <!--<small style="margin-right: 77px;"><%#= get_rank(user.designation_type, user.rank) %><br></small>-->
+      <%# end %>
+      <span class="account-group-inner">
+        <strong class="fullname"><%=user.name%></strong>
+        <span class="UserNameBreak">&nbsp;</span>
+        <span class="username u-dir" dir="ltr"><%=user.email%></span>
+      </span>
+  <% end %>
+  <!--</a>-->
+  <div class="follow follow-form">
+    <%= render 'follows/form', user: user %>
+  </div>
+</div>

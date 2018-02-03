@@ -1,0 +1,52 @@
+<div class="text-center txt-top">SIGN UP</div>
+<div class="login-container">
+  <div id="output"></div>
+  <div class="avatar"><img class="img-responsive" alt="logo" src="/assets/logo-light.jpg"></div>
+  <div class="form-box">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <% if resource.errors.any? %>
+        <div class="alert alert-danger alert-dismissable">
+          <%= resource.errors.full_messages.first %>
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        </div>
+      <% end %>
+      <div class="form-group remove-mar0">
+        <%#= f.label :name %>
+        <%= f.text_field :name, class: 'form-control', autofocus: true, placeholder: 'name' %>
+      </div>
+      <div class="form-group remove-mar0">
+        <%#= f.label :name %>
+        <%= f.text_field :officer_no, class: 'form-control', autofocus: true, placeholder: 'official/personal no' %>
+      </div>
+      <div class="form-group remove-mar0">
+        <%#= f.label :name %>
+        <%= f.text_field :phone_number, class: 'form-control', autofocus: true, placeholder: 'phone number' %>
+      </div>
+      <div class="form-group remove-mar0">
+        <%#= f.label :email %>
+        <%= f.email_field :email, class: 'form-control', placeholder: 'email' %>
+      </div>
+      <div class="form-group remove-mar0">
+        <%#= f.label :password %>
+        <%# if @minimum_password_length %>
+          <!-- em>(<%#= @minimum_password_length %> characters minimum)</em>
+        <%# end %><br> -->
+        <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'password' %>
+      </div>
+      <div class="form-group">
+        <%#= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: 'password confirmation' %>
+      </div>
+      <div class="actions">
+        <%= f.submit 'SIGN UP', class: 'btn btn btn-info btn-block login' %>
+      </div>
+    <% end %>
+    <br>
+    <%= render 'devise/shared/links' %>
+  </div>
+</div>
+<style type="text/css">
+  .remove-mar0{
+    margin-bottom: 0;
+}
+</style>

@@ -1,0 +1,21 @@
+<div>
+  <div class="boxed boxed--border news-list ">
+
+    <h4>Gallery Photo</h4>
+
+    <% if default_gallery_photos.present? %>
+        <% default_gallery_photos.each.with_index(1) do |default_gallery_photo, index| %>
+            <% unless default_gallery_photo.image.blank? %>
+                <div class=" col-md-6 col-sm-6 col-xs-6  no-padding galllery-list">
+                  <a href="<%= default_gallery_photo.image_url %>" data-lightbox="Gallery 1">
+                    <%= image_tag default_gallery_photo.image_url, height:'104', width:'142', class: "img-responsive img-thumbnail" %>
+                  </a>
+                </div>
+            <% end %>
+        <% end %>
+    <% else %>
+        <%= render 'shared/no_data_available' %>
+    <% end %>
+
+  </div>
+</div>

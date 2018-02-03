@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--<title>BN Veteran</title>-->
+    <meta name="google-site-verification" content="HK6DDb9nWOj0KLqUhMPxdm2Ni-LV36pT_a5Ug-kGw3c" />
+    <title><%= @meta_title ? @meta_title : ApplicationController::BRAND_NAME %></title>
+    <% if @meta_description.present? %>
+        <meta name="description" content= "<%= @meta_description %>">
+    <% end %>
+
+    <% if @og_properties.present? %>
+        <%= meta_og_tags @og_properties %>
+    <% end %>
+
+    <%= favicon_link_tag 'bnveteran.png' %>
+    <%= stylesheet_link_tag    'new_design', media: 'all' %>
+    <%= javascript_include_tag 'new_design' %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body class="home-bg ">
+    <a id="start"></a>
+    <%= render 'layouts/header' %>
+    <%#= render 'shared/navbar' %>
+    <% unless notice.blank? %>
+      <div class="alert alert-info alert-dismissable alert-fixed">
+        <%= notice %>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="position: absolute; margin-left: 70px; margin-top: 24px !important; border: none;" >&times;</button>
+      </div>
+    <% end %>
+    <% unless alert.blank? %>
+      <div class="alert alert-danger alert-dismissable alert-fixed">
+        <%= alert %>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="position: absolute; margin-left: 70px; margin-top: 24px !important; border: none;" >&times;</button>
+      </div>
+    <% end %>
+    <div class="main-container top-spacing" id="main-content">
+      <%= yield %>
+    </div>
+    <% unless current_user.present? %>
+      <%= render 'layouts/footer' %>
+    <% end %>
+  </body>
+</html>
+<script type="text/javascript">
+  $("body").click(function(){  
+      $(".alert-dismissable").hide();
+  });
+</script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59857e22d1385b2b2e285b8d/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->

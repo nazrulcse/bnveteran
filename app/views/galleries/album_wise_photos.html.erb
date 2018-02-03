@@ -1,0 +1,93 @@
+<div class="main-container" style="background-color: #ffffff">
+
+  <section class="text-center imagebg parallax banner_height" data-overlay="4">
+    <div class="background-image-holder">
+      <%= image_tag('facilityinner/gallery_photo/photo-16.jpg') %>
+    </div>
+    <div class="img-space"></div>
+  </section>
+
+  <span class="clearfix"></span>
+
+  <div class="container " style="padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Album', galleries_path %> </li>
+      <li class="active"> <%= @album.name %> </li>
+    </ol>
+  </div>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left">
+
+      <div class="masonry">
+        <!--end masonry filters-->
+        <div class="masonry__container masonry--active">
+
+          <% if @gallery_album_photos.present? %>
+              <% @gallery_album_photos.each do |gallery| %>
+
+                      <div class="masonry__item col-md-4 col-xs-4 filter-people" data-masonry-filter="People">
+                        <a href="<%= gallery.image_url %>" data-lightbox="Gallery 1">
+                          <!--<img alt="Image" class="img-thumbnail" src="img/new/photo-1.jpg">-->
+                          <%= image_tag gallery.image_url, height:'160', width:'235', class: "img-thumbnail" %>
+                        </a>
+                      </div>
+
+              <% end %>
+          <% else %>
+              <%= render 'shared/no_data_available' %>
+          <% end %>
+
+        </div>
+        <!--end masonry container-->
+      </div>
+
+      <span class="clearfix"></span>
+
+
+      <%= will_paginate @gallery_album_photos %>
+
+      <!--<ul class="pagination gallery-pagination">-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#" aria-label="Previous">-->
+      <!--<span aria-hidden="true">&laquo;</span>-->
+      <!--<span class="sr-only">Previous</span>-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">1</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">2</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">3</a>-->
+      <!--</li>-->
+      <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#" aria-label="Next">-->
+      <!--<span aria-hidden="true">&raquo;</span>-->
+      <!--<span class="sr-only">Next</span>-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--</ul>-->
+
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 right-sidebar">
+      <div>
+        <%= render 'layouts/template/album' %>
+        <%= render 'layouts/template/latest_news' %>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>
+

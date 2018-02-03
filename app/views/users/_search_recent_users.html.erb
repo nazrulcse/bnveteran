@@ -1,0 +1,342 @@
+<div  align="center">
+  <br>
+    <div  align="center">
+      <br>
+        <div class="input-group stylish-input-group find-people">
+          <input type="text" class="form-control" placeholder="Search" id="search_field2">
+            <button type="submit" id="search_field_btn2"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+</div>
+<br>
+<div class="col-md-12">
+
+  <% if @users.present? && params[:value].present? %>
+    <% @users.each do |user| %>
+
+      <div class="post-show search-post">
+        <div id="activities">
+          <div class=" single-post-show single-post-show">
+            <div class="activity">
+              <div class="activity-post">
+                <div class="user-profile">
+                  <% if user.avatar.present? %>
+                    <img src="<%= user.avatar.url %>" class="img-circle" />
+                  <% else %>
+                    <img src="/assets/default-profile-picture-327876e6dc85bc451f302f0034dfb6ec90b4e2af215b313c1a855ab5bd14e94b.png" class="img-circle" />
+                  <% end %>
+                </div>
+                <div class="info">
+                  <div class="dummy dummy-text">
+                    <span class="tooltip tooltip-effect-3">
+                      <span class="tooltip-item">
+                        <a href="javascript:void(0)" class="user-name" id="user-name">   
+                          <%= user.name %>
+                        </a>
+                      <span class="tooltip-content clearfix">
+                        <span class="">
+                          <div class="profile-box">
+                            <div class="cover-pic">
+                              <% if user.cover.present? %>
+                                <img src="<%= user.cover.url %>" width="100%">
+                              <% else %>
+                                <img align="left" src="/assets/default-cover.png" alt="Profile image example" width="100%" />
+                              <% end %>
+                            </div>
+                            <div class="profile-pic-img">
+                              <% if user.avatar.present? %>
+                                <img src="<%= user.avatar.url %>" class="img-circle" />
+                              <% else %>
+                                <img src="/assets/default-profile-picture-327876e6dc85bc451f302f0034dfb6ec90b4e2af215b313c1a855ab5bd14e94b.png" class="img-circle" />
+                              <% end %>
+                            </div>
+                            <div class="profile-content-bx">
+                              <div class="follow follow-form">
+                                <%= render 'follows/form', user: user %>
+                              </div>
+                              <a href="javascript:void(0)"><h3><%= user.name %></h3></a>
+                              <div class="col-md-12 followers-row">
+                                <div class="col-md-3 col-sm-3 col-xs-12 summary-info">
+                                  <a href="">
+                                    Posts 
+                                    <span class="clearfix"></span>
+                                    <strong><%=user.posts_count%></strong>
+                                  </a>
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-xs-12 summary-info">
+                                <a href="<%= my_followers_path %>" data-remote="true">
+                                  Following
+                                  <span class="clearfix"></span>
+                                  <strong><%= user.following_users.count %></strong>
+                                </a>
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-xs-12 summary-info col-md-offset-1 col-sm-offset-1">
+                                <a href="">
+                                  Followers 
+                                  <span class="clearfix"></span>
+                                  <strong><%= user.user_followers.count %></strong>
+                                </a>
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                        </span>
+                      </span>
+                      </span>
+                     
+                      </span>
+                  </div>
+
+                  <% if user.posts.present? %>
+                    <h3 class="name">
+                      <small class="action">
+                        <div class="created-at create-at-report">
+                          <%= render 'shared/created_at', activity: user.posts.last %>
+                        </div>
+                       </small>
+                    </h3>
+                  <% end %>
+
+                </div>  
+              </div>
+            </div>
+
+            <% if user.posts.present? %>
+              <div class="img-post">
+                <p><%= user.posts.last.content %></p>
+                <img src="<%= user.posts.last.attachment.url %>" width="100%" />
+              </div>
+
+              <div class="share-other share-other-links">
+                <a data-remote="true" rel="nofollow" data-method="post" href="/likes?post_id=15">
+                  <i id="15" class="fa fa-heart-o" aria-hidden="true"></i>
+                  <span id="p-15"><%= user.posts.last.likes.count %></span>
+                </a>        
+                <a class="btn btn-block comment-btn-count" href="/posts/15">
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i> 
+                  <span id="c-15"><%= pluralize(user.posts.last.comments_count, '') %> </span>
+                </a>        
+                <a href=""><i class="fa fa-share" aria-hidden="true"></i> 55</a>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  <% else %>
+    No Records Matches With " <%= params[:value] %> "
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#search_field_btn2").click(function(){
+      var val = $("#search_field2").val();
+    $.ajax({
+       url: "/users/search_recent_users",
+       method: "get",
+       dataType: 'script',
+       data: {value: val}
+     })
+
+    });
+  });
+</script>
+<style type="text/css">
+.tooltip-effect-3{
+  opacity: 1;
+}
+  .search-post .user-profile{
+    float: left;
+  }
+  .share-other a{
+    padding-top: 0;
+  }
+  .search-post .info h3{
+    float: left;
+    margin-left: 5px;
+  }
+  .search-post .info p{
+    float: left;
+    position: relative;
+    margin-top: 5px;
+    padding-left: 0;
+    width: 85%;
+  }
+  .search-post .info h3 a{
+    float: left;
+  }
+  .search-post .info .user-name{
+    margin-left: 5px;
+    float: left;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .search-post .info small{
+    float: left;
+  }
+  .search-post .single-post-show img{
+    margin-right: 0px;
+  }
+  .search-post .img-post{
+    float: left;
+    width: 100%;
+    margin-top:8px;
+  }
+  .search-post .img-post img{
+    height: 100%;
+    width: 100%;
+  }
+  /*.profile-box{
+    height: 230px;
+    width: 300px;
+    position: absolute;
+    left: 101px;
+    top:42px;
+    z-index: 999;
+    box-shadow: 0px 0px 4px 1px #ccc;
+    background: #fff;
+  }*/
+  .profile-box{
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+  }
+  .profile-content-bx a h3{
+    margin-top: 10px;
+  }
+  .profile-box .cover-pic{
+    width: 100%;
+    height: 90px;
+    overflow: hidden;
+  }
+  .profile-box .cover-pic img{
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+  .search-post .single-post-show .profile-box .profile-pic-img img{
+    padding: 0;
+    border: 2px solid #fff;
+    height: 70px;
+    width: 70px;
+  }
+  .profile-box .profile-pic-img{
+    position: relative;
+    top:-36px;
+    left: 10px;
+  }
+/* .profile-content-bx:before{
+        content: "";
+    border-bottom: 10px solid #ccc;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -35px;
+    z-index: 10;
+    left: 25px;
+}
+.profile-content-bx:after {
+    content: "";
+    border-bottom: 12px solid #ccc;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -35px;
+    left: 25px;
+    z-index: 9;
+}*/
+.follow.follow-form form button{
+  border-radius: 40px;
+  font-weight: 300;
+  background: #fff;
+  padding: 2px 9px;
+  border: 1px solid #d3d3d3;
+  margin-left: 5px;
+  color: #4a90e2;
+  height: initial;
+  font-size: 13px;
+  font-weight: bold;
+}
+.follow.follow-form form button:hover{
+  background: #eee;
+  border-color: #eee;
+}
+.profile-content-bx{
+  padding: 0 15px;
+  width: 100%;
+  position: relative;
+  top:-65px;
+}
+.profile-content-bx .follow.follow-form{
+  float: left;
+  width: 100%;
+}
+.profile-content-bx .follow.follow-form .follow{
+  float: right;
+}
+.followers-row{
+  margin-top: 20px;
+}
+.followers-row a{
+  font-size: 15px;
+  line-height: 18px;
+  text-decoration: none;
+}
+  /*End Search*/
+  .find-people input[type="text"]{
+    border-radius: 5px !important;
+    border:1px solid #ececec !important;
+    width: 87%;
+    margin-right: 4px;
+  }
+  .find-people button{
+    font-size: 16px;
+    height: 33px;
+    background: #fff;
+    border: none;
+    margin-left: 4px;
+    margin: 0 !important;
+    float: left;
+    display: inline-block;
+    width: 25px !important;
+  }
+  .find-people{
+    max-width: 400px;
+    width: 100%;
+  }
+
+    .my_btn{
+    border-radius: 40px;
+    font-weight: 300;
+    background: #fff;
+    padding: 2px 9px;
+    border: 1px solid #eee;
+    margin-left: 5px;
+    margin-top: 5px;
+    color: #4a90e2;
+    border-color: #ddd;
+  }
+  .btn-success:hover {
+      color: #000;
+      background-color: #eee;
+      border-color: #eee;
+  }
+</style>
+<!-- <script type="text/javascript">
+  $(document).ready(function(){
+    $("#user-name").hover(function(){
+        $('.profile-box').show('fast');
+        $('.profile-box').siblings().show('fast');
+    });
+    // $(".profile-box").hover(function(){
+    //     $('.profile-box').show('fast');
+    // });
+    // $(".profile-box").mouseout(function(){
+    //     $('.profile-box').hide('fast');
+    // });
+  });
+</script> -->

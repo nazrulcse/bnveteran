@@ -1,0 +1,17 @@
+<div class="masonry__container masonry--active">
+  <div class="masonry__item col-md-12 col-xs-6 filter-people" data-masonry-filter="People">
+
+    <% unless @facility.notification_images.blank? %>
+        <% @facility.notification_images.each do |notification_image| %>
+            <% if notification_image.photo.path.downcase.end_with?('.pdf') %>
+                <iframe src=<%= notification_image.photo.url %> width="600" height="780" style="border: none;"> </iframe>
+            <% else %>
+                <a href="<%= asset_url notification_image.photo.url %>" data-lightbox="Gallery 1">
+                  <%= image_tag notification_image.photo.present? ? notification_image.photo.url : 'facilityinner/gallery_photo/no-image-available.png', class: 'img-thumbnail' %>
+                </a>
+            <% end %>
+        <% end %>
+    <% end %>
+
+  </div>
+</div>

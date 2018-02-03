@@ -1,0 +1,2 @@
+$("#main-content").html("<%= escape_javascript(render 'posts/show_detail').html_safe %>");
+history.pushState("", "", "<%= post_path(@post) %>");

@@ -1,0 +1,5 @@
+$("#who-to-follow-<%= @user.id %>").remove();
+$("#follow-link-<%= @user.id %>").replaceWith('<a class="btn btn-success follow-us-button" id="unfollow-link-<%= @user.id %>" style="line-height: 10px; display: unset;" data-remote="true" rel="nofollow" data-method="post" href="/unfollow?user_id=<%= @user.id %>">unfollow</a>');
+//$("#trend-list-start").append( "<div class=\"trend-list\" id = \"<%#= @user.id %>\"><a href=\"\"><%#=@user.name%><span class=\"trend-item-stats\">&#10; <%#=@user.posts_count%> Posts&#10; </span></a></div>" );
+$("#Following").text("<%= current_user.following_users.count %>");
+$("#user-<%= @user.id %> .follow").html("<%=j render('follows/form', user: @user) %>");

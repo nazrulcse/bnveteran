@@ -1,0 +1,19 @@
+<section class="banner-sec ">
+  <div class=" ">
+    <div class="slider slider&#45;&#45;ken-burns" data-arrows="true" data-paging="true" data-children="6">
+      <ul class="slides flickity-enabled is-draggable" tabindex="0">
+        <div class="flickitviewport">
+          <div class="flickity-slider">
+
+            <% unless @page_banners.blank? %>
+                <% @page_banners.each do |page_banner| %>
+                    <li class="slide"><%= image_tag page_banner.banner_photo %></li>
+                <% end %>
+            <% end %>
+
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</section>

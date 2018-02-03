@@ -1,0 +1,34 @@
+<!-- followers modal -->
+<div id="myfollowers" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Followers</h4>
+      </div>
+
+      <div class="modal-body">
+        <ul>
+          <% current_user.user_followers.each do |follower| %>
+              <li>
+                <div class="user-profile">
+                  <%= image_tag follower.avatar.url || 'avatar.jpg', class: 'img-responsive img-circle' %>
+                </div>
+               <!-- <a href="/users/<%#= follower.id %>"><%#= follower.name %></a>-->
+                <%= link_to user_path(follower.id)  do %>
+                    <%= follower.name %></a>
+                <% end %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="modal-footer">
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  banner_photo: MyString
+  manu_bar_item_id: 1
+
+two:
+  banner_photo: MyString
+  manu_bar_item_id: 1

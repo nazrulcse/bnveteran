@@ -1,0 +1,36 @@
+<div class="container-fluid well span6">
+  <%= link_to user_path(user), remote: true, class: 'custom-link' do %>
+      <div class="row-fluid">
+        <div class="col-md-3 col-sm-4 col-xs-12" >
+          <% if user.avatar.present? %>
+              <%= image_tag(user.avatar.url, alt: "Example Image", height: '100', width: '100') %>
+          <% else %>
+              <img src="/assets/default-profile-picture.png" alt="Profile image example" height= '100px', width= '100px'/>
+          <% end %>
+        </div>
+
+        <div class="col-md-7 col-sm-4 col-xs-12 fp-user-info">
+          <b><%= user.name %></b> <br>
+          <%if user.designation_type.present? && user.rank.present? %>
+              <span><%= get_rank(user.designation_type, user.rank) %></span><br>
+          <% end %>
+          <span><%= user.email %></span> <br>
+          <% if user.officer_no.present? %>
+              <span>Personal no <%= user.officer_no %></span><br>
+          <% end %>
+          <% if user.batch.present? %>
+              <span>Batch no <%= user.batch %></span><br>
+          <% end %>
+        </div>
+
+        <div align="right" class="follow col-md-2">
+          <% if user.followed_by?(@user) %>
+              <%= link_to 'unfollow', unfollow_path(user_id: user.id), method: :post, remote: true, class: 'btn btn-success follow-us-button', id: "unfollow-link-#{user.id}", style: 'line-height: 10px; display: unset;' %>
+          <% else %>
+              <%= link_to 'follow', follow_path(user_id: user.id), method: :post, remote: true, class: 'btn btn-success follow-us-button', id: "follow-link-#{user.id}", style: 'line-height: 10px; display: unset;' %>
+          <% end %>
+          <br><br> <%= link_to 'Message', message_path(user.id), remote: true, class: 'btn btn-success follow-us-button', style: 'line-height: 10px; display: unset; background-color: green;color: white;border: 0px;' %>
+        </div>
+      </div>
+  <% end %>
+</div>

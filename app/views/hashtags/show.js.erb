@@ -1,0 +1,2 @@
+$('#main-content').html("<%= escape_javascript(render 'hashtag_detail').html_safe %>");
+history.pushState("", "", "<%= hashtag_path(@hashtag.name) %>");

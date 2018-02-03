@@ -1,0 +1,41 @@
+<div>
+  <div class="boxed boxed--border news-list">
+
+    <h4>Latest News</h4>
+
+    <% if latest_news.present? %>
+
+        <% latest_news.each do |news| %>
+            <div class="divider"></div>
+
+            <div class="single-latest-news-sidebar">
+              <div class="latest-news-attachment-icon pull-left">
+                <% if news.photo.present? %>
+                    <% if news.photo.path.downcase.end_with?('.pdf') %>
+                        <%= image_tag news.photo.present? ? news.photo.url(:large_thumb_pdf) : 'facilityinner/gallery_photo/no-image-available.png', width:"46", height:"46", class: 'img-thumbnail'%>
+                    <% elsif news.is_doc? %>
+                        <iframe src='http://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width='46' height='46' style='border: none;'>
+                        </iframe>
+                    <% else %>
+                        <%= image_tag news.photo.present? ? news.photo.url : 'facilityinner/gallery_photo/no-image-available.png', width:"46", height:"46",  class: 'img-thumbnail' %>
+                    <% end %>
+                <% else %>
+                    <%= image_tag 'facilityinner/gallery_photo/no-image-available.png', width:"46", height:"46",  class: 'img-thumbnail' %>
+                <% end %>
+              </div>
+
+              <div class="latest-news-title pull-left">
+                <p>
+                  <%= link_to news_path(news) do %>
+                      <%= truncate(news.title, length:60) %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+
+        <% end %>
+    <% else %>
+        <%= image_tag 'facilityinner/gallery_photo/no-data-available.jpeg' %>
+    <% end %>
+  </div>
+</div>

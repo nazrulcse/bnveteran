@@ -1,0 +1,124 @@
+<div class="main-container">
+
+  <section class="text-center imagebg parallax banner_height " data-overlay="4">
+    <div class="background-image-holder">
+      <div>
+      </div>
+      <%= image_tag('new/photo-17.jpg') %>
+      <!--<img alt="background" src="img/new/photo-17.jpg" />-->
+    </div>
+
+    <div class="img-space">
+    </div>
+    <!--end of container-->
+
+  </section>
+  <%#= render 'layouts/slider' %>
+  <span class="clearfix"></span>
+
+  <div class="container" style="padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Facilities', facilities_path %></li>
+      <li class="active"> Bangladesh Navy Co-operative Housing Society Ltd (BNCHSL)  </li>
+    </ol>
+  </div>
+			<span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left">
+      <div class="masonry">
+        <div class="masonry__container">
+          <div class="masonry__item col-md-12 filter-people">
+            <h4>
+              Education Grant
+            </h4>
+            <p>Education Grant is provided to distress family children who are studying from class-I to Masters Degree level. The conditions eligibility of the candidate are as follows:</p>
+
+
+
+            <p>
+              1. Grant is provided to the children of poor/ distress naval family only.<br />
+              2. Grant is provided to the students of national curriculum Bengali version (or English version for BSc and above) only. <br />
+              3. Grant is provided only once in each class. <br />
+              4. Students must be Bangladeshi national. <br />
+              5. Students must be born before retirement of the Naval personnel from active service. <br />
+              6. Yearly income of father/mother is not more than tk.2,50,000/00 (Taka two lac fifty thousands only).
+
+            </p>
+            <p>
+              <strong>Disqualification</strong><br />
+
+              1.  	 If the person (father/mother) is dismissed for naval service.<br />
+              2.   	Serving/capable parents.<br />
+              3.   	Not more than two children from one family.<br />
+              4.   	Child born after retirement. <br />
+              5.  	Students studying in O/A level or studying abroad.<br />
+              6.	Incomplete filled up form and associated papers/ without birth certificate.
+
+            </p>
+                            	<span class="clearfix">
+								</span>
+            <div class="boxed boxed--border">
+              <p>
+                This is the title of pdf form
+              </p>
+              <a class="btn btn--primary" href="<%= education_grant_form_path %>">
+                <span class="btn__text">Download Here</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!--end masonry filters-->
+        <%#= render 'layouts/template/notification_image' %>
+        <!--end masonry container-->
+      </div>
+      <span class="clearfix"></span>
+    </div>
+    <div class="col-md-4 col-sm-4  col-xs-12 right-sidebar">
+      <%= render 'layouts/template/latest_news' %>
+      <%= render 'layouts/template/gallery_photo' %>
+    </div>
+  </div>
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>
+<a href="" style="position: fixed;bottom: 0;right: 0;"><%= image_tag('chat.png') %></a>
+
+<script src="js/jquery-3.1.1.min.js">
+</script>
+<script src="js/flickity.min.js">
+</script>
+<script src="js/easypiechart.min.js">
+</script>
+<script src="js/parallax.js">
+</script>
+<script src="js/typed.min.js">
+</script>
+<script src="js/datepicker.js">
+</script>
+<script src="js/isotope.min.js">
+</script>
+<script src="js/ytplayer.min.js">
+</script>
+<script src="js/lightbox.min.js">
+</script>
+<script src="js/granim.min.js">
+</script>
+<script src="js/jquery.steps.min.js">
+</script>
+<script src="js/countdown.min.js">
+</script>
+<script src="js/twitterfetcher.min.js">
+</script>
+<script src="js/spectragram.min.js">
+</script>
+<script src="js/smooth-scroll.min.js">
+</script>
+<script src="js/scripts.js">
+</script>
+</body>
+
+</html>

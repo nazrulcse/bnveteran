@@ -1,0 +1,169 @@
+<div class="container main-areas" style="margin-top: 40px;">
+  <div class="row">
+
+    <!-- Left sidebar started -->
+    <div class="col-md-3 col-sm-3 col-xs-12">
+
+      <!-- trends section of left sidebar -->
+      <%= render 'shared/trends' %>
+
+      <!-- job post guideline section of left sidebar -->
+      <%= render 'shared/job_post_guideline' %>
+    </div>
+
+
+    <!-- main content of index at middle between left and right sidebar -->
+    <div class="col-md-6 col-sm-6 col-xs-12 no-padding tp-sp bg-color">
+      <%= render 'notifications/notification_list' %>
+    </div>
+
+
+    <!-- right sidebar started-->
+    <div class="col-md-3 col-sm-3 col-xs-12 tp-sp">
+      <%= render 'shared/who_to_follow' %>
+    </div>
+
+  </div>
+</div>
+
+<style type="text/css">
+    .download_icon{
+        /*margin-left: 150px;*/
+    }
+    .profile-mar30{
+        margin-bottom: 30px !important;
+    }
+    .trend-list ul{
+        margin:0;
+        padding: 0;
+    }
+    .trend-list ul li form{
+        width: auto;
+    }
+    .trend-list ul li{
+        list-style: none;
+        width: 100%;
+    }
+    .trend-list ul li button{
+        text-align: left;
+    }
+    .trend-list ul li .file-input-wrapper.profile-camera.upload-cv:hover{
+        color: #3b85c6;
+    }
+    .trend-list ul li .upload-cv .btn-file-input{
+        font-size: 15px;
+        color:#000;
+    }
+    .trend-list ul li .upload-cv .btn-file-input i{
+        margin-right: 6px;
+    }
+    .trend-list ul li .file-input-wrapper.profile-camera.upload-cv{
+        width: 100%;
+    }
+    .trend-list .upload-cv > input[type="file"]{
+        height: 26px;
+        padding: 0;
+        font-size: 15px;
+    }
+    .file-input-wrapper {
+        cursor: pointer;
+        height: 22px;
+        margin: 2px auto;
+        /* overflow: hidden; */
+        position: relative;
+        top: -62px;
+        width: 26px;
+        text-align: center;
+        /*left: 84px;*/
+    }
+    .file-input-wrapper > input[type="file"] {
+        font-size: 40px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        cursor: pointer;
+        height: 22px;
+        width: 25px;
+        /*z-index: 9999999999;*/
+        padding-left: 0;
+    }
+    .file-input-wrapper .btn-file-input {
+        background-color: transparent;
+        border-radius: 4px;
+        color: black;
+        cursor: pointer;
+        display: block;
+        height: 22px;
+        margin: 0 0 0 -1px;
+        padding-left: 0;
+        border: none;
+        font-size: 25px;
+        color: #4a90e2;
+        float: left;
+        position: absolute;
+        top: 0;
+    }
+    .upload-cv{
+        top:0;
+        float: left;
+        margin:0;
+        position: relative;
+        height: 30px;
+        width:auto;
+        left: 0;
+        cursor: text;
+    }
+    .upload-cv > input[type="file"]{
+        left: 0;
+    }
+    .upload-cv a{
+        margin-left: 0;
+        float: right;
+        /* display: block; */
+        width: 31px;
+        text-align: center;
+        padding: 5px;
+    }
+    .upload-cv .btn-file-input{
+        height: 30px;
+        font-size: 20px;
+        color: #4a90e2;
+    }
+    .upload-cv > input[type="file"]{
+        height: 36px;
+    }
+    .follow-form form{
+        float: left;
+    }
+    .follow-form form .btn-success:hover{
+        color:#000;
+    }
+    .who small{
+        width: 40%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* width: 50px; */
+        float: right;
+    }
+    .follow-us-button{
+        color: #4a90e2;
+        background: #fff;
+        border-radius: 40px;
+        height: 25px;
+        line-height: 7px;
+        display: block;
+        font-weight: 400;
+        font-size: 0.85714286em;
+    }
+    .follow-us-button:hover{
+        background:#eee;
+        color: #000;
+        border:none;
+    }
+    .follow-us-button:focus{
+        background:#eee !important;
+        color: #000 !important;
+        border:none;
+    }
+</style>

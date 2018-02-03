@@ -1,0 +1,3 @@
+<% ranks.each do |rank| %>
+	<option <%= @user.designation_type.present? && @user.designation_type > 0 && @user.designation_type == params[:value].to_i && @user.rank.present? && @user.rank > 0 && @user.rank == rank[1] ? "selected" : "" %> value = "<%= rank[1] %>"> <%= rank[0] %></option>
+<%end%>

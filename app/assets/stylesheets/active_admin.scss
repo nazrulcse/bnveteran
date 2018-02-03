@@ -1,0 +1,125 @@
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
+//@import "active_admin/mixins";
+//@import "active_admin/base";
+
+
+// Active Bootstrap
+@import "bootstrap-sprockets";
+@import "active_bootstrap_skin";
+@import 'bootstrap';
+
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+//
+//   .status_tag { background: #6090DB; }
+
+
+//#header #site_title img {
+//  width: 30px;
+//  height: 30px;
+//  border-radius: 100%;
+//  position: absolute;
+//  right: 70px;
+//  top: 10px;
+//  display: block;
+//}
+
+.navbar-inverse, #header {
+  background-color: #4A90E2;
+  border-color: #4a90e2;
+}
+
+#header .header-item.tabs > li.current > a {
+  color: black;
+  background-color: #ffffff;
+  border-radius: 5px;
+
+}
+
+#header .header-item.tabs > li.current > a:hover  {
+  color: black;
+  background-color: #ffffff;
+  border-radius: 5px;
+
+}
+li > a, #header .header-item.tabs > li > a {
+  color: #F2F1F0;
+}
+
+ul#utility_nav.header-item img{
+  display: none;
+}
+
+.active-admin-attachment-show{
+  padding-bottom: 10px;
+  list-style: none;
+  text-decoration: none;
+}
+.clear_filters_btn{
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.glyphicon-ok-circle{
+  font-size: 20px;
+  margin-left: 16%;
+}
+.glyphicon-ban-circle{
+  font-size: 20px;
+  margin-left: 16%;
+}
+
+
+// for pagination design
+.pagination a, .pagination span.current, .pagination span.gap {
+  float: left;
+  padding: 0 14px;
+  line-height: 38px;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #DDD;
+  //border-left-width: 0;
+}
+.pagination span.current{
+  background-color: #0275D8;
+  color: white;
+}
+
+.pagination {
+  //border-left: 1px solid #ddd;
+  float:right;
+  .first{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .prev {
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .page{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .next{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .last{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+}

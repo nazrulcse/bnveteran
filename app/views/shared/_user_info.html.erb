@@ -1,0 +1,164 @@
+<div id="user-info" class="well bg-color main-content as-tweet-box" style="padding-top: 0">
+  <div class="user-name address-item">
+    <%= link_to @user.name, user_path(@user), remote: true %>
+  </div>
+  <% if @user.rank.present? %>
+      <div class="info-item">
+        <!-- <i class="fa fa-tag info-icons" aria-hidden="true"></i><strong>Rank: </strong><%#= get_rank(@user.designation_type, @user.rank) if @user.designation_type.present? && @user.rank.present? %>-->
+        <!--<i class="fa fa-tag info-icons" aria-hidden="true"></i>-->
+        <%= get_rank(@user.designation_type, @user.rank) if @user.designation_type.present? && @user.rank.present? %> (RETD)
+      </div>
+  <% end %>
+
+  <% if @user.avatar_pdf.present? %>
+      <div class="info-item">
+        <!-- <i class="fa fa-file-text info-icons" aria-hidden="true" title="Download CV" id="download_cv"></i> <strong>Resume:</strong> <%#= 'View' %>-->
+        <i class="fa fa-file-text info-icons" aria-hidden="true" title="Resume/CV" id="download_cv"></i> <%= 'CV' %>
+        <% if @user.avatar_pdf.present? %>
+            <%= render 'shared/avatar_pdf', user: @user %>
+        <% end %>
+      </div>
+  <% end %>
+
+  <% if @user.email.present? %>
+      <div class="info-item">
+        <!-- <i class="fa fa-tag info-icons" aria-hidden="true"></i><strong>Rank: </strong><%#= get_rank(@user.designation_type, @user.rank) if @user.designation_type.present? && @user.rank.present? %>-->
+
+        <i class="fa fa-envelope-o" aria-hidden="true"></i> &nbsp <%= @user.email %>
+      </div>
+  <% end %>
+
+  <% if @user.phone_number.present? %>
+      <div class="info-item">
+        <!--  <i class="fa fa-phone info-icons" aria-hidden="true"></i><strong>Phone: </strong><%#= @user.phone_number %>-->
+        <i class="fa fa-phone info-icons" aria-hidden="true"></i><%= @user.phone_number %>
+      </div>
+  <% end %>
+
+  <!--  <%# if @user.dob.present? %>
+      <div class="info-item">
+        <i class="fa fa-calendar info-icons" aria-hidden="true"></i><strong>Dob: </strong><%#= format_date @user.dob.to_date %>
+      </div>
+  <%# end %>-->
+
+  <% if @user.dob.present? %>
+      <div class="info-item address-item">
+        <!--<i class="fa fa-calendar info-icons" aria-hidden="true"></i><strong>Age: </strong><%#= age_of_user(@user.dob.to_date) %>-->
+        <i class="fa fa-calendar info-icons" aria-hidden="true"></i> Age <%= age(@user.dob.to_date) %>
+      </div>
+  <% end %>
+
+  <% if @user.sex.present? %>
+      <div class="info-item">
+        <i class="fa fa-venus-mars info-icons" aria-hidden="true"></i></i><%= @user.sex %>
+      </div>
+  <% end %>
+
+  <% if @user.location.present? %>
+      <div class="info-item address-item">
+        <i class="fa fa-map-marker info-icons" aria-hidden="true"></i><%= @user.location %>
+      </div>
+  <% end %>
+
+  <% if @user.officer_no.present? %>
+      <div class="info-item">
+        <i class="fa fa-id-badge info-icons" aria-hidden="true"></i>Personal No <%= @user.officer_no %>
+      </div>
+  <% end %>
+
+  <% if @user.date_joining.present? %>
+      <div class="info-item address-item">
+        <i class="fa fa-calendar info-icons" aria-hidden="true"></i>Joined <%= format_date @user.date_joining.to_date %>
+      </div>
+  <% end %>
+
+  <% if @user.date_retirement.present? %>
+      <div class="info-item address-item">
+        <i class="fa fa-calendar info-icons" aria-hidden="true"></i>Retirement <%= format_date @user.date_retirement.to_date %>
+      </div>
+  <% end %>
+
+  <% if @user.batch.present? %>
+      <div class="info-item">
+        <i class="fa fa-anchor info-icons" aria-hidden="true"></i>Batch no <%= @user.batch %>
+      </div>
+  <% end %>
+
+  <% if @user.full_present_address.present? %>
+      <div class="info-item address-item">
+        <i class="fa fa-address-card info-icons pull-left" aria-hidden="true"></i><span class="pull-left"><%= @user.full_present_address %></span>
+      </div>
+  <% end %>
+
+  <!-- <%# if @user.full_permanent_address.length > 0 %>
+      <div class="info-item">
+        <i class="fa fa-address-card info-icons" aria-hidden="true"></i><strong>Permanent Address: </strong><%#= @user.full_permanent_address %>
+      </div>
+  <%# end %>-->
+
+  <% if @user.about.present? %>
+      <div class="info-item address-item">
+        <i class="fa fa-file-text-o info-icons" aria-hidden="true"></i><span class="pull-left" style="margin-left: 6px;"><%= @user.about %></span>
+      </div>
+  <% end %>
+
+
+  <!-- <%# if @user.badges.empty? %>
+    <h5>No badge yet.</h5>
+  <%# else %>
+    <h5>
+      <%# @user.badges.each do |badge| %>
+        <i class="<%#= badge.custom_fields[:icon] %>" style="color: <%#= badge.custom_fields[:color] %>">
+        </i>
+        <%#= badge.name %>
+      <%# end %>
+    </h5>
+  <%# end %> -->
+  <br>
+  <div class="text-center" style="margin-bottom: 80px;">
+    <div class=" row col-md-6">
+      <% unless is_current_user?(@user) %>
+          <%= render 'follows/form', user: @user %>
+          <h6 style="margin-bottom: 0px;"><%= 'Follows you' if current_user.followed_by?(@user) %></h6>
+      <% end %>
+    </div>
+    <div class="col-md-6 ">
+      <%= link_to 'Message', message_path(@user.id), remote: true, class: 'btn btn-success follow-us-button', style: 'background-color: green;color: white;border: 0px; font-size:12px; margin-top:12px;padding-bottom: 34px;' %>
+    </div>
+  </div>
+
+  <% user_post_attachments = user_post_attachments(@user) %>
+  <% if user_post_attachments.present? %>
+
+      <div class="info-item address-item" style="margin-bottom: 0px;">
+        <i class="fa fa-picture-o info-icons" aria-hidden="true"></i>
+        <%= link_to user_path(@user) do %>
+            <span class="pull-left" style="font-size: 12px; margin-top: -5px;"> Photos  </span>
+        <% end %>
+      </div>
+
+      <div class="photo-section" style="margin-left: -3px;">
+        <div class="row row-no-padding" style="width: 218px; margin: 0px">
+
+          <% user_post_attachments.each_with_index do |post_image, index| %>
+              <% unless post_image.blank? %>
+                  <% unless post_image.image.path.downcase.end_with?('.pdf') %>
+                      <div class="col-xs-6 col-sm-4 col-md-4 no-padding <%= index > 5 ? 'hidden' : '' %> " >
+                        <a href="<%= asset_url post_image.image.url %>" data-lightbox="Gallery 1 ">
+                          <%= image_tag post_image.image.url, width:"67", height:"67", style: 'border-radius: 4px;' %>
+                          <% if user_post_attachments.count > 6 && index == 5 %>
+                              <div style=" width: 65px;height: 65px;position: absolute;top: 4px;bottom: 0px;border-radius: 5px;background-color: rgba(0, 0, 0, 0.4); ">
+                                <h4 style=" border-radius:100%; position: absolute;top: 15px;left: 18px;color: white;background-color: rgba(0, 0, 0, 0.4);" > +<%= user_post_attachments.count - 6 %> </h4>
+                              </div>
+                          <% end %>
+                        </a>
+                      </div>
+
+                  <% end %>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+
+</div>

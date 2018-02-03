@@ -1,0 +1,13 @@
+<div class="boxed boxed--border news-list">
+  <h4>Album</h4>
+  <div class="divider"></div>
+  <h5><%= link_to 'Former CNSs', former_cns_path  %></h5>
+  <% if photo_albums.present? %>
+      <% photo_albums.each do |album| %>
+          <div class="divider"></div>
+          <h5><%= link_to album.name, album_wise_photos_gallery_path(album) %></h5>
+      <% end %>
+  <% else %>
+      <%#= render 'shared/no_data_available' %>
+  <% end %>
+</div>

@@ -1,0 +1,106 @@
+class User < ActiveRecord::Base
+  rolify
+  # Include default devise modules. Others available are:
+  has_merit
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable
+  acts_as_voter
+  acts_as_follower
+  acts_as_followable
+
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
+  has_many :rooms, through: :user_rooms
+
+  mount_uploader :avatar, AvatarUploader
+  mount_uploader :cover, AvatarUploader
+  mount_uploader :avatar_pdf, AvatarUploader
+
+  validates_presence_of :name
+
+  self.per_page = 10
+
+  extend FriendlyId
+  friendly_id :user_slug, use: [:slugged, :finders]
+  attr_accessor :login
+
+
+  OFFICER = [
+      ["Admiral of the Fleet",1],
+      ["Admiral",2],
+      ["Vice Admiral",3],
+      ["Rear Admiral",4],
+      ["Commodore",5],
+      ["Captain",6],
+      ["Commander",7],
+      ["Lieutenant Commander",8],
+      ["Lieutenant",9],
+      ["Sub Lieutenant",10],
+      ["Acting Sub Lieutenant",11],
+      ["Midshipman",12]
+  ]
+
+  DESIGNATION_TYPE = [["Officer",1],["JCO & Others",2]]
+
+  JCO =[
+      ["Master Chief Petty Officer",1],
+      ["Senior Chief Petty Officer or Equivalent",2],
+      [ "Chief Petty Officer or Equivalent",3],
+      [ "Petty Officer or Equivalent",4],
+      [ "Leading Seaman or Equivalent",5],
+      [ "Able Seaman or Equivalent",6],
+      ["Ordinary Seaman",7],
+      ["Master Warrant Officer",8],
+      ["Senior Warrant Officer",9],
+      ["Warrant Officer",10],
+      ["Sergeant",11],
+      ["Corporal",12],
+      ["Lance Corporal",13],
+      ["Sainik",14]
+  ]
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_h).where(["lower(officer_no) = :value OR lower(email) = :value", { :value  =>  login.downcase }]).first
+    else
+      where(conditions.to_h).first
+    end
+  end
+
+  def full_present_address
+    [present_address.present? ? present_address : nil, present_city.present? ? present_city : nil, present_state.present? ? present_state : nil, present_country.present? ? present_country : nil].compact.join(', ')
+  end
+
+  def full_permanent_address
+    [permanent_address.present? ? permanent_address : nil, city.present? ? city : nil, state.present? ? state : nil, country.present? ? country : nil].compact.join(', ')
+  end
+
+  def self.search(value)
+    where('name ILIKE :q OR email ILIKE :q OR phone_number ILIKE :q OR officer_no ILIKE :q', q: "%#{value}%").where(status: true)
+  end
+
+  def self.topic_creator_image(notification)
+    if notification.present?
+      notifier = User.find_by(id: notification.topic_creator_id)
+      if notifier.present?
+        notifier.avatar
+      end
+    end
+  end
+
+  def user_slug
+    users = User.where(name: name)
+    if users.present?
+      name + '-' + users.count.to_s
+    else
+      name
+    end
+  end
+
+end

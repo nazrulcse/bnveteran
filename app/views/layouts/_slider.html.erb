@@ -1,0 +1,26 @@
+<section class="banner-sec ">
+  <div class=" ">
+    <div class="slider slider&#45;&#45;ken-burns" data-arrows="true" data-paging="true" data-children="6">
+      <ul class="slides flickity-enabled is-draggable" tabindex="0">
+        <div class="flickitviewport">
+          <div class="flickity-slider">
+
+            <% if page_banners.present? %>
+                <% page_banners.each do |page_banner| %>
+                    <li class="slide custom-slider"><%= image_tag page_banner.banner_photo, class: 'img-responsive' %></li>
+                <% end %>
+            <% else %>
+                <li class="slide"><%= image_tag 'facilityinner/gallery_photo/no-image-available.png', height: 443 %></li>
+            <% end %>
+
+            <!--<li class="slide"><%#= image_tag('slider_image/home-top-banner-2.jpg') %></li>-->
+            <!--<li class="slide"><%#= image_tag('slider_image/home-top-banner-4.jpg') %></li>-->
+            <!--<li class="slide"><%#= image_tag('slider_image/home-top-banner-5.jpg') %></li>-->
+            <!--<li class="slide"><%#= image_tag('slider_image/home-top-banner-6.jpg') %></li>-->
+            <!--<li class="slide"><%#= image_tag('slider_image/home-top-banner-8.jpg') %></li>-->
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</section>

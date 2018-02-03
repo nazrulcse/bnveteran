@@ -1,0 +1,2 @@
+$("#update-page").html("<%= escape_javascript(render 'users/user_profile').html_safe %>");
+history.pushState("", "", "/<%= @user.slug %>");

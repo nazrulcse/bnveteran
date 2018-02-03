@@ -1,0 +1,6 @@
+$('#activities').append("<%= j render_activities(@activities, layout: '/shared/activity') %>");
+
+<%= render 'shared/paginate', resources: @activities %>
+
+$('#menu2').addClass('hidden-xs');
+$('#menu2').addClass('hidden-sm');

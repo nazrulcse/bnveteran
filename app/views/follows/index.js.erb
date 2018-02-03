@@ -1,0 +1,3 @@
+<% if @follows.present? && @follows.size > 0 %>
+$('#bnveteran-modal').modal('show').find('.modal-content').html("<%= escape_javascript(render 'followings_follower').html_safe %>");
+<% end %>

@@ -1,0 +1,27 @@
+<% if @user.cover.present? %>
+  <%= image_tag(@user.cover.url, alt: "Example Image", width: '1366', class: 'cover_img_tag') %>
+<% else %>
+    <%= @user.inspect %>
+  <!--<img align="left" class="cover_img_tag fb-image-lg" src="/assets/default-cover.png" alt="Profile image example" width="100%" />-->
+<% end %>
+
+<div class="remove-cover-pic">
+  <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <a href="" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-camera"></i>
+        Change Cover Pic
+      </a>
+      <ul class="dropdown-menu">
+        <li style="line-height: 0">
+          <%= form_for @user, :html => {:multipart => true} do |f| %>
+            <%= f.file_field :cover, id: 'upload' %>
+          <% end %>
+          <a href="" id="upload_link">Upload your photo</a>​
+        </li>
+        <li><%= link_to 'Remove Image',  delete_cover_img_user_path(current_user),  method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <li class="divider"></li>   
+      </ul>
+    </li>
+  </ul>
+</div>

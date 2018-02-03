@@ -1,0 +1,147 @@
+<html>
+<head>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600" rel="stylesheet" type="text/css">
+  <div>
+    <style type="text/css">
+        .template{
+            margin: auto;
+            padding: 0;
+            /*height: 650px;*/
+            width: 60%;
+            background-color: #FFFFFF;
+            background-image: url('/assets/page1.png');
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #DADADA;
+        }
+
+        .header{
+            /*height: 100px;*/
+            width: 100% ;
+            background-color: #C2E8F5;
+        }
+        .logo{
+            text-align: center;
+            padding: 15px;
+        }
+
+        .logo img{
+            height: 80px;
+            width: 80px;
+        }
+
+        .content {
+            /*height: 500px;*/
+            width: 100%;
+            margin: auto;
+        }
+
+        .welcome-note{
+            text-align: center;
+            /*height: 40px;*/
+        }
+
+        .welcome-note p{
+            margin: 0px;
+            padding-top: 20px;
+        }
+        .sender-image{
+            text-align: center;
+            padding: 5px;
+
+        }
+        .sender-image img{
+            height: 120px;
+            width: 100px;
+        }
+        .description{
+            width: 80%;
+            /*height: 100px;*/
+            margin: auto;
+            text-align: justify;
+        }
+
+        .description p{
+            margin: 0px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .button{
+            text-align: center;
+            background-color: #00BBEA;
+            width: 20%;
+            /*height: 20px;*/
+            margin: auto;
+            padding: 10px;
+            text-decoration: none;
+        }
+        .slide-image{
+            margin-top: 20px;
+            width: 80%;
+            /*height: 230px;*/
+            margin: auto;
+            padding: 10px;
+
+        }
+        .slide-image img{
+            width: 100%;
+            height: 200px;
+        }
+        .footer{
+            height: 38px;
+            width: 100%;
+            margin: auto;
+            background-color: #C2E8F5;
+            text-align: center;
+        }
+        .footer p{
+            padding: 11px;
+            text-color: black;
+            font-size: 12px;
+        }
+    </style>
+  </div>
+</head>
+<body>
+<div class="template">
+
+  <div class="header">
+    <div class="logo">
+      <a href="https://bnveteran.navy.mil.bd/" target="_blank">
+        <img src="<%= image_url('logo_image/logo-light.jpg') %>" alt="" />
+      </a>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="sender-image" >
+      <%#= image_tag 'default-profile-picture.png', width: '100', height: '120' %>
+      <img src="<%= image_url @message_sender.avatar.present? ? @message_sender.avatar.url : 'default-profile-picture.png' %>" alt="" />
+    </div>
+
+    <div class="description">
+      <p> <strong style="font-size: 16px;"> <%= @message_sender.name %> has sent a message in BN Veteran.</strong></p>
+      <p> Please Login to BN Veteran to check your message.</p>
+    </div>
+
+    <div class="button">
+      <a href="<%= new_user_session_url %>" target="_blank" > Login Here</a>
+    </div>
+    <div class="slide-image">
+      <%#= image_url("facilityinner/gallery_photo/photo-11.jpg", :alt => "") %>
+      <img src="<%= image_url('facilityinner/gallery_photo/photo-11.jpg') %>" alt="" />
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p><a href="https://bnveteran.navy.mil.bd/" target="_blank">BN Veteran</a></p>
+  </div>
+
+</div>
+</body>
+</html>

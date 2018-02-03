@@ -1,0 +1,3 @@
+$('#bnveteran-messaging-modal').modal('show').find('.modal-content').html("<%= escape_javascript(render 'messages/messaging').html_safe %>");
+$('#unread-message').hide();
+history.pushState("", "", "<%= messages_path %>");

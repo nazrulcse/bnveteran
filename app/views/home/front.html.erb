@@ -1,0 +1,246 @@
+<div class="main-container" style="background-color: #ffffff">
+
+  <%= render 'layouts/slider' %>
+
+  <section class="imageblock switchable feature-large   chef-msg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="center-heading home-title-facitlity bg-arrow">
+            <h2>Message from Chief of Naval Staff </h2>
+          </div>
+        </div>
+
+        <span class="clearfix"></span><br />
+
+        <div class="col-md-3 col-sm-4 col-xs-12 c-img">
+          <img alt="Image" class="  img-thumbnail" style="max-width: 180px;" src="/assets/chief.jpg">
+        </div>
+
+        <div class="col-md-6 col-sm-5 col-xs-12">
+          <p class="chief-title text-center">
+            Admiral Nizamuddin Ahmed, OSP, BCGM, ndc, psc <br>
+            Chief of Naval Staff
+          </p>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <%= image_tag('logo_image/logo2.png', class: 'img-responsive  logo-inner pull-right') %>
+        </div>
+
+        <div class="col-md-12 desc">
+          <p>
+            <br />
+            Bangladesh Navy Veterans are from the generations past, who have sacrificed their blood, sweat,
+            energy, spirit and even own sacret life to guarantee the freedom of our nation that we hold so
+            dear. Since the birth of Bangladesh Navy (BN) in the womb of our liberation war, there have been
+            a valiant group of sailors who dared to rule the waves of the Bay of Bengal.
+          </p>
+
+          <p>
+            Starting from the scratch, with only two boat’s Padma and Palash, today BN has attained three
+            dimensional capability with submarines, state-of-the-art surface combatants and naval air arm
+            in her inventory. This was only possible because you were the light house, you charted the correct
+            course so that we can make ETA on time. Our veterans showed us, how to set sail in the choppy sea,
+            how to keep the ship always on track and maintain DR. Our veteran represent the best of sailors that...<%= link_to 'Read More', chief_more_path %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--end of container-->
+  </section>
+
+  <section class="text-center six-bg-sec">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="center-heading home-title-facitlity two-arrow">
+            <h2> Facilities for Veterans </h2>
+          </div>
+        </div>
+        <%= image_tag('facility_banner.png', class: 'img-btmsp') %>
+
+
+        <% if @facilities.present? %>
+            <% @facilities.each do |facility| %>
+
+                <div class="col-sm-4">
+                  <div class="feature feature-6">
+                    <div class="center img-ic">
+                      <!--<img class="img-responsive" src="/assets/housing-societys.png" alt="img" />-->
+                      <%= image_tag facility.organization_logo.present? ? facility.organization_logo.url : 'facilityinner/gallery_photo/no-image-available.png', class: 'img-responsive' %>
+                    </div>
+                    <h4 style="font-size: 20px;"><%= facility.organization_name %></h4>
+                    <p>
+                      <%= truncate(Nokogiri::HTML(facility.description).xpath('//text()').map(&:text).join(' '), length: 174) %>
+                      <%= link_to 'More ...', facility_path(facility.id) %>
+                    </p>
+                  </div>
+                  <!--end feature-->
+                </div>
+            <% end %>
+            </div>
+
+
+        <% else %>
+            <%= render 'shared/no_data_available' %>
+        <% end %>
+        <!--end of row-->
+        </div>
+
+    <!--end of container-->
+  </section>
+
+  <section class="bg-white sec-gallery">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-sm-5">
+          <div class="boxed bg--secondary boxed--lg boxed--border">
+            <h4>Download Forms</h4>
+
+            <% if facility_forms.present? %>
+                <% facility_forms.each do |facility_form| %>
+                    <% unless facility_form.form.blank? %>
+                        <div class="card feature feature-6">
+                          <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                          <%= link_to download_facility_form_path(facility_form), title:'Download the form' do %>
+                              <%= facility_form.title %>
+                          <% end %>
+                          <br />
+                        </div>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <%= render 'shared/no_data_available' %>
+            <% end %>
+
+          </div>
+        </div>
+
+        <div class="col-sm-7 gallery-images">
+
+          <% if default_gallery_photos_for_home.present? %>
+              <% default_gallery_photos_for_home.each.with_index(1) do |default_gallery_photo_for_home, index| %>
+                  <% if default_gallery_photo_for_home.image.present? %>
+                      <div class="col-md-6 col-xs-6 galleryimg" style="margin-bottom: 15px;">
+                        <div class="masonry__item  photo-gallery bg-navyall">
+                          <a href="<%= default_gallery_photo_for_home.image_url %>" data-lightbox="Gallery 1">
+                            <%= image_tag default_gallery_photo_for_home.image_url, class: 'img-responsive img-thumbnail', alt: 'Image' %>
+                          </a>
+                          <% if index == 4 %>
+                              <%= link_to 'View More', galleries_path, class:'caption-gallery' %>
+                          <% end %>
+                        </div>
+                      </div>
+                  <% end %>
+              <% end %>
+          <% else %>
+              <%= render 'shared/no_data_available' %>
+          <% end %>
+
+        </div>
+
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </section>
+
+  <section class="bg--secondary pd-top-sp">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>
+            News & Publications
+            <small class="v-all">
+              <%= link_to news_index_path do %>
+                  View All News & Publications <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+              <% end %>
+            </small>
+          </h2>
+          <span class="clearfix"></span>
+
+          <div class="row sliderx" data-arrows="false" data-paging="true">
+            <ul class="slidesx">
+
+              <% if latest_news.present? %>
+                  <% latest_news.each do |news| %>
+
+                      <li class="col-sm-4 col-xs-12">
+                        <div class="feature feature-1">
+                          <div class="feature__body boxed boxed--border">
+                            <h5 style="height: 50px;"> <%= link_to truncate(news.title, length:60), news_path(news) %> </h5>
+                            <div class="divider"></div>
+                            <% if news.photo.present? %>
+                                <% if news.photo.path.downcase.end_with?('.pdf') %>
+                                    <%= image_tag news.photo.present? ? news.photo.url(:large_thumb_pdf) : 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"360", class: 'img-thumbnail'%>
+                                <%elsif news.is_doc? %>
+                                    <iframe src='http://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width="360" height="300" style='border: none;'>
+                                    </iframe>
+                                <% else %>
+                                    <%= image_tag news.photo.present? ? news.photo.url : 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"250",  class: 'img-thumbnail' %>
+                                <% end %>
+                            <% else %>
+                                <%= image_tag 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"250",  class: 'img-thumbnail' %>
+                            <% end %>
+                          </div>
+                        </div>
+                        <!--end feature-->
+                      </li>
+
+                  <% end %>
+              <% else %>
+                  <%= render 'shared/no_data_available' %>
+              <% end %>
+
+            </ul>
+          </div>
+          <!--end of row-->
+        </div>
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </section>
+
+
+  <section id="change-live">
+    <div class="change-live-wrap">
+      <div class="change-live-container">
+        <div class="text-center change-live-text">
+          <div class="table-cell-item" style="display: table-cell; vertical-align: middle; text-align: center">
+            <h2>
+              Change lives, Empower people and Build meaningful connections
+
+            </h2>
+            <div class="custom-btn-live">
+              <a href="/users/sign_up" class="btn btn-primary"> Register Today </a>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+
+<style type="text/css">
+    .bottom-register-today:hover{
+        transform: translate3d(0, -2px, 0) !important;
+    }
+</style>
+
+<script type="text/javascript">
+    $('#menu2').addClass('hidden-xs');
+    $('#menu2').addClass('hidden-sm');
+
+</script>

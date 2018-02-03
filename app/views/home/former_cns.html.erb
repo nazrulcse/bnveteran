@@ -1,0 +1,61 @@
+<div class="main-container"  style="background-color: #ffffff">
+
+  <section class="text-center imagebg parallax banner_height" data-overlay="4">
+    <div class="background-image-holder">
+      <div>
+      </div>
+      <%= image_tag('facilityinner/gallery_photo/photo-16.jpg') %>
+    </div>
+    <div class="img-space">
+    </div>
+
+  </section>
+  <%#= render 'layouts/slider' %>
+
+  <span class="clearfix">
+			</span>
+  <div class="container "  style="padding-top: 25px">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li class="active">Album </li>
+      <li class="active">Former CNSs </li>
+    </ol>
+  </div>
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left">
+
+      <div class="masonry formercms">
+        <!--end masonry filters-->
+        <div class="masonry__container masonry--active">
+
+          <%= render 'layouts/template/former_cns_photos' %>
+
+        </div>
+        <!--end masonry container-->
+      </div>
+
+      <span class="clearfix"></span>
+
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 right-sidebar">
+      <div>
+        <%= render 'layouts/template/album' %>
+        <%= render 'layouts/template/latest_news' %>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!--end of container-->
+</div>
+<a href="" style="position: fixed;bottom: 0;right: 0;"><img src="img/chat.png" alt="" /></a>
+
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>

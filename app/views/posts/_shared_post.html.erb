@@ -1,0 +1,37 @@
+<div class="shared-single-post">
+  <!--<div class="info">-->
+    <!--<%#= link_to user_path(post.user), remote: true do %>-->
+        <!--<%#= image_tag post.user.avatar.present? ? post.user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle nav_img_class', style: 'margin-right: 5px' %>-->
+    <!--<%# end %>-->
+    <!--<h3 class="name"><%#= link_to post.user.name, user_path(post.user), remote: true %></h3>-->
+  <!--</div>-->
+
+  <div class="content">
+    <% description = sanitize(post.content_html) %>
+    <p style="text-align:justify;"><%= description %></p>
+  </div>
+
+  <% if post.post_images.present? %>
+      <div class="post-attachment row" style="margin-top: 45px;">
+
+        <% post.post_images.each_with_index do |post_image, index| %>
+            <div class="attachment <%= index > 3 ? 'hidden' : '' %> col-md-<%= post.post_images.size > 1 ? '6 multiple-image' : '12' %>" style="margin: 0px; padding: 0px;">
+              <a href="<%= post_image.image_url %>" data-lightbox="Gallery <%= post.id %>">
+                <%= image_tag post_image.image_url , class: 'img-responsive img-rounded post-img'%>
+
+                <% if post.post_images.count > 4 && index == 3 %>
+                    <div class="more-item-wrapper">
+                      <div class="more-item-container">
+                        <div class="more-item-number">
+                          +<%= post.post_images.count - 4 %>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </a>
+            </div>
+        <% end %>
+      </div>
+
+  <% end %>
+</div>

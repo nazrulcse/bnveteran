@@ -1,0 +1,55 @@
+
+
+<div class="cv_form">
+  <div align="center" class="col-md-1 col-sm-3">
+    <%if @user.avatar_pdf.present? %>
+      <%= render 'shared/avatar_pdf', user: @user %>
+    <%end%>
+  </div>
+    
+  <div class="col-md-2 col-sm-3">
+    <%= form_for @user, url: doc_upload_users_path(), method: :post do |f| %>
+      <div class="form-group">
+        <%= f.file_field :avatar %>
+  </div>
+
+  <div class="col-md-2 col-sm-3">
+        <%= link_to 'Upload', "#", :class => "btn-sm btn-primary", :id => "upload_btn"%>
+      </div>
+    <% end %>
+  </div>
+
+  
+</div>
+
+<style type="text/css">
+	.cv_form{
+		margin-top: 5%;
+	}
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(":file").filestyle({input: false});
+    $("#upload_btn").click(function(){
+      var file_data =  $("#user_avatar").prop("files")[0];
+      var form_data = new FormData();
+      form_data.append("avatar", file_data);
+      var other_data = $('form').serializeArray();
+      $.each(other_data,function(key,input){
+          form_data.append(input.name,input.value);
+      });
+      $.ajax({
+        type: 'POST',
+        url: "/users/doc_upload",
+        //dataType: 'json',
+        dataType: 'script',
+        cache: false,       
+        contentType: false, 
+        processData: false,
+        data: form_data
+      })
+    });
+  });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.filestyle/1.1.0/js/bootstrap-filestyle.min.js"> </script>

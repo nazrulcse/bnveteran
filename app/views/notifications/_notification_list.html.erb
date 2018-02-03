@@ -1,0 +1,38 @@
+<div class="main-content notification_list " id="newsfeed">
+
+  <div class="title-bar tp-sp">
+    <strong> Notifications</strong>
+  </div>
+
+  <div role="separator" class="divider"></div>
+
+  <% if @notifications.present? %>
+      <div id="notification-row">
+        <%= render 'notifications/notification_row' %>
+      </div>
+
+      <div id="endless-scroll" class="well text-center hidden">
+        <%= image_tag 'ajax-loader.gif' %>
+        <%= will_paginate @notifications rescue "" %>
+      </div>
+
+  <% else %>
+    <h4 style="text-align: center; margin: 25px;"> No Notification Found </h4>
+  <% end %>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($("#endless-scroll .pagination").size() > 0) {
+            $(".pagination").hide();
+            $("#endless-scroll").removeClass("hidden");
+            $(window).bindWithDelay("scroll", function () {
+                var url = $("a.next_page").attr("href");
+                if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+                    $.getScript(url);
+                }
+            }, 150);
+        }
+    });
+</script>

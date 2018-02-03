@@ -1,0 +1,43 @@
+<% if comment.user %>
+    <div id="comment-<%= comment.id %>">
+      <div class="info">
+        <%= render 'shared/avatar', user: comment.user %>
+        <h4 class="name">
+          <%= link_to comment.user.name, user_path(comment.user.id), remote:true %>
+
+          <% if belongs_to_user?(comment) ||  belongs_to_user?(@post)  %>
+              <small class="dropdown pull-right" style="margin-right: 5px;">
+                <label class="dropdown-toggle" type="button" data-toggle="dropdown" style=" font-size: 18px">
+                  <span><i class="fa fa-angle-down " aria-hidden="true"></i></span>
+                </label>
+                <ul class="dropdown-menu">
+                  <!--<li><%#= link_to 'Edit', edit_post_path(post.id), remote:true %></li>-->
+                  <li>
+                    <%= link_to comment_path(comment), method: :delete, remote: true, data: {confirm: 'Are you sure?'} do %>
+                        Delete
+                    <% end %>
+                  </li>
+                </ul>
+              </small>
+          <% end %>
+
+        </h4>
+      </div>
+
+      <div class="content">
+        <div class="row">
+          <span class="text"><%= comment.comment_html %></span>
+        </div>
+        <div class="pull-right">
+
+          <%# if belongs_to_user?(comment) ||  belongs_to_user?(@post)  %>
+              <%#= link_to comment_path(comment), method: :delete, class: 'btn btn-danger btn-sm', remote: true do %>
+                  <%# fa_icon 'trash' %>
+              <%# end %>
+          <%# end %>
+        </div>
+      </div>
+      <br>
+      <hr>
+    </div>
+<% end %>

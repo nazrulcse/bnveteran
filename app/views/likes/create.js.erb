@@ -1,0 +1,2 @@
+<% Post.find(params[:post_id]).likes.count %>
+$("#p-<%= params[:post_id] %>").text("<%= Post.find(params[:post_id]).likes.count %>")

@@ -1,0 +1,6 @@
+<% if user %>
+    <%= link_to user_path(user), remote: true do %>
+        <%#= image_tag user.avatar.url || 'avatar.jpg', class: 'avatar img-responsive img-circle pull-left' %>
+        <%= image_tag user.avatar.present? ? user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle nav_img_class', style: 'margin-right: 5px' %>
+    <% end %>
+<% end %>

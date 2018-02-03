@@ -1,0 +1,101 @@
+<div class="main-container" style="background-color: #ffffff">
+
+  <section class="text-center imagebg parallax banner_height custom-bg-color-hide" data-overlay="4">
+    <div class="background-image-holder">
+      <div class="asad" style="background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0">
+
+      </div>
+      <%= image_tag 'facilityinner/gallery_photo/photo-13.jpg', alt: 'background' %>
+    </div>
+    <div class="img-space">
+    </div>
+  </section>
+
+  <%#= render 'layouts/slider' %>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+
+    <div class="col-md-12">
+      <div class="center-heading ">
+        <!--<span class="lines"></span>-->
+        <!--<span class="lines"></span>-->
+        <h2>Contact</h2>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-sm-8 col-xs-12 left no-padding">
+      <%= form_for @contact, url: contact_submit_path do |f| %>
+
+          <div class="col-sm-12 col-xs-12">
+            <div class="form-group">
+              <%= f.label "Name*:", class: 'control-label', for: 'name' %>
+              <%= f.text_field :name, class: "form-control", id: 'name', required: true %>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+              <%= f.label "Email Address*:", class: 'control-label', for: 'email' %>
+              <%= f.email_field :email, class: "form-control", id: 'email', required: true %>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+              <%= f.label "Phone Number:", class: 'control-label', for: 'phone' %>
+              <%= f.text_field :phone, class: "form-control", id: 'phone', required: true %>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-xs-12">
+            <div class="form-group">
+              <%= f.label "Message*:", class: 'control-label', for: 'message' %>
+              <%= f.text_area :message, class: "form-control",rows:'4', id: 'message', required: true %>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-xs-12">
+            <div class="form-group">
+              <%= f.submit 'SEND ENQUERY', class: "form-control btn btn&#45 &#45 primary type&#45 &#45 uppercase" %>
+            </div>
+          </div>
+
+      <% end %>
+
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 right-sidebar">
+      <div class="boxed boxed--border news-list">
+
+        <p class="lead">
+          <strong>  Naval Headquarters</strong>
+
+          <br>  Email:
+          <a href="#">info@navy.mil.bd </a>
+          <br> Telephone:  +88 02 983 6141-9
+          <br> Fax:   +88 02 983 6141-9
+          <br /> Address: Banani, Dhaka - 1213 Bangladesh.
+        </p>
+
+
+      </div>
+
+
+      <div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <br /><br />
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1882560.866933851!2d88.48111145704605!3d22.844051081236486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c704b37b1b23%3A0x2ce24868db30cb7!2sBangladesh+Navy+Headquarter!5e0!3m2!1sen!2sbd!4v1501092633977" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>
+
+<!--<a href="" style="position: fixed;bottom: 0;right: 0;"><%= image_tag('chat.png') %></a>-->

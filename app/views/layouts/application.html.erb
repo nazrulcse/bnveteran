@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BN Veteran</title>
+    <%= favicon_link_tag 'bnveteran.png' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body class="bg-dashboard">
+    <%= render 'shared/navbar' %>
+    <% unless notice.blank? %>
+      <div class="alert alert-info alert-dismissable alert-fixed">
+        <%= notice %>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="position: absolute; margin-left: 70px; margin-top: 25px !important; border: none;">&times;</button>
+      </div>
+    <% end %>
+    <% unless alert.blank? %>
+      <div class="alert alert-danger alert-dismissable alert-fixed">
+        <%= alert %>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"  style="position: absolute; margin-left: 75px; margin-top: 25px !important; border: none;">&times;</button>
+      </div>
+    <% end %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <%= render 'shared/modal' %>
+  </body>
+</html>
+

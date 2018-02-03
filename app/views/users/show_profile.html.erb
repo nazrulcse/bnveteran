@@ -1,0 +1,401 @@
+<div class="editable-profile">
+  <div class="edit-cover-pic">
+    <% if current_user.cover.present? %>
+        <%= image_tag(@user.cover.url, alt: "Example Image", height: '450', width: '100%') %>
+    <% else %>
+        <img align="left" class="fb-image-lg" src="/assets/default-cover.png" alt="Profile image example" width="100%" height="450px" />
+    <% end %>
+
+  </div>
+  <div class="container">
+    <div class="profile-content-bx">
+      <div class="fb-profile fb-profile-create">
+        <div class="col-md-3 col-sm-3">
+          <div class="sidebar-profile">
+            <div id="profile_img">
+              <% if current_user.avatar.present? %>
+                  <%= image_tag(@user.avatar.url, alt: "Example Image", height: '160', width: '160') %>
+              <% else %>
+                  <img src="/assets/default-profile-picture.png" alt="Profile image example"/>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <%= render 'shared/cover', user: @user %>
+    <br>
+    <div id="user-<%= @user.id %>" class="user-profile-container row">
+      <div class="col-lg-3">
+        <%= render 'shared/user_info' %>
+      </div>
+      <div class="col-lg-6 bg-color main-content">
+        <div id="newsfeed">
+          <div id="activities">
+            <% if @activities.present? %>
+                <%= render_activities(@activities, layout: '/shared/activity') %>
+            <% else %>
+                <div class="well">
+                  <%= render('shared/no_resource', resources: 'Activities') %>
+                </div>
+            <% end %>
+          </div>
+          <%= render 'shared/paginate', resources: @activities %>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="bg-color">
+          <div class="u-list">
+            <span>&copy; 2017 bnsocial</span>
+            <span><a  href="" rel="noopener">About</a></span>
+            <span><a  href="" rel="noopener">Help Center</a></span>
+            <span><a  href="" rel="noopener">Terms</a></span>
+            <span><a  href="" rel="noopener">Privacy policy</a></span>
+            <span><a  href="" rel="noopener">Cookies</a></span>
+            <span ><a  href="" rel="noopener">Ads info</a></span>
+            <span ><a  href="" rel="noopener">Brand</a></span>
+            <span ><a  href="" rel="noopener">Blog</a></span>
+            <span ><a  href="" rel="noopener">Status</a></span>
+            <span ><a  href="https://about.twitter.com/products" rel="noopener">Apps</a></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- /container -->
+<style type="text/css">
+    .edit-cover-image .file-input-wrapper > input[type="file"]{
+        width: 100%;
+    }
+    .edit-cover-image .file-input-wrapper{
+        top:0;
+        margin:0 auto;
+        width: 100%;
+    }
+    .profile-content-bx{
+        float: left;
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .edit-cover-image{
+        position: absolute;
+        top:250px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        width: 200px;
+        height: 50px;
+        display: block;
+        z-index: 9999;
+    }
+    .fb-profile-create{
+        min-height: 40px !important;
+    }
+    .edit-cover-image .file-input-wrapper{
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .edit-cover-image .file-input-wrapper .btn-file-input{
+        color: #fff;
+    }
+    .file-input-wrapper {
+        cursor: pointer;
+        height: 22px;
+        margin: 2px auto;
+        /* overflow: hidden; */
+        position: relative;
+        top: -31px;
+        width: 26px;
+        text-align: center;
+        /*left: 84px;*/
+    }
+    .file-input-wrapper > input[type="file"] {
+        font-size: 40px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        cursor: pointer;
+        height: 22px;
+        width: 25px;
+        z-index: 9999999999;
+        padding-left: 0;
+    }
+    .file-input-wrapper .btn-file-input {
+        background-color: transparent;
+        border-radius: 4px;
+        color: black;
+        cursor: pointer;
+        display: block;
+        height: 22px;
+        margin: 0 0 0 -1px;
+        padding-left: 0;
+        border: none;
+        font-size: 25px;
+        color: #ccc;
+        float: left;
+        position: absolute;
+        top: 0;
+    }
+    .sidebar-profile{
+        position: absolute;
+        float: left;
+        display: block;
+        top: -113px;
+        width: 100%;
+    }
+    .edit-tab ul li a{
+        padding: 10px 0;
+        margin:0 10px;
+    }
+    .edit-tab ul{
+        margin-top: 28px;
+    }
+    .edit-tab{
+        margin-top: -10px;
+    }
+    .fb-profile{
+        position: relative;
+        min-height: 950px;
+    }
+    .editable-profile{
+        width: 100%;
+        position: relative;
+    }
+    .fb-profile img.fb-image-lg{
+        z-index: 0;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .sidebar-profile img
+    {
+        margin: 0px auto;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        display: block;
+        border: 2px solid #fff;
+        padding: 1px;
+    }
+    /*prodile tabs*/
+    /*Panel tabs*/
+    .edit-tab .panel{
+        border:none;
+        padding-bottom: 50px;
+    }
+    .edit-tab .panel-body{
+        padding:10px;
+        height: 300px;
+        overflow-y: auto;
+        width: 100%;
+    }
+    .panel-tabs {
+        position: relative;
+        bottom: 30px;
+        clear:both;
+        border-bottom: 1px solid transparent;
+    }
+    .edit-tab .panel-heading{
+        height: 40px;
+        background: none;
+        border:none;
+    }
+    .panel-tabs > li {
+        float: left;
+        margin-bottom: -1px;
+    }
+    .panel-tabs > li > a {
+        margin-right: 2px;
+        margin-top: 4px;
+        line-height: .85;
+        border: 1px solid transparent;
+        border-radius: 4px 4px 0 0;
+        color: #337ab7;
+        text-decoration: none;
+    }
+    .panel-tabs > li > a:hover {
+        border-color: transparent;
+        color: #337ab7;
+        background-color: transparent;
+        border-bottom: 2px solid #337ab7;
+    }
+    .panel-tabs > li.active > a,
+    .panel-tabs > li.active > a:hover,
+    .panel-tabs > li.active > a:focus {
+        color: #337ab7;
+        cursor: default;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        background-color: rgba(255,255,255, .23);
+        /*border-bottom-color: transparent;*/
+        border-bottom: 2px solid #337ab7;
+    }
+    /*Scroll*/
+    #scrollbox3 {
+        overflow: auto;
+        width: 100% !important;
+        height: 360px;
+        padding: 15px;
+        box-shadow: 0px 0 32px 0px #ccc;
+    }
+    .track3 {
+        width: 10px;
+        background: rgba(0, 0, 0, 0);
+        margin-right: 2px;
+        border-radius: 10px;
+        -webkit-transition: background 250ms linear;
+        transition: background 250ms linear;
+    }
+    .track3:hover,
+    .track3.dragging {
+        background: #d9d9d9; /* Browsers without rgba support */
+        background: rgba(0, 0, 0, 0.15);
+    }
+    .handle3 {
+        width: 7px;
+        right: 0;
+        background: #999;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 7px;
+        -webkit-transition: width 250ms;
+        transition: width 250ms;
+    }
+    .track3:hover .handle3,
+    .track3.dragging .handle3 {
+        width: 10px;
+    }
+    @media (max-width:768px)
+    {
+        .fb-image-profile
+        {
+            margin: -45px 10px 0px 25px;
+            z-index: 9;
+            width: 20%;
+        }
+    }
+    .edit-profile-btn{
+        padding: 10px 40px;
+        background: #4a90e2;
+        width: 160px;
+        border-radius: 25px;
+        margin-left: 10px;
+    }
+</style>
+<script type="text/javascript">
+    $("#user_designation_type").change(function(){
+        var val = $(this).val();
+        $.ajax({
+            url: "/users/select_rank",
+            method: "get",
+            data: {value: val}
+        })
+    })
+    $('#scrollbox3').enscroll({
+        showOnHover: true,
+        verticalTrackClass: 'track3',
+        verticalHandleClass: 'handle3'
+    });
+
+    $(document).ready(function(){
+        $("#user_cover").change(function(){
+            var file_data =  $(this).prop("files")[0];
+            var form_data = new FormData();
+            var unq_id = $(this)[0].id;
+            form_data.append("cover", file_data);
+            form_data.append("id", unq_id);
+            var other_data = $('form').serializeArray();
+            $.each(other_data,function(key,input){
+                form_data.append(input.name,input.value);
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).parent().parent().attr('action'),
+                //dataType: 'json',
+                dataType: 'script',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data
+            })
+        });
+
+        $("#user_avatar").change(function(){
+
+            var file_data =  $(this).prop("files")[0];
+            var form_data = new FormData();
+            var unq_id = $(this)[0].id;
+            form_data.append("avatar", file_data);
+            form_data.append("id", unq_id);
+            var other_data = $('form').serializeArray();
+            $.each(other_data,function(key,input){
+                form_data.append(input.name,input.value);
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).parent().parent().attr('action'),
+                //dataType: 'json',
+                dataType: 'script',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data
+            })
+        });
+    });
+</script>
+<style type="text/css">
+    .cover-tag-field{
+        margin-top:70PX;
+    }
+    .text-tag-area{
+        margin:0 !important;
+    }
+
+    .user-profile-container {
+        margin-top: 5%;
+    }
+
+    .follow-form form{
+        float: left;
+    }
+    .follow-form form .btn-success:hover{
+        color:#000;
+    }
+    .who small{
+        width: 64%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* width: 50px; */
+        float: left;
+    }
+
+    .follow-us-button{
+        color: #4a90e2;
+        background: #fff;
+        border-radius: 40px;
+        height: 25px;
+        line-height: 7px;
+        display: block;
+        font-weight: 400;
+        font-size: 0.85714286em;
+    }
+    .follow-us-button:hover{
+        background:#eee;
+        color: #000;
+        border:none;
+    }
+    .follow-us-button:focus{
+        background:#eee !important;
+        color: #000 !important;
+        border:none;
+    }
+</style>

@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <button type="button" class="close pull-right close-btn" data-dismiss="modal">&times;</button>
+  <%= link_to messages_path, class:'pull-left angle-left-arrow', remote:true do %>
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+  <% end %>
+
+  <h4 style="text-align: center;">New Message </h4>
+
+</div>
+<div class="modal-body msg-modal-body">
+  <div class="send-message-to-user">
+    <h5 style="margin: 0px;">Send message to: </h5>
+
+    <form id="live-search-form" method="get" data-remote="true" action="<%= live_search_messages_path %>">
+      <input id="big-search-box" class="form-control" placeholder="Enter a name" name="q" type="text"/>
+
+    </form>
+
+  </div>
+
+  <%= render 'user_list' %>
+</div>
+<div class="modal-footer">
+  <!--<%#= link_to "#", class:'btn pull-right btn btn-primary new-message-btn', remote:true do %>-->
+      <!--<span> Next </span>-->
+  <!--<%# end %>-->
+</div>
+
+<script>
+
+    // for live search of messaging users
+
+    $("#big-search-box").bind("keyup", function() {
+        $('#live-search-form').submit();
+    });
+
+</script>
+
+

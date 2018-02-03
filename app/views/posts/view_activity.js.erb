@@ -1,0 +1,2 @@
+$('#no-resource-found').remove();
+$("#activities").prepend("<%= escape_javascript(render_activities(@activity, layout: '/shared/activity')).html_safe %>");

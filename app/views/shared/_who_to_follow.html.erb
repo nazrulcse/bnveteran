@@ -1,0 +1,25 @@
+<div class="bg-color">
+  <div class="title-bar">
+    <strong>
+      Who to follow  <small> - <a href="">Refresh</a> - <%= link_to 'View All', find_people_users_path, remote: true  %></small>
+    </strong>
+  </div>
+  <div role="separator" class="divider"></div>
+  <div class="who-list">
+    <div id="who-to-follow-user-list" class="profile who">
+
+      <% un_friends.each do |user| %>
+          <% unless user.email == 'reza@solutionart.net' %>
+              <%= render 'shared/who_to_follow_user_content', user: user %>
+          <% end %>
+      <% end %>
+
+      <div class="divider"></div>
+      <div class="p-info">
+        <%= link_to find_people_users_path, remote: true do %>
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Find people you know</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

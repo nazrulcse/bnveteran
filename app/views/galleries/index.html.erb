@@ -1,0 +1,80 @@
+<div class="main-container" style="background-color: #ffffff">
+
+  <!--  <section class="text-center imagebg parallax banner_height" data-overlay="4">
+    <div class="background-image-holder">
+      <%#= image_tag('facilityinner/gallery_photo/photo-16.jpg') %>
+    </div>
+    <div class="img-space"></div>
+  </section>-->
+
+  <section class="text-center imagebg parallax banner_height custom-bg-color-hide" data-overlay="4">
+    <div class="background-image-holder">
+      <div class="asad" style="background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0">
+
+      </div>
+      <%= image_tag 'facilityinner/gallery_photo/photo-15.jpg', alt: 'background' %>
+    </div>
+    <div class="img-space">
+    </div>
+  </section>
+
+  <span class="clearfix"></span>
+
+  <div class="container " style="padding-top: 25px;">
+    <ol class="breadcrumb">
+      <li><%= link_to 'Home', root_path %></li>
+      <li class="active">Album </li>
+    </ol>
+  </div>
+
+  <span class="clearfix"></span>
+
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left">
+
+      <div class="masonry">
+        <!--end masonry filters-->
+        <div class="masonry__container masonry--active">
+
+          <% if @gallery_photos.present? %>
+              <% @gallery_photos.each do |gallery| %>
+                  <% unless gallery.image.blank? %>
+                      <div class="masonry__item col-md-4 col-xs-4 filter-people" data-masonry-filter="People">
+                        <a href="<%= gallery.image_url %>" data-lightbox="Gallery 1">
+                          <!--<img alt="Image" class="img-thumbnail" src="img/new/photo-1.jpg">-->
+                          <%= image_tag gallery.image_url, height:'160', width:'235', class: "img-thumbnail" %>
+                        </a>
+                      </div>
+                  <% end %>
+              <% end %>
+          <% else %>
+              <%= render 'layouts/template/former_cns_photos' %>
+          <% end %>
+
+        </div>
+        <!--end masonry container-->
+      </div>
+
+      <span class="clearfix"></span>
+
+
+      <%= will_paginate @gallery_photos %>
+      <%#= will_paginate @gallery_photos, {next_label: "<i class='fa fa-chevron-right'> </i>", previous_label: "<i class='fa fa-chevron-left'> </i>"} %>
+
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 right-sidebar">
+      <div>
+        <%= render 'layouts/template/album' %>
+        <%= render 'layouts/template/latest_news' %>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>
+

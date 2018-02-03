@@ -1,0 +1,810 @@
+<div id="update-page">
+  <div class="editable-profile">
+
+    <%= render 'users/change_cover' %>
+
+    <div class="top-header-white-space">
+      <div class="container-fluid wrapper-page">
+        <div class="edit-profile-btn pull-right", style="margin-top: 7px;">
+          <ul>
+            <!--<li>-->
+            <!--<a href="">Cancel</a>-->
+            <!--</li>-->
+            <li>
+              <button id="save_btn">Save Changes</button>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid wrapper-page">
+      <div class="fb-profile">
+        <div class="col-md-3 col-sm-3 col3-absolute">
+          <div class="sidebar-profile">
+
+            <%= render 'users/change_avatar' %>
+
+            <%# end %>
+
+          </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+          <div class="row edit-tab" style="margin-top: 10px;" >
+            <div class="panelxx panel-primaryxx">
+              <div class="panel-headingxx">
+                  <span class="">
+                      <!-- Tabs -->
+                      <ul class="nav panel-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">Personal Info</a></li>
+                        <!--<li><a href="#tab2" data-toggle="tab">Address</a></li>-->
+                        <li><a href="#tab3" data-toggle="tab">Official Info</a></li>
+                      </ul>
+                  </span>
+              </div>
+              <div class="panel-bodyxx" id="update-form">
+                <%= form_for @user, remote:true do |f| %>
+                    <div class="tab-content user-form-content clearfix">
+                      <div class="tab-pane active" id="tab1">
+
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :name %>
+                            <%= f.text_field :name, placeholder: 'Full Name', class: 'form-control' %>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :phone_number %>
+                            <%= f.text_field :phone_number, placeholder: 'Phone Number', class: 'form-control' %>
+                          </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :dob, 'Date of Birth' %>
+                            <%= f.text_field :dob, placeholder: 'Date of Birth', class: 'form-control' %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :sex, 'Gender' %>
+                            <%= f.select :sex, options_for_seasons, class: 'form-control', prompt: 'Select One' %>
+                          </div>
+                        </div>
+
+                        <!--       <div class="col-sm-6">
+                            <div class="form-group">
+                              <%#= f.label :roles, 'Select Role' %> <br>
+                              <%#= label_tag 'Job Seeker', class: 'light-label', for: 'job_seeker' do %>
+                                  <%#= check_box_tag 'user[roles][]', 'Job_Seeker', (current_user.has_role? :Job_Seeker), id: 'job_seeker' %> Job Seeker
+                              <%# end %>
+                              <br>
+                              <%#= label_tag 'Employer', class: 'light-label mb8', for: 'employer' do %>
+                                  <%#= check_box_tag 'user[roles][]', 'Employer', (current_user.has_role? :Employer), id: 'employer' %> Employer
+                              <%# end %>
+                              <%#= f.select :roles, options_for_select(["Job Seeker", "Employer"]), {}, {:multiple => true, :class => "chzn-select", placeholder: 'Select Roles' } %>
+                            </div>
+                          </div>-->
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :location %>
+                            <%= f.text_field :location, placeholder: 'Location', class: 'form-control' %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :avatar_pdf, 'Upload CV' %>
+                            <%= f.file_field :avatar_pdf %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <%= f.label :about %>
+                            <%= f.text_area :about, placeholder: 'About', class: 'form-control text-tag-area' %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-12" style="padding: 0">
+                          <div class="col-sm-6">
+                            <%= label_tag 'Present Address' %>
+                            <div class="form-group">
+                              <%= f.label :present_address, 'Address', class: 'light-label' %>
+                              <%= f.text_field :present_address, placeholder: 'Present Address', class: 'form-control' %>
+                            </div>
+                            <div class="col-sm-6" style="padding-left: 0">
+                              <div class="form-group">
+                                <%= f.label :present_state, 'State', class: 'light-label' %>
+                                <%= f.text_field :present_state, placeholder: 'State', class: 'form-control' %>
+                              </div>
+                            </div>
+                            <div class="col-sm-6" style="padding-left: 0; padding-right: 0">
+                              <div class="form-group">
+                                <%= f.label :present_city, 'City', class: 'light-label' %>
+                                <%= f.text_field :present_city, placeholder: 'City', class: 'form-control' %>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <%= f.label :present_country, 'Country', class: 'light-label' %>
+                              <%= f.text_field :present_country, placeholder: 'Country', class: 'form-control' %>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6" style="padding-right: 15px">
+                            <%= label_tag 'Permanent Address' %>
+                            <div class="form-group">
+                              <%= f.label :permanent_address, 'Address', class: 'light-label' %>
+                              <%= f.text_field :permanent_address, placeholder: 'Permanent Address', class: 'form-control' %>
+                            </div>
+                            <div class="col-sm-6" style="padding-left: 0">
+                              <div class="form-group">
+                                <%= f.label :state, class: 'light-label' %>
+                                <%= f.text_field :state, placeholder: 'State', class: 'form-control' %>
+                              </div>
+                            </div>
+                            <div class="col-sm-6" style="padding-left: 0; padding-right: 0">
+                              <div class="form-group">
+                                <%= f.label :city, class: 'light-label' %>
+                                <%= f.text_field :city, placeholder: 'City', class: 'form-control' %>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <%= f.label :country, class: 'light-label' %>
+                              <%= f.text_field :country, placeholder: 'Country', class: 'form-control' %>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                      </div>
+
+                      <div class="tab-pane" id="tab3">
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label 'Select Designation Type' %>
+                            <%= f.select :designation_type, options_for_select(User::DESIGNATION_TYPE, @user.designation_type),prompt: 'Select Officer/Jco & Others', 'data-required' => 'true', title: 'Select Officer/JcoAndOthers' %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label 'Select Rank' %>
+                            <%= f.select :rank, [], 'data-required' => 'true' %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :officer_no, ' Personal No' %>
+                            <%= f.text_field :officer_no, placeholder: ' Personal No', class: 'form-control', title: "Officer No / Personal No" %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :batch, 'Batch' %>
+                            <%= f.text_field :batch, placeholder: 'Batch', class: 'form-control', title: "Batch" %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :date_joining, 'Date of Joining' %>
+                            <%= f.text_field :date_joining, placeholder: 'Date of Joining', class: 'form-control datepicker', title: "Date of Joining" %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <%= f.label :date_retirement, 'Date of Retirement' %>
+                            <%= f.text_field :date_retirement, placeholder: 'Date of Retirement', class: 'form-control datepicker', title: "Date of Retirement" %>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="actions" style="margin-right: 15px; margin-left: 15px">
+                      <%= f.submit 'Update', class: 'btn btn-primary' %>
+                    </div>
+
+                <% end %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- /container -->
+
+</div>
+<script type="text/javascript">
+
+    /* Upload cover image and attached file */
+    $('#cover_image').change(function () {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#cover-logo').attr('src', e.target.result)
+        };
+        reader.readAsDataURL(this.files[0]);
+    });
+
+
+    /* Upload profile image and attached file */
+    $('#profile_image').change(function () {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#profile-logo').attr('src', e.target.result)
+        };
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $('#save_btn').click(function() {
+        file_data1 =  $("#cover_image").prop("files")[0];
+        file_data =  $("#profile_image").prop("files")[0];
+        form_data = new FormData();
+        form_data.append("cover", file_data1);
+        form_data.append("avatar", file_data);
+        other_data = $('form').serializeArray();
+        $.each(other_data,function(key,input){
+            form_data.append(input.name,input.value);
+        });
+        $.ajax({
+            url: "/users/<%= current_user.id %>",
+            type: 'patch',
+            //dataType: 'json',
+            dataType: 'script',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data
+        });
+    });
+
+
+    $(document).ready(function(){
+        $("#user_dob, #user_date_joining, #user_date_retirement").datetimepicker({timepicker: false, format: 'Y-m-d', maxDate: '0'});
+    });
+
+
+    //    $(document).ready(function(ev){
+    //        $("#datepicker").click(function(){
+    //            $('#datepicker').datepicker();
+    //        });
+    //    });
+
+    <% if @user.designation_type.present? && @user.designation_type > 0 %>
+    $.ajax({
+        url: "/users/select_rank",
+        method: "get",
+        data: {value: "<%= @user.designation_type %>"}
+    });
+    <% end %>
+
+
+    $("#user_designation_type").change(function(){
+        var val = $(this).val();
+        $.ajax({
+            url: "/users/select_rank",
+            method: "get",
+            data: {value: val}
+        })
+    });
+
+    $('#scrollbox3').enscroll({
+        showOnHover: true,
+        verticalTrackClass: 'track3',
+        verticalHandleClass: 'handle3'
+    });
+
+    //    $(document).on('click',"#save_btn",function(){
+    //        file_data1 =  $("#upload").prop("files")[0];
+    //        file_data =  $("#upload1").prop("files")[0];
+    //        form_data = new FormData();
+    //        form_data.append("cover", file_data1);
+    //        form_data.append("avatar", file_data);
+    //        other_data = $('form').serializeArray();
+    //        $.each(other_data,function(key,input){
+    //            form_data.append(input.name,input.value);
+    //        });
+    //        $.ajax({
+    //            url: "/users/<%#= current_user.id %>",
+    //            type: 'patch',
+    //            //dataType: 'json',
+    //            dataType: 'script',
+    //            cache: false,
+    //            contentType: false,
+    //            processData: false,
+    //            data: form_data
+    //        })
+    //    });
+
+    //    $(document).on('click',"#save_btn",function(){
+    //        console.log('sjkashdjkah');
+    //        file_data1 =  $("#cover_image").prop("files")[0];
+    //        file_data =  $("#profile_image").prop("files")[0];
+    //        form_data = new FormData();
+    //        form_data.append("cover", file_data1);
+    //        form_data.append("avatar", file_data);
+    //        other_data = $('form').serializeArray();
+    //        $.each(other_data,function(key,input){
+    //            form_data.append(input.name,input.value);
+    //        });
+    //        $.ajax({
+    //            url: "/users/<%#= current_user.id %>",
+    //            type: 'patch',
+    //            //dataType: 'json',
+    //            dataType: 'script',
+    //            cache: false,
+    //            contentType: false,
+    //            processData: false,
+    //            data: form_data
+    //        })
+    //    });
+
+
+
+
+
+
+
+
+    //    $(function(){
+    //        $("#upload_link").on('click', function(e){
+    //            e.preventDefault();
+    //            $("#upload:hidden").trigger('click');
+    //        });
+    //        $("#upload_link1").on('click', function(e){
+    //            e.preventDefault();
+    //            $("#upload1:hidden").trigger('click');
+    //        });
+    //    });
+</script>
+
+<style type="text/css">
+    .col3-absolute{
+        position: absolute;
+        z-index: 999;
+    }
+    #save_btn{
+        background: #4a90e2;
+        border-radius: 100px;
+        box-shadow: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 17px;
+        padding: 9px 16px;
+        position: relative;
+        text-align: center;
+        white-space: nowrap;
+        color: #fff;
+        margin: 0 5px;
+        height: 34px;
+        border: 0px;
+    }
+    #upload_link{
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        display: block;
+        color: #66757f;
+        padding: 16px 0;
+        font-weight: normal;
+    }
+    #upload{
+        display:none
+    }
+    #upload_link:hover{
+        background-color:#4a90e2 !important;
+        transition: all 0.2s ease;
+        color:#fff;
+    }
+    #upload_link1{
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        display: block;
+        color: #66757f;
+        padding: 16px 0;
+        font-weight: normal;
+    }
+    #upload1{
+        display:none
+    }
+    #upload_link1:hover{
+        background-color:#4a90e2 !important;
+        transition: all 0.2s ease;
+        color:#fff;
+    }
+
+    /*.sidebar-profile img:hover{
+      box-shadow: inset 0px 0px 0px 10px #4a90e2;
+      padding:5px;
+      transition: all 0.3s ease;
+    }*/
+
+    #profile_img .remove-cover-pic{
+        top:0;
+    }
+    #profile_img{
+        position: relative;
+        width: 210px;
+    }
+    #profile_img .remove-cover-pic .nav>li>a{
+        color: #fff;
+        text-align: center;
+        font-size: 17px;
+        font-weight: bold;
+        width: 200px;
+        margin: 0 auto;
+    }
+    #profile_img .remove-cover-pic .nav>li>a:hover{
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+    .remove-cover-pic .nav>li>a:hover{
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+    .wrapper-page.container-fluid{
+        width: 95%;
+        margin: 0 auto;
+    }
+    .edit-cover-pic{
+        height: 300px;
+        overflow: hidden;
+    }
+    .edit-cover-pic img{
+        margin-bottom: 0;
+        display: inline;
+        height:300px;
+    }
+
+    .edit-profile-btn ul{
+        margin: 0;
+        padding: 0;
+    }
+    .edit-profile-btn ul li{
+        list-style: none;
+        float: left;
+    }
+    .edit-profile-btn ul li a{
+        background: #4a90e2;
+        border-radius: 100px;
+        box-shadow: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 20px;
+        padding: 10px 16px;
+        position: relative;
+        text-align: center;
+        white-space: nowrap;
+        color:#fff;
+        margin:0 5px;
+    }
+    .top-header-white-space .edit-profile-btn{
+        margin-top:17px;
+    }
+    .top-header-white-space{
+        background: #fff;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
+        height: 60px;
+    }
+    .remove-cover-pic .nav .dropdown ul li{
+        color: #fff;
+    }
+    .remove-cover-pic .nav {
+        left:50%;
+        margin-left:-150px;
+        top:50px;
+        position:absolute;
+    }
+    .remove-cover-pic .nav>li>a:hover, .remove-cover-pic .nav>li>a:focus, .remove-cover-pic .nav .open>a, .remove-cover-pic .nav .open>a:hover, .remove-cover-pic .nav .open>a:focus {
+        background:none;
+        color:#fff;
+    }
+    .remove-cover-pic .nav>li>a{
+        color: #fff;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .remove-cover-pic .nav>li>a i{
+        width: 100%;
+        font-size: 50px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .remove-cover-pic .dropdown {
+        background:none;
+        width:300px;
+        color:#fff;
+    }
+    .remove-cover-pic .dropdown-menu>li>a {
+        color:#66757f;
+        padding:6px 0;
+        text-align: center;
+    }
+    /*.remove-cover-pic .dropdown-menu>li>a:hover{*/
+    /*background-color:#4a90e2 !important;*/
+    /*transition: all 0.2s ease;*/
+    /*color:#fff;*/
+    /*}*/
+    .remove-cover-pic .dropdown ul.dropdown-menu {
+        border-radius:4px;
+        box-shadow:none;
+        margin:-31px auto;
+        width:220px;
+        left: 0;
+        right: 0;
+    }
+    .remove-cover-pic .dropdown ul.dropdown-menu:before {
+        content: "";
+        border-bottom: 10px solid #fff;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        position: absolute;
+        top: -10px;
+        right: 94px;
+        z-index: 10;
+    }
+    .remove-cover-pic .dropdown ul.dropdown-menu:after {
+        content: "";
+        border-bottom: 12px solid #ccc;
+        border-right: 12px solid transparent;
+        border-left: 12px solid transparent;
+        position: absolute;
+        top: -12px;
+        right: 92px;
+        z-index: 9;
+    }
+
+
+
+
+    .remove-cover-pic{
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 9;
+        top: 173px;
+    }
+    .edit-cover-image .file-input-wrapper > input[type="file"]{
+        width: 100%;
+    }
+    .edit-cover-image .file-input-wrapper{
+        top:0;
+        margin:0 auto;
+        width: 100%;
+    }
+    .edit-cover-image{
+        position: absolute;
+        top:250px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        width: 200px;
+        height: 50px;
+        display: block;
+        z-index: 9999;
+    }
+    .edit-cover-image .file-input-wrapper{
+        left: 0;
+        width: 100%;
+        text-align: center;
+
+    }
+    .edit-cover-image .file-input-wrapper .btn-file-input{
+        color: #fff;
+    }
+    .file-input-wrapper {
+        cursor: pointer;
+        height: 22px;
+        margin: 2px auto;
+        /* overflow: hidden; */
+        position: relative;
+        top: -31px;
+        width: 26px;
+        text-align: center;
+        /*left: 84px;*/
+    }
+    .file-input-wrapper > input[type="file"] {
+        font-size: 40px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        cursor: pointer;
+        height: 22px;
+        width: 25px;
+        z-index: 9999999999;
+        padding-left: 0;
+    }
+    .file-input-wrapper .btn-file-input {
+        background-color: transparent;
+        border-radius: 4px;
+        color: black;
+        cursor: pointer;
+        display: block;
+        height: 22px;
+        margin: 0 0 0 -1px;
+        padding-left: 0;
+        border: none;
+        font-size: 25px;
+        color: #ccc;
+        float: left;
+        position: absolute;
+        top: 0;
+    }
+    .sidebar-profile{
+        position: absolute;
+        float: left;
+        display: block;
+        top: -184px;
+        width: 100%;
+    }
+    .edit-tab{
+        margin-top: 10px;
+        background: white;
+        padding: 20px 10px 50px 10px;
+        border-radius: 5px;
+    }
+    .edit-tab ul li a{
+        padding: 10px 0;
+        margin:0 10px;
+    }
+    .edit-tab ul{
+        margin-top: 28px;
+    }
+    .fb-profile{
+        position: relative;
+        min-height: 950px;
+    }
+    .editable-profile{
+        width: 100%;
+        position: relative;
+    }
+    .fb-profile img.fb-image-lg{
+        z-index: 0;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-profile img
+    {
+        margin: 0;
+        width: 210px;
+        height: 210px;
+        border-radius: 50%;
+        display: block;
+        border: 5px solid #fff;
+        padding: 1px;
+    }
+    /*prodile tabs*/
+    /*Panel tabs*/
+    .edit-tab .panel{
+        border:none;
+        padding-bottom: 50px;
+    }
+    .edit-tab .panel-body{
+        padding:10px;
+        /*height: 556px;*/
+        /*overflow-y: auto;*/
+        width: 100%;
+    }
+    .panel-tabs {
+        position: relative;
+        bottom: 30px;
+        clear: both;
+        border-bottom: 1px solid transparent;
+    }
+    .edit-tab .panel-heading{
+        height: 40px;
+        background: none;
+        border:none;
+    }
+    .panel-tabs > li {
+        float: left;
+        margin-bottom: -1px;
+    }
+
+    .panel-tabs > li > a {
+        margin-right: 2px;
+        margin-top: 4px;
+        line-height: .85;
+        border: 1px solid transparent;
+        border-radius: 4px 4px 0 0;
+        color: #337ab7;
+        text-decoration: none;
+    }
+
+    .panel-tabs > li > a:hover {
+        border-color: transparent;
+        color: #337ab7;
+        background-color: transparent;
+        border-bottom: 2px solid #337ab7;
+    }
+
+    .panel-tabs > li.active > a,
+    .panel-tabs > li.active > a:hover,
+    .panel-tabs > li.active > a:focus {
+        color: #337ab7;
+        cursor: default;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        background-color: rgba(255,255,255, .23);
+        /*border-bottom-color: transparent;*/
+        border-bottom: 2px solid #337ab7;
+    }
+    /*Scroll*/
+    /*#scrollbox3 {
+        overflow: auto;
+        width: 100% !important;
+        height: 360px;
+        padding: 15px;
+        box-shadow: 0px 0 32px 0px #ccc;
+    }
+
+    .track3 {
+        width: 10px;
+        background: rgba(0, 0, 0, 0);
+        margin-right: 2px;
+        border-radius: 10px;
+        -webkit-transition: background 250ms linear;
+        transition: background 250ms linear;
+    }
+
+    .track3:hover,
+    .track3.dragging {
+        background: #d9d9d9;
+        background: rgba(0, 0, 0, 0.15);
+    }*/
+
+    .handle3 {
+        width: 7px;
+        right: 0;
+        background: #999;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 7px;
+        -webkit-transition: width 250ms;
+        transition: width 250ms;
+    }
+
+    .track3:hover .handle3,
+    .track3.dragging .handle3 {
+        width: 10px;
+    }
+    @media (max-width:768px)
+    {
+        .fb-image-profile
+        {
+            margin: -45px 10px 0px 25px;
+            z-index: 9;
+            width: 20%;
+        }
+    }
+</style>
+
+<style type="text/css">
+    .cover-tag-field{
+        margin-top:70PX;
+    }
+    .text-tag-area{
+        margin:0 !important;
+    }
+</style>

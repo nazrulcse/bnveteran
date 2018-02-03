@@ -1,0 +1,7 @@
+<% if resources.next_page %>
+$(".pagination").replaceWith("<%= escape_javascript(will_paginate(resources)).html_safe  %>");
+$(".pagination").hide();
+<% else %>
+$(window).off('scroll');
+$("#endless-scroll").remove();
+<% end %>

@@ -1,0 +1,13 @@
+<% if current_user.liked? likeable %>
+  <%= form_tag unlike_path(likeable_type: likeable.class.to_s, likeable_id: likeable.id), method: :post, remote: true do %>
+    <% button_tag class: 'btn btn-block liked like-btn-count check-liked' do %>
+      <%= fa_icon 'heart-o' %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= form_tag like_path(likeable_type: likeable.class.to_s, likeable_id: likeable.id), remote: true do %>
+    <% button_tag class: 'btn btn-block like-btn-count' do %>
+      <%= fa_icon 'heart-o' %>
+    <% end %>
+  <% end %>
+<% end %>

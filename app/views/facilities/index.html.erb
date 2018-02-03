@@ -1,0 +1,96 @@
+<div class="main-container" style="background-color: #ffffff" >
+
+  <!--<section class="text-center imagebg parallax banner_height" data-overlay="4">-->
+    <!--<div class="background-image-holder ">-->
+      <!--<%#= image_tag 'facilityinner/gallery_photo/photo-15.jpg',alt: 'background' %>-->
+    <!--</div>-->
+    <!--<div class="img-space">-->
+    <!--</div>-->
+  <!--</section>-->
+
+  <section class="text-center imagebg parallax banner_height custom-bg-color-hide" data-overlay="4">
+    <div class="background-image-holder">
+      <div class="asad" style="background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0">
+
+      </div>
+      <%= image_tag 'facilityinner/gallery_photo/photo-15.jpg', alt: 'background' %>
+    </div>
+    <div class="img-space">
+    </div>
+  </section>
+
+  <%#= render 'layouts/slider' %>
+
+  <span class="clearfix">
+			</span>
+  <div class="container" style="padding-top: 25px">
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to 'Home', root_path  %>
+      </li>
+      <li class="active">
+        Facilities
+      </li>
+    </ol>
+  </div>
+  <div class="container ph-section">
+    <div class="col-md-8 col-sm-8 col-xs-12 left six-p-area">
+      <div class="masonry">
+
+        <div class="container">
+          <div class="center-heading">
+            <span class="lines"></span>
+            <span class="lines"></span>
+            <h2>Facilities for Veterans</h2>
+          </div>
+        </div>
+
+        <span class="clearfix"></span>
+
+        <div class="masonry__container masonry--active mg-tps">
+
+          <% if @facilities.present? %>
+              <% @facilities.each do |facility| %>
+
+                  <div class="col-md-12 points" style="margin-top: 10px;">
+                    <div class="bdr">
+
+                      <div class="pull-left sm-icon">
+                        <%#= image_tag facility.organization_logo.present? ? facility.organization_logo.url: '', class: 'img-responsive' %>
+                        <%= facility_logo(facility, 'img-responsive') %>
+                      </div>
+                      <h4>
+                        <%= link_to facility_path(facility) do %>
+                            <%= facility.organization_name %>
+                        <% end %>
+                      </h4>
+
+                    </div>
+                  </div>
+
+              <% end %>
+          <% else %>
+              <%= render 'shared/no_data_available' %>
+          <% end %>
+
+        </div>
+        <!--end masonry container-->
+      </div>
+
+      <span class="clearfix"></span>
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 right-sidebar">
+      <%= render 'layouts/template/latest_news' %>
+      <%= render 'layouts/template/gallery_photo' %>
+    </div>
+
+  </div>
+
+</div>
+<!--<div class="loader"></div>-->
+<a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+  <i class="stack-interface stack-up-open-big"></i>
+</a>
+
+<!--<a href="" style="position: fixed;bottom: 0;right: 0;"><%= image_tag('chat.png') %></a>-->

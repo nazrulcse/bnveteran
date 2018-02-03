@@ -1,0 +1,41 @@
+<div class="bg-color tp-sp">
+
+  <div class="title-bar">
+    <strong>Trends</strong>
+  </div>
+
+  <div role="separator" class="divider"></div>
+
+  <!--<h3><span style="color: #006600;">Coming soon</span></h3>-->
+  <%#= image_tag 'coming_soon.jpg', class: 'img-responsive' %>
+
+
+  <div id="trend-list-start"></div>
+  <% job_tag = job_hashtag %>
+  <div class="trend-list" id = "<%= job_tag.id %>">
+    <%= link_to hashtag_path(job_tag.name), remote: true do %>
+        <%= job_tag.name %>
+        <span class="trend-item-stats">&#10; <%= SimpleHashtag::Hashtagging.where(hashtag_id:job_tag.id).count(:hashtag_id) %> Posts&#10; </span>
+    <% end %>
+  </div>
+  <!--job hash tag static for fixed-->
+  <% unless hashtags.blank? %>
+      <!--job hash tag static for fixed-->
+      <% hashtags.each do |tag| %>
+          <% unless tag.blank? %>
+          <% unless tag.hashtag.name.blank? %>
+              <% unless tag.hashtag.name == '#job' %>
+                  <div class="trend-list" id = "<%= tag.hashtag_id %>">
+                    <%= link_to hashtag_path(tag.hashtag.name), remote: true do %>
+                        <%= tag.hashtag.name %>
+                        <span class="trend-item-stats">&#10; <%= tag.post_count %> Posts&#10; </span>
+                    <% end %>
+                  </div>
+              <% end %>
+          <% end %>
+          <% end %>
+
+      <% end %>
+  <% end %>
+
+</div>
