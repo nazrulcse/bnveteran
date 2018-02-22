@@ -51,12 +51,12 @@ Rails.application.routes.draw do
 
   end
 
-  authenticated :user do
-    root to: 'home#index', as: 'home'
-  end
-  unauthenticated :user do
+  #authenticated :user do
+    get '/home', to: 'home#home', as: :user_root
+  #end
+  #unauthenticated :user do
     root 'home#front'
-  end
+  #end
 
   get '/search', to: 'home#search', as: :search
   get '/forms', to: 'home#forms', as: :forms

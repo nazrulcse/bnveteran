@@ -108,12 +108,16 @@
             </li>
             <li role="separator" class="divider">
             </li>
-            <!-- <li>
-              <a href="/users/cv_upload"><i class="fa fa-file-text-o" aria-hidden="true"></i> Upload CV</a>
-            </li> -->
-            <li>
-              <!--<a href="/users/<%#=current_user.id%>"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a>-->
 
+            <li>
+              <%= link_to user_root_path do %>
+                  <i class="fa fa-home" aria-hidden="true"></i> Timeline
+              <% end %>
+            </li>
+
+            <li role="separator" class="divider">
+
+            <li>
               <%= link_to user_path(current_user), remote: true do %>
                   <i class="fa fa-user-o" aria-hidden="true"></i> Profile
               <% end %>

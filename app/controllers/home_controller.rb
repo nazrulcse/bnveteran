@@ -20,6 +20,15 @@ class HomeController < ApplicationController
     end
   end
 
+  def home
+    @hashtags = SimpleHashtag::Hashtag.all
+    @post = Post.new
+    @friends = @user.all_following.unshift(@user)
+
+    @activities = PublicActivity::Activity.where(owner_id: @friends).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @un_friends = User.where.not(id: @friends.unshift(@user)).limit(5)
+  end
+
   def front
     @facilities = Facility.order(created_at: :asc)
     @activities = PublicActivity::Activity.joins("INNER JOIN users ON activities.owner_id = users.id").order(created_at: :desc).paginate(page: params[:page], per_page: 10)

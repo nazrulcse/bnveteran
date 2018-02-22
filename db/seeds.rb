@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # AdminUser.delete_all
-#AdminUser.create!(email: 'selimrezael@gmail.com', password: 'passw0rd', password_confirmation: 'passw0rd', name: 'Selim Reza', role: 'Super_admin')
+# AdminUser.create!(email: 'arif@syftet.com', password: '12345678', password_confirmation: '12345678', name: 'Arif', role: 'Super_admin')
 # SimpleHashtag::Hashtag.delete_all
 # SimpleHashtag::Hashtagging.delete_all
 # SimpleHashtag::Hashtag.create!(name: '#job')
