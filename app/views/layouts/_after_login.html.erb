@@ -22,7 +22,52 @@
       <ul class="nav navbar-nav left-nav">
 
         <li class="active">
-          <a href="<%= root_path %>"><i class="fa fa-home"></i> Home</a>
+          <a href="<%= user_root_path %>"><i class="fa fa-home"></i> Home</a>
+        </li>
+
+        <li class="dropdown circle-proile" id="item">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+            <span class="fa fa-angle-down"></span> Pages
+          </a>
+          <ul class="dropdown-menu p-dropdown ">
+
+            <li >
+              <%= link_to facilities_path do %>
+                  <i class="fa fa-list" aria-hidden="true"></i> Facilities
+              <% end %>
+            </li>
+
+            <li role="separator" class="divider">
+
+            <li>
+              <%= link_to facility_forms_path do %>
+                  <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Forms
+              <% end %>
+            </li>
+            <li role="separator" class="divider">
+
+            <li>
+              <%= link_to galleries_path do %>
+                  <i class="fa fa-picture-o" aria-hidden="true"></i> Gallery
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+
+            <li>
+              <%= link_to news_index_path do %>
+                  <i class="fa fa-newspaper-o" aria-hidden="true"></i> News & Publications
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+
+            <li>
+              <%= link_to contact_path do %>
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i> Contact
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+
+          </ul>
         </li>
 
         <li>
@@ -95,8 +140,7 @@
           <% end %>
         </li>
         <li class="dropdown circle-proile" id="item">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><!-- <img class="img-responsive img-circle" src="/assets/person-1.jpg" alt="" /> -->
-            <%#= image_tag current_user.avatar.url || '/assets/default-profile-picture-327876e6dc85bc451f302f0034dfb6ec90b4e2af215b313c1a855ab5bd14e94b.png', class: 'img-responsive img-circle nav_img_class', id: 'nav_img' %>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
             <%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle nav_img_class' %>
           </a>
           <ul class="dropdown-menu p-dropdown">
@@ -143,3 +187,14 @@
 </nav>
 
 <%= render 'shared/modal' %>
+
+<script type="text/javascript">
+
+
+</script>
+
+<style>
+  .navbar-default:hover .navbar-nav>.active:not(:hover) > a {
+    border-top-color: transparent;
+  }
+</style>

@@ -54,7 +54,9 @@
                     <% if news.photo.present? %>
                         <% if news.photo.path.downcase.end_with?('.pdf') %>
                             <!--<iframe src=<%#= news.photo.url %> width="360" height="250" style="border: none;"> </iframe>-->
+                            <a href="<%= asset_url news.photo.url %>" data-lightbox="Gallery 1">
                             <%= image_tag news.photo.present? ? news.photo.url(:large_thumb_pdf) : 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"250", class: 'img-thumbnail'%>
+                            </a>
                         <% elsif news.is_doc? %>
                             <iframe src='https://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width='360' height='240' style='border: none;'>
                             </iframe>
