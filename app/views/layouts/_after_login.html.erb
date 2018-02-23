@@ -29,9 +29,17 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
             <span class="fa fa-angle-down"></span> Pages
           </a>
-          <ul class="dropdown-menu p-dropdown ">
+          <ul class="dropdown-menu p-dropdown loggedin-pages-dropdown">
 
-            <li >
+            <li>
+              <%= link_to root_path do %>
+                  <i class="fa fa-home" aria-hidden="true"></i> Landing
+              <% end %>
+            </li>
+
+            <li role="separator" class="divider">
+
+            <li>
               <%= link_to facilities_path do %>
                   <i class="fa fa-list" aria-hidden="true"></i> Facilities
               <% end %>
@@ -65,8 +73,6 @@
                   <i class="fa fa-envelope-o" aria-hidden="true"></i> Contact
               <% end %>
             </li>
-            <li role="separator" class="divider"></li>
-
           </ul>
         </li>
 

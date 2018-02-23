@@ -31,128 +31,165 @@
  *= require dropzone/dropzone
  */
 
-.alert-dismissable{
-    width: 310px;
-    position: absolute;
-    z-index: 99999;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    //height: 50px;
-    background-color: rgba(217, 237,247, 0.9 ) !important;
-    top:5px;
+.loggedin-pages-dropdown {
+  li {
+    margin-right: 0 !important;
+    a {
+      padding: 3px 20px !important;
+      margin: 0 !important;
+      display: block !important;
+    }
+  }
 }
-.alert-dismissable .close{
-  top:-36px !important;
+
+.alert-dismissable {
+  width: 310px;
+  position: absolute;
+  z-index: 99999;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  //height: 50px;
+  background-color: rgba(217, 237, 247, 0.9) !important;
+  top: 5px;
 }
-#navbar .input-group-addon{
-	border:1px solid #ccc !important;
-	border-left:0px !important;
-	background:transparent;
-	border-radius:40px;
-	border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+
+.alert-dismissable .close {
+  top: -36px !important;
 }
-#navbar .input-group-addon button{
-	height:auto;
+
+#navbar .input-group-addon {
+  border: 1px solid #ccc !important;
+  border-left: 0px !important;
+  background: transparent;
+  border-radius: 40px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
-#navbar  .input-group input.form-control {
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    border:1px solid #ccc !important;
-    border-right: 0 !important;
+
+#navbar .input-group-addon button {
+  height: auto;
 }
-.btn-submit-custom.submit-post-btn{
-    width:65px;
-    font-weight:normal !important;
+
+#navbar .input-group input.form-control {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border: 1px solid #ccc !important;
+  border-right: 0 !important;
 }
-.btn-submit-custom.submit-post-btn:hover{
-    margin-bottom:0;
+
+.btn-submit-custom.submit-post-btn {
+  width: 65px;
+  font-weight: normal !important;
 }
+
+.btn-submit-custom.submit-post-btn:hover {
+  margin-bottom: 0;
+}
+
 .who button {
-    border-radius: 40px;
-    font-weight: 300;
-    background: #fff;
-    padding: 2px 9px;
-    border: 1px solid #eee;
-    margin-left: 5px;
-    margin-top: 5px;
-    color: #4a90e2;
-    height:initial;
+  border-radius: 40px;
+  font-weight: 300;
+  background: #fff;
+  padding: 2px 9px;
+  border: 1px solid #eee;
+  margin-left: 5px;
+  margin-top: 5px;
+  color: #4a90e2;
+  height: initial;
 }
-.title-bar strong{
-    font-weight:normal;
+
+.title-bar strong {
+  font-weight: normal;
 }
-.title-bar strong small a{
-    font-weight:normal !important;
+
+.title-bar strong small a {
+  font-weight: normal !important;
 }
-.summary-info a{
-    font-weight:normal;    
+
+.summary-info a {
+  font-weight: normal;
 }
-.profile span{
-    font-weight:normal;
+
+.profile span {
+  font-weight: normal;
 }
-.btn:hover{
-    -webkit-transform:inherit !important;
+
+.btn:hover {
+  -webkit-transform: inherit !important;
 }
-.who button:hover{
-    border-color:#eee !important;
+
+.who button:hover {
+  border-color: #eee !important;
 }
-.profile{
-    margin-bottom:0 !important;
+
+.profile {
+  margin-bottom: 0 !important;
 }
-.share-other a{
-    font-weight:normal !important;
+
+.share-other a {
+  font-weight: normal !important;
 }
-.single-post-show img{
-    margin-top:0;
+
+.single-post-show img {
+  margin-top: 0;
 }
-.like-btn-count{
-    border: none !important;
-    width: 68px !important;
-    padding: 0;
-    height: 25px;
-    margin-top:5px !important;
-    position:absolute;
-    top:-28px;
-    width:30px !important;
-    left:18px;
+
+.like-btn-count {
+  border: none !important;
+  width: 68px !important;
+  padding: 0;
+  height: 25px;
+  margin-top: 5px !important;
+  position: absolute;
+  top: -28px;
+  width: 30px !important;
+  left: 18px;
 }
-.like-btn-count i{
-    font-size:16px;
+
+.like-btn-count i {
+  font-size: 16px;
 }
-.like-btn-box{
-    float:left;
+
+.like-btn-box {
+  float: left;
 }
-.comment-btn-box{
-    float:left;
-    position: absolute;
-    top: -26px;
-    left: 60px;
+
+.comment-btn-box {
+  float: left;
+  position: absolute;
+  top: -26px;
+  left: 60px;
 }
-.comment-btn-box i{
-    font-size:16px;
+
+.comment-btn-box i {
+  font-size: 16px;
 }
-.comment-btn-box a{
-    width:40px !important;
+
+.comment-btn-box a {
+  width: 40px !important;
 }
-.comment-btn-count{
-    border: none !important;
-    width: 95px !important;
-    padding: 0;
-    height: 25px;
+
+.comment-btn-count {
+  border: none !important;
+  width: 95px !important;
+  padding: 0;
+  height: 25px;
 
 }
-.post-row{
-    width:auto;
-    display:inline-block;
-    float:left;
+
+.post-row {
+  width: auto;
+  display: inline-block;
+  float: left;
 }
-.edit-post-row{
-    float:right;
+
+.edit-post-row {
+  float: right;
 }
-.create-at-report{
-    margin-top:0px;
+
+.create-at-report {
+  margin-top: 0px;
 }
 
 /* New modal design */
@@ -182,7 +219,10 @@
       .modal-title, h4 {
         color: white !important;
         text-shadow: none;
-        padding-left: 50px; font-family: roboto; font-weight: 400; font-size: 17px;
+        padding-left: 50px;
+        font-family: roboto;
+        font-weight: 400;
+        font-size: 17px;
         //padding-top: 4px;
       }
       i {
@@ -222,14 +262,14 @@
   }
 }
 
-
 /* Custom slider bg design */
 .main-container > .parallax > .background-image-holder div {
   background-color: rgba(89, 144, 226, 0.5);
 }
 
-[data-overlay]:before {background: inherit}
-
+[data-overlay]:before {
+  background: inherit
+}
 
 // for pagination design
 .pagination a, .pagination span.current, .pagination span.gap {
@@ -241,7 +281,8 @@
   border: 1px solid #DDD;
   //border-left-width: 0;
 }
-.current{
+
+.current {
   background-color: #0275D8;
   float: left;
   padding: 0 14px;
@@ -250,6 +291,7 @@
   color: white;
   border: 1px solid #DDD;
 }
+
 .previous_page {
   float: left;
   padding: 0 14px;
@@ -269,3 +311,37 @@
   border: 1px solid #DDD;
 }
 
+.zoomable-content {
+  cursor: zoom-in;
+  display: block;
+}
+
+.zoomable-docx-wrapper {
+  position: relative;
+  .docx-zoomable {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.news-pub-boxed {
+  max-height: 375px;
+  img {
+    max-height: 235px !important;
+  }
+}
+
+#document-viewer-modal {
+  .modal-dialog {
+    .modal-content {
+      .modal-body {
+        iframe {
+          min-height: calc(100vh - 140px);
+        }
+      }
+    }
+  }
+}
