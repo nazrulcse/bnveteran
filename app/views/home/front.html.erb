@@ -11,7 +11,7 @@
           </div>
         </div>
 
-        <span class="clearfix"></span><br />
+        <span class="clearfix"></span><br/>
 
         <div class="col-md-3 col-sm-4 col-xs-12 c-img">
           <img alt="Image" class="  img-thumbnail" style="max-width: 180px;" src="/assets/chief.jpg">
@@ -30,7 +30,7 @@
 
         <div class="col-md-12 desc">
           <p>
-            <br />
+            <br/>
             Bangladesh Navy Veterans are from the generations past, who have sacrificed their blood, sweat,
             energy, spirit and even own sacret life to guarantee the freedom of our nation that we hold so
             dear. Since the birth of Bangladesh Navy (BN) in the womb of our liberation war, there have been
@@ -42,7 +42,8 @@
             dimensional capability with submarines, state-of-the-art surface combatants and naval air arm
             in her inventory. This was only possible because you were the light house, you charted the correct
             course so that we can make ETA on time. Our veterans showed us, how to set sail in the choppy sea,
-            how to keep the ship always on track and maintain DR. Our veteran represent the best of sailors that...<%= link_to 'Read More', chief_more_path %>
+            how to keep the ship always on track and maintain DR. Our veteran represent the best of sailors
+            that...<%= link_to 'Read More', chief_more_path %>
           </p>
         </div>
       </div>
@@ -72,6 +73,7 @@
                       <%= image_tag facility.organization_logo.present? ? facility.organization_logo.url : 'facilityinner/gallery_photo/no-image-available.png', class: 'img-responsive' %>
                     </div>
                     <h4 style="font-size: 20px;"><%= facility.organization_name %></h4>
+
                     <p>
                       <%= truncate(Nokogiri::HTML(facility.description).xpath('//text()').map(&:text).join(' '), length: 174) %>
                       <%= link_to 'More ...', facility_path(facility.id) %>
@@ -105,10 +107,10 @@
                     <% unless facility_form.form.blank? %>
                         <div class="card feature feature-6">
                           <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                          <%= link_to download_facility_form_path(facility_form), title:'Download the form' do %>
+                          <%= link_to download_facility_form_path(facility_form), title: 'Download the form' do %>
                               <%= facility_form.title %>
                           <% end %>
-                          <br />
+                          <br/>
                         </div>
                     <% end %>
                 <% end %>
@@ -130,7 +132,7 @@
                             <%= image_tag default_gallery_photo_for_home.image_url, class: 'img-responsive img-thumbnail', alt: 'Image' %>
                           </a>
                           <% if index == 4 %>
-                              <%= link_to 'View More', galleries_path, class:'caption-gallery' %>
+                              <%= link_to 'View More', galleries_path, class: 'caption-gallery' %>
                           <% end %>
                         </div>
                       </div>
@@ -171,19 +173,25 @@
                       <li class="col-sm-4 col-xs-12">
                         <div class="feature feature-1">
                           <div class="feature__body boxed boxed--border">
-                            <h5 style="height: 50px;"> <%= link_to truncate(news.title, length:60), news_path(news) %> </h5>
+                            <h5 style="height: 50px;"> <%= link_to truncate(news.title, length: 60), news_path(news) %> </h5>
+
                             <div class="divider"></div>
                             <% if news.photo.present? %>
                                 <% if news.photo.path.downcase.end_with?('.pdf') %>
-                                    <%= image_tag news.photo.present? ? news.photo.url(:large_thumb_pdf) : 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"360", class: 'img-thumbnail'%>
-                                <%elsif news.is_doc? %>
-                                    <iframe src='https://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width="360" height="300" style='border: none;'>
-                                    </iframe>
+                                    <a href="<%= asset_url news.photo.url %>" class="zoomable-content">
+                                      <%= image_tag news.photo.present? ? news.photo.url(:large_thumb_pdf) : 'facilityinner/gallery_photo/no-image-available.png', width: "360", height: "360", class: 'img-thumbnail' %>
+                                    </a>
+                                <% elsif news.is_doc? %>
+                                    <div class="zoomable-docx-wrapper">
+                                      <iframe src='https://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>' width="360" height="300" style='border: none;'>
+                                      </iframe>
+                                      <a href="https://docs.google.com/viewer?embedded=true&url=<%= news.doc_url(request.host) %>" class="zoomable-content docx-zoomable"></a>
+                                    </div>
                                 <% else %>
-                                    <%= image_tag news.photo.present? ? news.photo.url : 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"250",  class: 'img-thumbnail' %>
+                                    <%= image_tag news.photo.present? ? news.photo.url : 'facilityinner/gallery_photo/no-image-available.png', width: "360", height: "250", class: 'img-thumbnail' %>
                                 <% end %>
                             <% else %>
-                                <%= image_tag 'facilityinner/gallery_photo/no-image-available.png', width:"360", height:"250",  class: 'img-thumbnail' %>
+                                <%= image_tag 'facilityinner/gallery_photo/no-image-available.png', width: "360", height: "250", class: 'img-thumbnail' %>
                             <% end %>
                           </div>
                         </div>
@@ -215,6 +223,7 @@
               Change lives, Empower people and Build meaningful connections
 
             </h2>
+
             <div class="custom-btn-live">
               <a href="/users/sign_up" class="btn btn-primary"> Register Today </a>
             </div>
@@ -224,7 +233,6 @@
         </div>
 
 
-
       </div>
     </div>
   </section>
@@ -232,9 +240,11 @@
 
 </div>
 
+<%= render 'news/zoom_modal' %>
+
 
 <style type="text/css">
-    .bottom-register-today:hover{
+    .bottom-register-today:hover {
         transform: translate3d(0, -2px, 0) !important;
     }
 </style>
@@ -242,5 +252,14 @@
 <script type="text/javascript">
     $('#menu2').addClass('hidden-xs');
     $('#menu2').addClass('hidden-sm');
-
+    $(function () {
+        $('.zoomable-content').click(function (e) {
+            e.preventDefault();
+            var modal_selector = $("#document-viewer-modal");
+            url = $(this).attr('href');
+            modal_selector.modal();
+            modal_selector.find("#document-viewer-frame").attr('src', url);
+            modal_selector.data('bs.modal').handleUpdate();
+        });
+    });
 </script>

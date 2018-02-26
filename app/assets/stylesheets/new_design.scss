@@ -336,10 +336,17 @@
 
 #document-viewer-modal {
   .modal-dialog {
+    width: 100%;
+    margin: 5px !important;
+    .modal-header {
+      padding: 10px;
+    }
     .modal-content {
       .modal-body {
+        padding: 0 5px 0 5px;
         iframe {
-          min-height: calc(100vh - 140px);
+          min-height: calc(100vh - 65px);
+          width: 100%;
         }
       }
     }
