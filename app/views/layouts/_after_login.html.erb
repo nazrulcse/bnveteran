@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="/assets/new_design/normalize.css" >
-<link rel="stylesheet" href="/assets/new_design/tooltip-classic.css" >
+<link rel="stylesheet" href="/assets/new_design/normalize.css">
+<link rel="stylesheet" href="/assets/new_design/tooltip-classic.css">
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <nav class="navbar navbar-default navbar-fixed-top sticky-top-nav" style="height:0px;">
@@ -20,6 +20,12 @@
 
     <div id="navbar" class="navbar-collapse collapse after-login-nav menu-background-color">
       <ul class="nav navbar-nav left-nav">
+
+        <li class="active">
+          <a href="<%= user_root_path %>">
+            <%= image_tag('bnveteran.png') %>
+          </a>
+        </li>
 
         <li class="active">
           <a href="<%= user_root_path %>"><i class="fa fa-home"></i> Home</a>
@@ -79,10 +85,12 @@
         <li>
           <a href="<%= notifications_path %>" data-remote="true">
             <i class="fa fa-bell">
-            <% unless notifications.count<= 0 %>
-                <small style="position: relative;"> <span class="badge" id="unread-notification" style="position: absolute;bottom: -5px;left: 6px;font-size: 12px;padding: 0px;background-color: #2B6FAE; width: 13px; height:13px;"> <%= notifications.count %></span> </small>
-            <% end %>
-          </i>
+              <% unless notifications.count<= 0 %>
+                  <small style="position: relative;">
+                    <span class="badge" id="unread-notification" style="position: absolute;bottom: -5px;left: 6px;font-size: 12px;padding: 0px;background-color: #2B6FAE; width: 13px; height:13px;"> <%= notifications.count %></span>
+                  </small>
+              <% end %>
+            </i>
             Notification
           </a>
         </li>
@@ -90,7 +98,9 @@
         <li>
           <a href="<%= messages_path %>" data-remote="true"><i class="fa fa-envelope-o">
             <% unless unread_messages.count <= 0 %>
-                <small style="position: relative;"> <span class="badge" id="unread-message" style="position: absolute;bottom: -5px;left: 8px;font-size: 12px;padding: 0px;background-color: #2B6FAE; width: 13px; height:13px;"> <%= unread_messages.count %> </span> </small>
+                <small style="position: relative;">
+                  <span class="badge" id="unread-message" style="position: absolute;bottom: -5px;left: 8px;font-size: 12px;padding: 0px;background-color: #2B6FAE; width: 13px; height:13px;"> <%= unread_messages.count %> </span>
+                </small>
             <% end %>
           </i> Message</a>
         </li>
@@ -118,11 +128,11 @@
         </li>
 
 
-          <div class="ajax-load-logo">
-            <%= link_to root_path  do %>
-                <%= image_tag 'bnveteran.png' %>
-            <% end %>
-          </div>
+        <div class="ajax-load-logo">
+          <%= link_to root_path do %>
+              <%= image_tag 'bnveteran.png' %>
+          <% end %>
+        </div>
 
 
       </ul>
@@ -180,7 +190,7 @@
             </li>
             <li role="separator" class="divider">
             </li>
-            <li><%= link_to('Sign out', destroy_user_session_path, :class=>"fa fa-sign-out", method: :delete) %></li>
+            <li><%= link_to('Sign out', destroy_user_session_path, :class => "fa fa-sign-out", method: :delete) %></li>
           </ul>
         </li>
         <li>
@@ -200,7 +210,7 @@
 </script>
 
 <style>
-  .navbar-default:hover .navbar-nav>.active:not(:hover) > a {
-    border-top-color: transparent;
-  }
+    .navbar-default:hover .navbar-nav > .active:not(:hover) > a {
+        border-top-color: transparent;
+    }
 </style>
