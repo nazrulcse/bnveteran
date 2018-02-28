@@ -28,19 +28,16 @@ $( document ).ready(function() {
 
     // hide spinner
     $(".spinner").hide();
-    $(".ajax-load-logo").show();
 
 
     // show spinner on AJAX start
     $(document).ajaxStart(function(){
         $(".spinner").show();
-        $(".ajax-load-logo").hide();
     });
 
     // hide spinner on AJAX stop
     $(document).ajaxStop(function(){
        $(".spinner").hide();
-        $(".ajax-load-logo").show();
       //  $(".spinner").delay(3000).hide(0);
     });
 
