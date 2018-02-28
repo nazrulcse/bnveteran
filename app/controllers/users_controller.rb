@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   respond_to :html, :js
 
   def show
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     respond_to do |format|
       format.js { @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc) } #.paginate(page: params[:page], per_page: 10)
       format.html { @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc) } #.paginate(page: params[:page], per_page: 10)
@@ -137,22 +137,6 @@ class UsersController < ApplicationController
 
   def cover_and_profile_photo_update
     respond_to do |format|
-
-      #@user = User.find(params[:id])
-      # if @user.present?
-      #   if @user.avatar.present?
-      #     @user.update(avatar: params[:avatar])
-      #   elsif @user.cover.present?
-      #     @user.update(cover: params[:cover])
-      #   end
-      #   format.html { redirect_to user_path(current_user), notice: "Data successfully updated" }
-      #   format.js
-      # else
-      #   format.html { redirect_to user_path(current_user), notice: "Data faild to update, try again! " }
-      #   format.js
-      # end
-
-
       if @user.update_attributes(user_params)
 
         if params[:avatar].present?
@@ -174,13 +158,12 @@ class UsersController < ApplicationController
   def delete_cover_img
     @user = current_user
     @user.cover.remove!
-    #redirect_to edit_user_path(current_user)
+
   end
 
   def delete_profile_img
     @user = current_user
     @user.avatar.remove!
-    #redirect_to edit_user_path(current_user)
   end
 
   def calculate_count
