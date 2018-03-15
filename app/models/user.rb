@@ -1,3 +1,54 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  name                   :string           default(""), not null
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  about                  :string
+#  avatar                 :string
+#  cover                  :string
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  sex                    :string           default("male"), not null
+#  location               :string
+#  dob                    :date
+#  phone_number           :string
+#  posts_count            :integer          default(0), not null
+#  slug                   :string
+#  sash_id                :integer
+#  level                  :integer          default(0)
+#  designation_type       :integer
+#  rank                   :integer
+#  officer_no             :string
+#  date_joining           :date
+#  date_retirement        :date
+#  batch                  :string
+#  address                :string
+#  state                  :string
+#  city                   :string
+#  country                :string
+#  permanent_address      :string
+#  present_address        :string
+#  avatar_pdf             :string
+#  present_state          :string
+#  present_city           :string
+#  present_country        :string
+#  status                 :boolean          default(FALSE)
+#
+
 class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:

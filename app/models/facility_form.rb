@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: facility_forms
+#
+#  id          :integer          not null, primary key
+#  facility_id :integer
+#  title       :string
+#  form        :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  slug        :string
+#
+
 class FacilityForm < ApplicationRecord
   belongs_to :facility
   mount_uploader :form, AvatarUploader

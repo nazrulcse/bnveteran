@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: admin_messages
+#
+#  id         :integer          not null, primary key
+#  subject    :string
+#  content    :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  slug       :string
+#
+
 class AdminMessage < ApplicationRecord
 
 

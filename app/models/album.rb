@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: albums
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  slug       :string
+#
+
 class Album < ApplicationRecord
   has_many :gallery_photos, dependent: :destroy
 

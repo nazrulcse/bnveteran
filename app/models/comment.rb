@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer          not null, primary key
+#  title            :string(50)       default("")
+#  comment          :text
+#  commentable_type :string
+#  commentable_id   :integer
+#  user_id          :integer
+#  role             :string           default("comments")
+#  created_at       :datetime
+#  updated_at       :datetime
+#  comment_html     :text
+#
+
 class Comment < ActiveRecord::Base
   include Shared::Callbacks
   include ActsAsCommentable::Comment

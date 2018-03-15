@@ -79,19 +79,6 @@
                           </div>
                         </div>
 
-                        <!--       <div class="col-sm-6">
-                            <div class="form-group">
-                              <%#= f.label :roles, 'Select Role' %> <br>
-                              <%#= label_tag 'Job Seeker', class: 'light-label', for: 'job_seeker' do %>
-                                  <%#= check_box_tag 'user[roles][]', 'Job_Seeker', (current_user.has_role? :Job_Seeker), id: 'job_seeker' %> Job Seeker
-                              <%# end %>
-                              <br>
-                              <%#= label_tag 'Employer', class: 'light-label mb8', for: 'employer' do %>
-                                  <%#= check_box_tag 'user[roles][]', 'Employer', (current_user.has_role? :Employer), id: 'employer' %> Employer
-                              <%# end %>
-                              <%#= f.select :roles, options_for_select(["Job Seeker", "Employer"]), {}, {:multiple => true, :class => "chzn-select", placeholder: 'Select Roles' } %>
-                            </div>
-                          </div>-->
 
                         <div class="col-sm-6">
                           <div class="form-group">
@@ -278,12 +265,6 @@
         $("#user_dob, #user_date_joining, #user_date_retirement").datetimepicker({timepicker: false, format: 'Y-m-d', maxDate: '0'});
     });
 
-
-    //    $(document).ready(function(ev){
-    //        $("#datepicker").click(function(){
-    //            $('#datepicker').datepicker();
-    //        });
-    //    });
 
     <% if @user.designation_type.present? && @user.designation_type > 0 %>
     $.ajax({

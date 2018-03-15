@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: facilities
+#
+#  id                   :integer          not null, primary key
+#  organization_name    :string
+#  description          :text
+#  form_title           :string
+#  upload_facility_form :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  organization_logo    :string
+#  slug                 :string
+#
+
 class Facility < ApplicationRecord
 
   has_many :facility_forms, dependent: :destroy

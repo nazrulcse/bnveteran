@@ -43,6 +43,7 @@ group :development do
   gem 'letter_opener'
   gem 'guard'
   gem 'guard-rspec', '~> 4.2.8'
+  gem 'annotate'
 end
 
 group :development, :test do

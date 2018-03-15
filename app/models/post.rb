@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id              :integer          not null, primary key
+#  content         :text             not null
+#  user_id         :integer
+#  created_at      :datetime
+#  updated_at      :datetime
+#  cached_votes_up :integer          default(0)
+#  comments_count  :integer          default(0)
+#  content_html    :text
+#  attachments     :text
+#  is_share        :boolean          default(FALSE)
+#  shared_id       :integer
+#  share_count     :integer          default(0)
+#  slug            :string
+#
+
 class Post < ActiveRecord::Base
   include Shared::Callbacks
   include SimpleHashtag::Hashtaggable

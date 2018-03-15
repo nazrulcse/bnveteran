@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id              :integer          not null, primary key
+#  name            :string
+#  event_datetime  :datetime
+#  user_id         :integer
+#  created_at      :datetime
+#  updated_at      :datetime
+#  cached_votes_up :integer          default(0)
+#  comments_count  :integer          default(0)
+#  photo           :string
+#  description     :text
+#
+
 class Event < ActiveRecord::Base
   include Shared::Callbacks
   belongs_to :user
