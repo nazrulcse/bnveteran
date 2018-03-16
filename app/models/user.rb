@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   mount_uploader :cover, AvatarUploader
   mount_uploader :avatar_pdf, AvatarUploader
 
-  validates_presence_of :name
+  validates_presence_of :name, :rank
 
   self.per_page = 10
 
@@ -99,20 +99,49 @@ class User < ActiveRecord::Base
   DESIGNATION_TYPE = [["Officer",1],["JCO & Others",2]]
 
   JCO =[
-      ["Master Chief Petty Officer",1],
-      ["Senior Chief Petty Officer or Equivalent",2],
-      [ "Chief Petty Officer or Equivalent",3],
-      [ "Petty Officer or Equivalent",4],
-      [ "Leading Seaman or Equivalent",5],
-      [ "Able Seaman or Equivalent",6],
-      ["Ordinary Seaman",7],
-      ["Master Warrant Officer",8],
-      ["Senior Warrant Officer",9],
-      ["Warrant Officer",10],
-      ["Sergeant",11],
-      ["Corporal",12],
-      ["Lance Corporal",13],
-      ["Sainik",14]
+      ["Master Chief Petty Officer",13],
+      ["Senior Chief Petty Officer or Equivalent",14],
+      [ "Chief Petty Officer or Equivalent",15],
+      [ "Petty Officer or Equivalent",16],
+      [ "Leading Seaman or Equivalent",17],
+      [ "Able Seaman or Equivalent",18],
+      ["Ordinary Seaman",19],
+      ["Master Warrant Officer",20],
+      ["Senior Warrant Officer",21],
+      ["Warrant Officer",22],
+      ["Sergeant",23],
+      ["Corporal",24],
+      ["Lance Corporal",25],
+      ["Sainik",26]
+  ]
+
+  RANK = [
+      ["Admiral of the Fleet",1],
+      ["Admiral",2],
+      ["Vice Admiral",3],
+      ["Rear Admiral",4],
+      ["Commodore",5],
+      ["Captain",6],
+      ["Commander",7],
+      ["Lieutenant Commander",8],
+      ["Lieutenant",9],
+      ["Sub Lieutenant",10],
+      ["Acting Sub Lieutenant",11],
+      ["Midshipman",12],
+      ["Master Chief Petty Officer",13],
+      ["Senior Chief Petty Officer or Equivalent",14],
+      [ "Chief Petty Officer or Equivalent",15],
+      [ "Petty Officer or Equivalent",16],
+      [ "Leading Seaman or Equivalent",17],
+      [ "Able Seaman or Equivalent",18],
+      ["Ordinary Seaman",19],
+      ["Master Warrant Officer",20],
+      ["Senior Warrant Officer",21],
+      ["Warrant Officer",22],
+      ["Sergeant",23],
+      ["Corporal",24],
+      ["Lance Corporal",25],
+      ["Sainik",26]
   ]
 
   def self.find_for_database_authentication(warden_conditions)

@@ -14,7 +14,9 @@ ActiveAdmin.register_page "Dashboard" do
 
     div class: 'container' do
       section "Users:" do
+        idx = 0
         table_for User.all, class: 'container table table-responsive table-hover table-condensed' do |t|
+          t.column("Serial No") { idx += 1 }
           t.column("Name") { |user| user.name }
           t.column("Email") { |user| user.email }
           t.column("Status") { |user| user.status }

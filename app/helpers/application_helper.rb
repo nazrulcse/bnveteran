@@ -35,6 +35,12 @@ module ApplicationHelper
     flat_array[rank_index - 1]
   end
 
+  def get_user_rank(rank_no)
+    flat_array = User::RANK.flatten
+    rank_index = flat_array.index(rank_no)
+    flat_array[rank_index - 1]
+  end
+
   def format_date(date)
     date.strftime('%d %B, %Y') if date.present?
   end

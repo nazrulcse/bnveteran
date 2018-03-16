@@ -2550,3 +2550,18 @@ ol.breadcrumb-bar li{
 
 }
 
+.blink_me {
+  animation: pulse 1s linear infinite;
+}
+
+@keyframes pulse {
+  50% { opacity: 0; }
+}
+
+.reg-text-font{
+  font-size: 25px !important;
+}
+
+.btn-background{
+  background-color: red !important;
+}
