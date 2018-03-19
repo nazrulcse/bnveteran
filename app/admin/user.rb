@@ -39,14 +39,14 @@ ActiveAdmin.register User do
     usr.status = true
     usr.save
     Delayed::Job.enqueue(UserAuthorizedMail.new(usr))
-    redirect_to params[:dashboard].present? ? admin_dashboard_path : admin_users_path, notice: 'User authorized.'
+    redirect_to params[:dashboard].present? ? admin_dashboard_path : :back, notice: 'User authorized.'
   end
 
   member_action :deactivate do
     usr = User.friendly.find(params[:id])
     usr.status = false
     usr.save
-    redirect_to params[:dashboard].present? ? admin_dashboard_path : admin_users_path, notice: 'User unauthorized.'
+    redirect_to params[:dashboard].present? ? admin_dashboard_path : :back, notice: 'User unauthorized.'
   end
 
   batch_action :email, form: {subject: :text, message:  :textarea},

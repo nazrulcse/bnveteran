@@ -2551,10 +2551,11 @@ ol.breadcrumb-bar li{
 }
 
 .blink_me {
-  animation: pulse 1s linear infinite;
+  //animation: pulse 1s linear infinite;
+  animation: glowing 5000ms infinite;
 }
 
-@keyframes pulse {
+@keyframes glowing {
   50% { opacity: 0; }
 }
 
@@ -2563,5 +2564,5 @@ ol.breadcrumb-bar li{
 }
 
 .btn-background{
-  background-color: red !important;
+  background-color: #c4a300 !important;
 }
