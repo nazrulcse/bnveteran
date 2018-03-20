@@ -2792,7 +2792,7 @@ ol.breadcrumb-bar li {
 
 .pulse {
   cursor: pointer;
-  box-shadow: 0 0 0 rgba(255,0,0, 0.4);
+  box-shadow: 0 0 0 rgba(255,0,0, 0.8);
   animation: pulse_effect 2s infinite;
 }
 
@@ -2802,7 +2802,7 @@ ol.breadcrumb-bar li {
 
 @-webkit-keyframes pulse_effect {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255,0,0, 0.4);
+    -webkit-box-shadow: 0 0 0 0 rgba(255,0,0, 0.8);
   }
   70% {
     -webkit-box-shadow: 0 0 0 13px rgba(255,0,0, 0);
@@ -2813,8 +2813,8 @@ ol.breadcrumb-bar li {
 }
 @keyframes pulse_effect {
   0% {
-    -moz-box-shadow: 0 0 0 0 rgba(255,0,0, 0.4);
-    box-shadow: 0 0 0 0 rgba(255,0,0, 0.4);
+    -moz-box-shadow: 0 0 0 0 rgba(255,0,0, 0.8);
+    box-shadow: 0 0 0 0 rgba(255,0,0, 0.8);
   }
   70% {
     -moz-box-shadow: 0 0 0 13px rgba(255,0,0, 0);
@@ -2833,7 +2833,7 @@ ol.breadcrumb-bar li {
 }
 
 .reg-text-font {
-  font-size: 25px !important;
+  font-size: 20px !important;
 }
 
 .btn-background {
