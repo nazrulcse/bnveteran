@@ -5,14 +5,14 @@ ActiveAdmin.register User do
     id_column
     column :name
     column :email
-    column  "Personal no ",:officer_no
+    column "Personal no ", :officer_no
     column :phone_number
     column :status
     column 'Set Status' do |user|
       if user.status
-        link_to '', deactivate_admin_user_path(user),class:'glyphicon glyphicon-ban-circle text-danger ', title:'Unauthorize'
+        link_to '', deactivate_admin_user_path(user), class: 'glyphicon glyphicon-ban-circle text-danger ', title: 'Unauthorize'
       else
-        link_to '', approve_admin_user_path(user), class:'glyphicon glyphicon-ok-circle text-success', title:'Authorize'
+        link_to '', approve_admin_user_path(user), class: 'glyphicon glyphicon-ok-circle text-success', title: 'Authorize'
       end
     end
     actions
@@ -49,11 +49,11 @@ ActiveAdmin.register User do
     redirect_to params[:dashboard].present? ? admin_dashboard_path : :back, notice: 'User unauthorized.'
   end
 
-  batch_action :email, form: {subject: :text, message:  :textarea},
+  batch_action :email, form: {subject: :text, message: :textarea},
                confirm: "Please enter the subject and the message below" do |ids, inputs|
-     batch_action_collection.find(ids).each do |user|
-      Delayed::Job.enqueue(BatchActionAdminMailSend.new(user,inputs, ids))
-     end
+    batch_action_collection.find(ids).each do |user|
+      Delayed::Job.enqueue(BatchActionAdminMailSend.new(user, inputs, ids))
+    end
     redirect_to collection_path, notice: "The email has been sent to all the users you selected."
   end
 
