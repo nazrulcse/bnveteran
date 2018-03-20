@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :rank
 
-  self.per_page = 10
+  self.per_page = 25
 
   extend FriendlyId
   friendly_id :user_slug, use: [:slugged, :finders]
