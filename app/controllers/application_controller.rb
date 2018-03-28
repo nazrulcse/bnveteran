@@ -8,7 +8,11 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    user_root_path
+    if resource.class == User
+      user_root_path
+    else
+      super
+    end
   end
 
 
