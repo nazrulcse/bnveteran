@@ -1,6 +1,6 @@
 ActiveAdmin.register AdminMessage do
 
-  permit_params :subject, :content
+  permit_params :subject, :content, :user_id
 
   index do
     selectable_column
@@ -19,10 +19,11 @@ ActiveAdmin.register AdminMessage do
       f.semantic_errors
       f.inputs do
         f.input :subject
+        f.input :user_id, as: :select,:collection => User.where(status:true).map{|u| ["#{u.name}", u.id]}, :hint => "Select User for send message individually otherwise message will be sent to all user "
         f.input :content, :input_html => { :rows =>10, :class => "tinymce" }
       end
       f.actions do
-        f.submit as: :button, value: 'Send to All'
+        f.submit as: :button, value: 'Send'
       end
     end
   end
@@ -38,5 +39,11 @@ ActiveAdmin.register AdminMessage do
     end
   end
 
+
+  controller do
+    def new
+      @admin_message = AdminMessage.new(user_id: params[:user_id])
+    end
+  end
 
 end

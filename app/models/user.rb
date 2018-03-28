@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar_pdf, AvatarUploader
 
   validates_presence_of :name, :rank
+  validates_uniqueness_of :officer_no
 
   self.per_page = 25
 

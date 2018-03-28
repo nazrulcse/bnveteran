@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   respond_to :html, :js
 
   def show
-    @user = User.friendly.find(params[:id])
     respond_to do |format|
       format.js { @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc) } #.paginate(page: params[:page], per_page: 10)
       format.html { @activities = PublicActivity::Activity.where(owner: @user).order(created_at: :desc) } #.paginate(page: params[:page], per_page: 10)
@@ -15,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show_profile
-    @user = User.find(params[:id])
+
   end
 
   def edit

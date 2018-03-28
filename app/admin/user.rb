@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :name, :email, :officer_no, :phone_number, :status
+  permit_params :name, :email, :officer_no, :phone_number, :status, :password, :password_confirmation
   index do
     selectable_column
     id_column
@@ -14,6 +14,10 @@ ActiveAdmin.register User do
       else
         link_to '', approve_admin_user_path(user), class: 'glyphicon glyphicon-ok-circle text-success', title: 'Authorize'
       end
+    end
+
+    column 'Message' do |user|
+        link_to '', new_admin_admin_message_path(user_id: user.id), class: 'glyphicon glyphicon-envelope text-success ', title: 'Send Message'
     end
     actions
   end
@@ -30,6 +34,8 @@ ActiveAdmin.register User do
       f.input :officer_no
       f.input :phone_number
       f.input :status
+      f.input :password
+      f.input :password_confirmation
     end
     f.actions
   end
