@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
   def index
     respond_to do |format|
       @rooms = current_user.rooms
-      messages = Message.where( is_read: nil, recipient_id: current_user.id)
+      @admin_message = current_user.admin_messages.last
+      messages = Message.where(is_read: nil, recipient_id: current_user.id)
       messages.update_all(is_read: true)
       format.js
       format.html
@@ -20,11 +21,16 @@ class MessagesController < ApplicationController
 
   def show
     respond_to do |format|
-      @user = User.find_by(id: params[:id])
-      @room = Room.chat_room(@user, current_user)
-      @messages = Message.where(room_id: @room.id).order(created_at: :asc)
-      @message = Message.new
-      @user = User.find_by(id: params[:id])
+      if params[:admin]
+        @admin_messages = current_user.admin_messages
+        @admin_messages.where(is_read: false).update_all(is_read: true)
+      else
+        @user = User.find_by(id: params[:id])
+        @room = Room.chat_room(@user, current_user)
+        @messages = Message.where(room_id: @room.id).order(created_at: :asc)
+        @message = Message.new
+        @user = User.find_by(id: params[:id])
+      end
       format.js
     end
   end

@@ -14,6 +14,7 @@ class AdminMessage < ApplicationRecord
 
 
   after_save :send_mail
+  belongs_to :user
 
   extend FriendlyId
   friendly_id :subject, use: [:slugged, :finders]

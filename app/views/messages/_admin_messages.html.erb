@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <button type="button" class="close pull-right close-btn" data-dismiss="modal">&times;</button>
+  <%= link_to messages_path, class: 'pull-left angle-left-arrow', remote: true do %>
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+  <% end %>
+
+
+  <div class=" receiver-chat-profile ">
+
+    <div class="user-to-user-msg-modal-header-avatar ">
+      <%= image_tag 'logo_medium.png', class: 'img-responsive img-circle' %>
+    </div>
+
+    <div class="user-to-user-msg-modal-header-profile ">
+      <h5> Admin </h5>
+      <h5> info@navy.mil.bd </h5>
+    </div>
+  </div>
+</div>
+
+<div class="modal-body msg-modal-body" id="messageBody">
+
+  <ul>
+    <% @admin_messages.each do |message| %>
+        <% unless message.content.blank? %>
+            <li>
+              <div class="user-chat-photo pull-left">
+                <%= image_tag 'logo_medium.png', class: 'img-responsive img-circle' %>
+              </div>
+              <div class="other-message-content pull-left">
+                <div class="user-message-content text-content">
+                  <%= raw message.content %>
+                </div>
+              </div>
+            </li>
+            <span class="pull-left" style="padding-left: 50px;">
+              <%= format_date_chat(message.created_at) %>
+            </span>
+        <% end %>
+    <% end %>
+  </ul>
+
+</div>

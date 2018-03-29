@@ -2329,7 +2329,8 @@ ol.breadcrumb-bar li {
           padding: 5px;
           border-radius: 100px 100px 0px 100px;
         }
-        .other-message-content p {
+        .other-message-content p,
+        .other-message-content div.text-content {
           margin-left: 10px;
           font-size: 12px;
           margin-top: 5px;

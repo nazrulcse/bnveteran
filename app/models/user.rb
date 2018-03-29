@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
   has_many :notifications, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
   has_many :rooms, through: :user_rooms
+  has_many :admin_messages
 
   mount_uploader :avatar, AvatarUploader
   mount_uploader :cover, AvatarUploader

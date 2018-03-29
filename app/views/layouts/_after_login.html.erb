@@ -97,9 +97,9 @@
 
         <li>
           <a href="<%= messages_path %>" data-remote="true"><i class="fa fa-envelope-o">
-            <% unless unread_messages.count <= 0 %>
+            <% unless unread_messages <= 0 %>
                 <small style="position: relative;">
-                  <span class="badge" id="unread-message" style="position: absolute;bottom: -5px;left: 8px;font-size: 12px;padding: 0px;background-color: #2B6FAE; width: 13px; height:13px;"> <%= unread_messages.count %> </span>
+                  <span class="badge" id="unread-message" style="position: absolute;bottom: -5px;left: 8px;font-size: 12px;padding: 0px;background-color: #2B6FAE; width: 13px; height:13px;"> <%= unread_messages %> </span>
                 </small>
             <% end %>
           </i> Message</a>

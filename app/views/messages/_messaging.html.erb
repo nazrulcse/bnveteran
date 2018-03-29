@@ -1,7 +1,7 @@
 <div class="modal-header">
   <button type="button" class="close pull-right close-btn" data-dismiss="modal">&times;</button>
 
-  <%= link_to new_message_path, class:'btn pull-right btn btn-primary new-message-btn', remote:true do %>
+  <%= link_to new_message_path, class: 'btn pull-right btn btn-primary new-message-btn', remote: true do %>
       <span>New Message </span>
   <% end %>
   <!--<button type="button" class="pull-right mark-as-all-btn ">-->
@@ -12,7 +12,29 @@
 
 </div>
 <div class="modal-body msg-modal-body">
-
+  <% if @admin_message.present? %>
+      <a href="<%= message_path(@admin_message.id, admin: true) %>" data-remote="true">
+        <ul>
+          <li style="padding: 3px;">
+            <div class="user-profile">
+              <%= image_tag('logo_medium.png', class: 'img-responsive img-circle') %>
+            </div>
+            <div class="user-message-profile">
+              <small class="pull-right"><%= format_date_chat(@admin_message.created_at) %></small>
+              <h4>
+                Admin
+                <% unless @admin_message.is_read %>
+                    <label class="badge" style="background-color: #d9534f;">1</label>
+                <% end %>
+              </h4>
+              <small style="color: #929292;">
+                <%= raw @admin_message.content %>
+              </small>
+            </div>
+          </li>
+        </ul>
+      </a>
+  <% end %>
   <% @rooms.each do |room| %>
 
       <% user = Room.connected_user(room, current_user) %>
@@ -33,9 +55,9 @@
                           <small class="pull-right"><%= format_date_chat(message.created_at) %></small>
                           <h4> <%= user.name %> </h4>
                           <% if message.user_id == current_user.id %>
-                              <small style="color: #929292;"> You :<%=  message.content %> </small>
+                              <small style="color: #929292;"> You :<%= message.content %> </small>
                           <% else %>
-                              <small style="color: #929292;"><%=  message.content %> </small>
+                              <small style="color: #929292;"><%= message.content %> </small>
                           <% end %>
 
                         </div>
