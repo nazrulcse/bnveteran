@@ -17,7 +17,7 @@ ActiveAdmin.register User do
     end
 
     column 'Message' do |user|
-        link_to '', new_admin_admin_message_path(user_id: user.id), class: 'glyphicon glyphicon-envelope text-success ', title: 'Send Message'
+      link_to '', new_admin_admin_message_path(user_id: user.id), class: 'glyphicon glyphicon-envelope text-success ', title: 'Send Message'
     end
     actions
   end
@@ -31,6 +31,7 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :name
       f.input :email
+      f.input :rank, :label => 'Rank', :as => :select, :collection => User::RANK.collect { |name, id| [name, id] }
       f.input :officer_no
       f.input :phone_number
       f.input :status
@@ -62,7 +63,6 @@ ActiveAdmin.register User do
     end
     redirect_to collection_path, notice: "The email has been sent to all the users you selected."
   end
-
 
 
 end
