@@ -41,6 +41,61 @@ ActiveAdmin.register User do
     f.actions
   end
 
+  show do
+    attributes_table_for user do
+      row :name
+      row :email
+      row :encrypted_password
+      row :about
+      row :avatar do
+        image_tag(user.avatar_url, width: 175) if user.avatar_url.present?
+      end
+      row :cover
+      row :reset_password_token
+      row :reset_password_sent_at
+      row :remember_created_at
+      row :sign_in_count
+      row :current_sign_in_at
+      row :last_sign_in_at
+      row :current_sign_in_ip
+      row :last_sign_in_ip
+      row :confirmation_token
+      row :confirmed_at
+      row :confirmation_sent_at
+      row :created_at
+      row :updated_at
+      row :sex
+      row :location
+      row :dob
+      row :phone_number
+      row :posts_count
+      row :slug
+      row :sash_id
+      row :level
+      row :designation_type
+      row :rank do |user|
+        flat_array = User::RANK.flatten
+        rank_index = flat_array.index(user.rank)
+        rank_index > 0 ? flat_array[rank_index - 1] : 'No Rank Specified'
+      end
+      row :officer_no
+      row :date_joining
+      row :date_retirement
+      row :batch
+      row :address
+      row :state
+      row :city
+      row :country
+      row :permanent_address
+      row :present_address
+      row :avatar_pdf
+      row :present_state
+      row :present_city
+      row :present_country
+      row :status
+    end
+  end
+
   member_action :approve do
     usr = User.friendly.find(params[:id])
     usr.status = true
