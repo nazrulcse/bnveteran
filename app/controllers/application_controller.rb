@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   #layout 'new_design', :except => [:sign_up, :sign_in]
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
+  after_action :user_activity
 
 
   def after_sign_in_path_for(resource)
@@ -23,6 +24,12 @@ class ApplicationController < ActionController::Base
 
   def access_denied(exception)
      redirect_to new_admin_user_session_path, alert: exception.message
+  end
+
+  private
+
+  def user_activity
+    current_user.try :touch if current_user.present?
   end
 
   protected

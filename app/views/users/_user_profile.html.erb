@@ -27,6 +27,11 @@
         <div class="fb-profile fb-profile-create">
           <div class="col-md-3 col-sm-3">
             <div class="sidebar-profile">
+
+             <div class="online_offline_profile">
+             <%= render 'shared/online_offline_status', user:@user %>
+             </div>
+
               <div id="profile_img">
                 <% if @user.avatar.present? %>
                     <%= image_tag(@user.avatar.url, alt: "Example Image", height: '160', width: '160') %>

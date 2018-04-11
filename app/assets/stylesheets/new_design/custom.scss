@@ -2840,3 +2840,29 @@ ol.breadcrumb-bar li {
 .btn-background {
   //background-color: #c4a300 !important;
 }
+
+.online_offline_profile{
+
+  position: absolute;
+  bottom: 48px;
+  right: 73px;
+}
+.active-status{
+  position: relative;
+  .online_offline_avatar{
+    position: absolute;
+    top: 37px;
+    left: 52px;;
+  }
+}
+
+
+
+.online{
+  color: green;
+  font-size: 12px;
+}
+.offline{
+  color: #8a949e;
+  font-size: 12px;
+}
