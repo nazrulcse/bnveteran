@@ -24,7 +24,7 @@ ActiveAdmin.register User do
 
 
   filter :email
-  filter :officer_no, label: "Officer No / Personal No"
+  filter :officer_no, label: 'Official No / Personal No'
 
   form do |f|
     f.semantic_errors

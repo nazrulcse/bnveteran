@@ -8,6 +8,11 @@
                 <a href="<%= message_path(user.id) %>" data-remote="true" >
                   <li  style="background-color:#F5F8FA;">
                     <div class="user-profile">
+                      <div class="active-status">
+                        <div class="online_offline_avatar2">
+                          <%= render 'shared/online_offline_status', user: user %>
+                        </div>
+                      </div>
                       <%= image_tag user.avatar.present? ? user.avatar.url : 'default-profile-picture.png', class: 'img-responsive img-circle' %>
                     </div>
                     <div class="user-message-profile">
