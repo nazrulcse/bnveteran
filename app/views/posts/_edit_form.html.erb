@@ -38,12 +38,6 @@
           <%#= f.submit 'POST', class: 'pull-right btn btn-sm btn-submit-custom submit-post-btn'%>
           <button type="submit" class="btn btn--primary type--uppercase sent-post" style="margin-top: 81px;margin-right: 11px;"><i class="fa fa-paper-plane"></i></button>
         </div>
-
-        <% if @post.attachment.present? %>
-            <div class="attachment">
-              <%= image_tag @post.attachment %>
-            </div>
-        <% end %>
   <% end %>
 
   <a class="btn btn-default pull-right" data-dismiss='modal' style="margin-top: 3px">Cancel</a>

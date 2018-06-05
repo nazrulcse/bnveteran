@@ -2,143 +2,186 @@
 
 <%= form_for @post, html: { class: 'dropzone post_form', id: 'post-form'}, remote: true do |f| %>
 
-    <div class="form-group">
-      <!-- <h4>Update Status</h4> -->
-      <div id="post-content" contenteditable="true" class="editable form-control input-mentionable input-tag-field"  style="border-right:1px solid #ccc !important"></div>
-      <%= f.hidden_field :content, value: @post.content, class: 'form-control input-mentionable', placeholder:"What's up?", required: true, autofocus: true %>
-    </div>
+  <div class="form-group">
+    <!-- <h4>Update Status</h4> -->
+    <div id="post-content" contenteditable="true" class="editable form-control input-mentionable input-tag-field<%= '-edit' unless @post.new_record? %>"  style="border-right:1px solid #ccc !important"></div>
+    <%= f.hidden_field :content, value: @post.content, class: 'form-control input-mentionable', placeholder:"What's up?", required: true, autofocus: true %>
+  </div>
 
-    <%#= f.label :Upload_Image %>
-    <div class="file-input-wrapper profile-camera">
-      <span class="btn-file-input"><i class="fa fa-picture-o"></i></span>
-    </div>
+  <%#= f.label :Upload_Image %>
+  <div class="file-input-wrapper profile-camera <%= 'file-input-wrapper-edit' unless @post.new_record? %>">
+    <span class="btn-file-input"><i class="fa fa-picture-o"></i></span>
+  </div>
 
-    <%#= f.file_field :attachments, multiple: true, style: 'display: none' %>
+  <%= hidden_field_tag :deleted_images, '', id: 'deleted_image_ids' unless @post.new_record? %>
 
-    <div class="form-group">
-      <button type="submit" class="btn btn--primary type--uppercase sent-post"><i class="fa fa-paper-plane"></i></button>
-    </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn--primary type--uppercase sent-post"><i class="fa fa-paper-plane"></i></button>
+  </div>
+
+  <% unless @post.new_record? %>
+    <% @post.post_images.each do |image| %>
+      <div class="dz-preview dz-image-preview">
+        <div class="dz-image existing-image">
+          <img src="<%= image.image_url %>"/>
+        </div>
+        <i class='fa fa-times existing-image-remove-icon' data-image="<%= image.id %>"></i>
+      </div>
+    <% end %>
+  <% end %>
 
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-  $(function () {
-      $('.remove-post-image').click(function () {
-          $('#post_attachments').val('');
-          $('.profile-camera').show();
-          $('#img-preview').addClass('hidden');
-      });
-  });
+    $(function () {
+        $('.remove-post-image').click(function () {
+            $('#post_attachments').val('');
+            $('.profile-camera').show();
+            $('#img-preview').addClass('hidden');
+        });
+    });
+
+    var imageIds = [];
+
+    $(document).off('click', '.existing-image-remove-icon').on('click', '.existing-image-remove-icon', function () {
+        imageIds.push($(this).data('image'));
+        $('#deleted_image_ids').val(imageIds.join());
+        $(this).parent().remove();
+    });
 </script>
 
 <style type="text/css">
-    .input-tag-field{
-        width: 83%;
-        overflow-y: auto;
-        height: 55px;
-    }
-    .file-input-wrapper {
-        cursor: pointer;
-        float: right;
-        height: 22px;
-        margin: 2px;
-        /* overflow: hidden; */
-        position: relative;
-        right: 36px;
-        top: -62px;
-        width: 26px;
-        text-align: center;
-    }
-    .file-input-wrapper > input[type="file"] {
-        font-size: 40px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        opacity: 0;
-        cursor: pointer;
-        height: 22px;
-        width: 25px;
-        /*z-index: 9999;*/
-        padding-left: 0;
-    }
-    .file-input-wrapper .btn-file-input {
-        background-color: transparent;
-        border-radius: 4px;
-        color: black;
-        cursor: pointer;
-        display: inline-block;
-        height: 22px;
-        margin: 0 0 0 -1px;
-        padding-left: 0;
-        border:none;
-        font-size: 25px;
-        color: #337ab7;
-    }
-    .file-input-wrapper .btn-file-input i {
-        cursor: pointer;
-    }
-    .file-input-wrapper:hover > .btn-file-input {
-    //background-color: #494949;
-    }
-    .sent-post{
-        position: absolute;
-        top: 11px;
-        width: 30px !important;
-        float: right;
-        right: 0px;
-        border-radius: 50%;
-        height: 30px;
-        color: #fff;
-        cursor: pointer !important;
-    }
-    .sent-post i{
-        color:#fff;
-        font-size: 15px;
-        line-height: 19px;
-        text-align: center;
-        cursor: pointer !important;
-    }
-    .post-form-area{
-        height: 100px;
+  .input-tag-field{
+    width: 83%;
+    overflow-y: auto;
+    height: 55px;
+  }
+
+  .input-tag-field-edit {
+    width: 83%;
+    overflow-y: auto;
+    height: 150px;
+  }
+  .file-input-wrapper {
+    cursor: pointer;
+    float: right;
+    height: 22px;
+    margin: 2px;
+    /* overflow: hidden; */
+    position: relative;
+    right: 36px;
+    top: -62px;
+    width: 26px;
+    text-align: center;
+  }
+  .file-input-wrapper-edit {
+    top: -158px;
+  }
+  .file-input-wrapper > input[type="file"] {
+    font-size: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+    height: 22px;
+    width: 25px;
+    /*z-index: 9999;*/
+    padding-left: 0;
+  }
+  .file-input-wrapper .btn-file-input {
+    background-color: transparent;
+    border-radius: 4px;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    height: 22px;
+    margin: 0 0 0 -1px;
+    padding-left: 0;
+    border:none;
+    font-size: 25px;
+    color: #337ab7;
+  }
+  .file-input-wrapper .btn-file-input i {
+    cursor: pointer;
+  }
+  .file-input-wrapper:hover > .btn-file-input {
+  //background-color: #494949;
+  }
+  .sent-post{
+    position: absolute;
+    top: 11px;
+    width: 30px !important;
+    float: right;
+    right: 0px;
+    border-radius: 50%;
+    height: 30px;
+    color: #fff;
+    cursor: pointer !important;
+  }
+  .sent-post i{
+    color:#fff;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+    cursor: pointer !important;
+  }
+  .post-form-area{
+    height: 100px;
+  }
+
+  .dropzone {
+    border: none;
+    background: inherit;
+    padding: 0;
+  }
+  .dz-progress, .dz-details {
+    display: none;
+  }
+  .dropzone .dz-preview {
+    margin: 2px;
+    position: relative;
+  }
+  .dropzone .dz-preview .dz-image {
+    border-radius: 0;
+  }
+  .image-remove-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 11;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    background: #cccccc;
+  }
+
+  .existing-image-remove-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 11;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    background: #cccccc;
+  }
+
+  .dropzone .dz-preview:hover .dz-image img {
+    filter: inherit;
+    -webkit-transform: none;
+    transform: none;
+    -webkit-filter: inherit;
+  }
+  @media screen and (max-width: 980px) {
+    .input-tag-field {
+      width: 77%;
     }
 
-    .dropzone {
-        border: none;
-        background: inherit;
-        padding: 0;
+    .input-tag-field-edit {
+      width: 77%;
     }
-    .dz-progress, .dz-details {
-        display: none;
-    }
-    .dropzone .dz-preview {
-        margin: 2px;
-        position: relative;
-    }
-    .dropzone .dz-preview .dz-image {
-        border-radius: 0;
-    }
-    .image-remove-icon {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 11;
-        padding: 5px;
-        cursor: pointer;
-        font-size: 18px;
-        background: #cccccc;
-    }
-
-    .dropzone .dz-preview:hover .dz-image img {
-        filter: inherit;
-        -webkit-transform: none;
-        transform: none;
-        -webkit-filter: inherit;
-    }
-    @media screen and (max-width: 980px) {
-      .input-tag-field {
-        width: 77%;
-      }
-    }
+  }
 </style>
 <script type="text/javascript">
     //    function previewImages() {

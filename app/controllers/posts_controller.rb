@@ -69,6 +69,13 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @user = current_user
+    @hashtags = SimpleHashtag::Hashtag.all
+    @post = Post.find(params[:id])
+    @friends = @user.all_following.unshift(@user)
+
+    # @activities = PublicActivity::Activity.where(owner_id: @friends).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @un_friends = User.where.not(id: @friends.unshift(@user)).limit(5)
     respond_to do |format|
       format.js
       format.html
@@ -76,8 +83,31 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-    redirect_to @post
+    respond_to do |format|
+      if @post.update(post_params)
+        if params[:post_images_attributes].present?
+          params[:post_images_attributes].each do |index, value|
+            @post.post_images.create!(:image => value)
+          end
+        end
+
+        if params[:deleted_images].present?
+          image_ids = params[:deleted_images].split(',')
+          image_ids.each do |image_id|
+            post_image = PostImage.find_by_id(image_id)
+            post_image.destroy if post_image.present?
+          end
+        end
+        flash[:notice] = 'Updated successfully.'
+        format.json { render json: {post_slug: @post.slug} }
+        format.js
+      else
+        p @post.errors.inspect
+        flash[:notice] = 'Failed to update. Please try again later.'
+        format.json { render json: { error: 'Failed to process' }, status: 422 }
+        format.js
+      end
+    end
   end
 
   def destroy

@@ -53,12 +53,23 @@ $(function() {
             this.on("successmultiple", function(files, response) {
                 // Gets triggered when the files have successfully been sent.
                 // Redirect user or notify of success.
+                console.log(response);
+                console.log(files);
 
                 this.removeAllFiles();
-                $.ajax({
-                    url: "/posts/view_activity",
-                    data: {activity_id: response[0]['id']}
-                });
+                if ($.isArray(response)) {
+                    $.ajax({
+                        url: "/posts/view_activity",
+                        data: {activity_id: response[0]['id']}
+                    });
+                }
+                else {
+                    $.ajax({
+                        url: "/posts/" + response['post_slug'],
+                        dataType: 'script'
+                    });
+                }
+
             });
             this.on("errormultiple", function(files, response) {
                 // Gets triggered when there was an error sending the files.
