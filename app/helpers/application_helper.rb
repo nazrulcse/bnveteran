@@ -32,7 +32,7 @@ module ApplicationHelper
       flat_array = User::JCO.flatten
     end
     rank_index = flat_array.index(rank_no)
-    flat_array[rank_index - 1]
+    rank_index.present? ? flat_array[rank_index - 1] : ''
   end
 
   def get_user_rank(rank_no)

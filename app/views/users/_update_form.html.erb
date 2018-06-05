@@ -67,8 +67,8 @@
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <%= f.label :dob, 'Date of Birth' %>
-                            <%= f.text_field :dob, placeholder: 'Date of Birth', class: 'form-control' %>
+                            <%= f.label :dob, 'Date of Birth (YYYY-MM-DD)' %>
+                            <%= f.text_field :dob, placeholder: 'Ex: 1985-11-22', class: 'form-control' %>
                           </div>
                         </div>
 
@@ -262,7 +262,7 @@
 
 
     $(document).ready(function(){
-        $("#user_dob, #user_date_joining, #user_date_retirement").datetimepicker({timepicker: false, format: 'Y-m-d', maxDate: '0'});
+        $("#user_date_joining, #user_date_retirement").datetimepicker({timepicker: false, format: 'Y-m-d', maxDate: '0'});
     });
 
 
