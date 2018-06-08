@@ -82,6 +82,8 @@ class User < ActiveRecord::Base
   friendly_id :user_slug, use: [:slugged, :finders]
   attr_accessor :login
 
+  scope :active, -> { where(status: true) }
+
 
   OFFICER = [
       ["Admiral of the Fleet", 1],

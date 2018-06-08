@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329094640) do
+ActiveRecord::Schema.define(version: 20180608101848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -288,12 +288,13 @@ ActiveRecord::Schema.define(version: 20180329094640) do
     t.integer  "topic_id"
     t.integer  "user_id"
     t.boolean  "checked"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "notification_type"
     t.integer  "notification_id"
     t.string   "topic_creator_name"
     t.integer  "topic_creator_id"
+    t.boolean  "from_admin",         default: false
     t.index ["notification_type", "notification_id"], name: "index_notifications_on_notification_type_and_notification_id", using: :btree
   end
 
