@@ -1,0 +1,7 @@
+<h3>Hi <%= @admin_user.name.present? ? @admin_user.name : @admin_user.email %>,</h3>
+<p>A veteran <%= link_to @user.name, user_url(@user) %>, posted into <%= link_to 'Bnveteran', root_url %>. </p>
+<p><%= link_to 'Click here', post_url(@post) %> to see the post.</p>
+
+<br>
+<p>Thanks & Regards</p>
+<p>BN Veteran</p>

@@ -30,6 +30,7 @@ class PostsController < ApplicationController
         end
 
         @activity = PublicActivity::Activity.where(trackable_id: @post.id, trackable_type: 'Post')
+        Delayed::Job.enqueue(PostAdminNotificationJob.new(@post, current_user))
         if params[:post_images_attributes].present?
           params[:post_images_attributes].each do |index, value|
             @post.post_images.create!(:image => value)
