@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :user_activity
+  before_action :set_visitor
 
 
   def after_sign_in_path_for(resource)
@@ -24,6 +25,15 @@ class ApplicationController < ActionController::Base
 
   def access_denied(exception)
      redirect_to new_admin_user_session_path, alert: exception.message
+  end
+
+  def set_visitor
+    # p '###################################$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+    # p request.remote_ip
+    address = request.remote_ip
+    Visitor.find_or_create_by!(address: address, date: Date.today)
+    @total_visitor = Visitor.distinct.count(:address)
+    @today_visitor = Visitor.where(date: Date.today).size
   end
 
   private

@@ -17,7 +17,7 @@ class Ability < ApplicationRecord
       can :manage, :all
     else
       can :read, :all
-      can :create, AdminMessage
+      can :manage, AdminMessage
       can :manage, Facility
       can :manage, FacilityForm
       can :manage, NotificationImage

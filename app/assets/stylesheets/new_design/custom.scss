@@ -2871,3 +2871,21 @@ ol.breadcrumb-bar li {
   color: #8a949e;
   font-size: 12px;
 }
+
+.visitor-wrapper {
+  .visitor-content {
+    width: 130px;
+    border: 1px solid #ada2a2;
+    margin: auto;
+    /* color: #ffffff; */
+    font-size: 11px;
+    text-align: left;
+    padding: 5px;
+    .visitor-text {
+      font-weight: bold;
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+}
