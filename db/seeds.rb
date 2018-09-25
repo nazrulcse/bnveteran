@@ -11,10 +11,10 @@
 # SimpleHashtag::Hashtagging.delete_all
 # SimpleHashtag::Hashtag.create!(name: '#job')
 #
-menubar_item = MenuBarItem.find_by_name('Slider')
-unless menubar_item.present?
-  MenuBarItem.create(name: 'Slider')
-end
+# menubar_item = MenuBarItem.find_by_name('Slider')
+# unless menubar_item.present?
+#   MenuBarItem.create(name: 'Slider')
+# end
 
 # Post.all.each do |post|
 #   if post.attachments.present?

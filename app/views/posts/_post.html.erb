@@ -10,7 +10,6 @@
           <% else %>
               created a <%= link_to 'post', post, remote: true %>
           <% end %>
-          <%#= post.is_share ? 'shared a ' : 'created a ' %><%#= link_to 'post', post.shared, remote: true %>
           <%= render 'shared/created_at', activity: post %>
 
         </small>
@@ -34,7 +33,7 @@
       </h3>
 
     </div>
-    <div class="content">
+    <div class="content text-justify">
       <% description = sanitize(post.content_html) %>
       <p style="text-align:justify;"><%= description %></p>
     </div>
