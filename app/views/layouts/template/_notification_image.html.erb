@@ -7,7 +7,7 @@
                 <iframe src=<%= notification_image.photo.url %> width="600" height="780" style="border: none;"> </iframe>
             <% else %>
                 <a href="<%= asset_url notification_image.photo.url %>" data-lightbox="Gallery 1">
-                  <%= image_tag notification_image.photo.present? ? notification_image.photo.url : 'facilityinner/gallery_photo/no-image-available.png', class: 'img-thumbnail' %>
+                  <%= image_tag notification_image.photo.url class: 'img-thumbnail' if notification_image.photo.present? %>
                 </a>
             <% end %>
         <% end %>

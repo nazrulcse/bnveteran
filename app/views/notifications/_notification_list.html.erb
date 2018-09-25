@@ -6,14 +6,14 @@
 
   <div role="separator" class="divider"></div>
 
-  <% if @notifications.present? %>
+  <% if notifications.present? %>
       <div id="notification-row">
-        <%= render 'notifications/notification_row' %>
+        <%= render 'notifications/notification_row', notifications:notifications  %>
       </div>
 
       <div id="endless-scroll" class="well text-center hidden">
         <%= image_tag 'ajax-loader.gif' %>
-        <%= will_paginate @notifications rescue "" %>
+        <%= will_paginate notifications rescue "" %>
       </div>
 
   <% else %>
