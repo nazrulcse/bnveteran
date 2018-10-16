@@ -45,7 +45,7 @@ ActiveAdmin.register_page "Dashboard" do
           div :id => 'active_now', :style=>'display:none;' do
             section " Active Now", :style=>'color:black; font:bold;' do
               idx = 0
-              table_for User.all, class: 'container table table-responsive table-hover table-condensed' do |t|
+              table_for User.all.collect{|u| u if u.online? }.compact, class: 'container table table-responsive table-hover table-condensed' do |t|
                 t.column("Serial No") { idx += 1 }
                 t.column("Name") { |user| user.name }
                 t.column("Email") { |user| user.email }

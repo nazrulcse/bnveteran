@@ -83,6 +83,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   scope :active, -> { where(status: true) }
+  scope :online, -> { where(updated_at > 10.minutes.ago) }
 
 
   OFFICER = [
