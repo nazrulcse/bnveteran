@@ -61,7 +61,7 @@ ActiveAdmin.register Post do
 
     panel "Comments (#{post.comments_count})" do
       table_for post.comments, class:'table table-responsive table-strip' do
-        column :comment
+        column (:comment) { |content| raw(content.comment) }
         column :user
         column :created_at
       end

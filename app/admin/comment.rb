@@ -1,6 +1,10 @@
 ActiveAdmin.register Comment do
   permit_params :user_id, :comment, :commentable_type, :commentable_id, :title, :role, :comment_html
-
+  controller do
+    def action_methods
+      super - ['new', 'create']
+    end
+  end
   index do
     selectable_column
     id_column
@@ -12,7 +16,6 @@ ActiveAdmin.register Comment do
 
   filter :comment
   filter :created_at
-  filter :updated_at
 
   form do |f|
     f.semantic_errors
