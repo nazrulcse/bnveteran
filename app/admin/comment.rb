@@ -4,15 +4,15 @@ ActiveAdmin.register Comment do
   index do
     selectable_column
     id_column
-    column :title
     column (:comment) { |message| raw(message.comment) }
-    #column :commentable
-    column 'Post' do |comment|
-       raw(comment.commentable.content)
-    end
+    column :commentable
     column :user
     actions
   end
+
+  filter :comment
+  filter :created_at
+  filter :updated_at
 
   form do |f|
     f.semantic_errors
