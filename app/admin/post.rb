@@ -1,10 +1,8 @@
 # ActiveAdmin.register Post do
-#
-#   actions :all, :except => [:new]
-#
+#   permit_params :user_id, :content, :attachments
 #   controller do
-#     def permitted_params
-#       params.permit!
+#     def action_methods
+#       super - ['new', 'create', 'destroy']
 #     end
 #   end
 #
@@ -12,7 +10,10 @@
 #     selectable_column
 #     id_column
 #     column :content do |post|
-#       truncate(post.content, length: 50)
+#       truncate( raw(post.content), length: 50)
+#     end
+#     column 'Total comments' do |post|
+#       post.comments_count
 #     end
 #     column :user
 #     actions
