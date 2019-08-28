@@ -31,7 +31,12 @@ ActiveAdmin.register FacilityForm do
     f.inputs do
       f.input :facility_id, as: :select, collection: Facility.pluck(:organization_name, :id)
       f.input :title
-      f.input :form, :as => :file, :hint => f.object.form.present? ? image_tag(f.object.form_url(:medium_thumb_pdf)):content_tag(:span, "no form chosen yet")
+			if f.object.form && f.object.form_url(:medium_thumb_pdf).present?
+        f.input :form, :as => :file, :hint =>  image_tag(f.object.form_url(:medium_thumb_pdf))
+			else
+        f.input :form, :as => :file, :hint => f.object.form.present? ? i( class:"fa fa-file-pdf-o", aria_hidden: "true", style: 'font-size: 80px !important ;') : content_tag(:span, "no form chosen yet")
+      end
+
       f.input :form_cache, :as => :hidden
     end
     f.actions
