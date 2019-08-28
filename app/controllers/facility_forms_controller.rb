@@ -7,10 +7,7 @@ class FacilityFormsController < ApplicationController
   end
 
   def download
-    send_file @facility_form.form.path,
-              :filename => 'facility_form.pdf',
-              :type => 'application/pdf',
-              :disposition => 'inline'
+    send_file @facility_form.form.path
 
   end
 

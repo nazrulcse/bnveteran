@@ -44,12 +44,15 @@
                     <% unless facility_form.form.blank? %>
                         <div class="col-md-4 col-sm-6 col-xs-12 pdf-forms form-download-button">
                           <div>
-                            <i class="fa fa-file-pdf-o  " aria-hidden="true">
-                            </i>
-                            <h5>
-                              <%= facility_form.title %>
-                            </h5>
-                            <%= link_to download_facility_form_path(facility_form), class: 'pull-right btn btn-default btn-sm btn-md btn-xs btn-lg' do %>
+                            <% unless facility_form.form_url(:large_thumb_pdf) %>
+                              <i class="fa fa-file-pdf-o  " aria-hidden="true"></i>
+                            <% else %>
+                              <h5>
+                                <%= image_tag facility_form.form_url(:large_thumb_pdf) %>
+                              </h5>
+                            <% end %>
+
+                              <%= link_to download_facility_form_path(facility_form), class: 'pull-right btn btn-default btn-sm btn-md btn-xs btn-lg' do %>
                                 <span style="font-size: 13px;font-weight: bold; color: black;position: absolute;right: 21%;bottom: 10%;">Download</span>
                             <% end %>
                           </div>

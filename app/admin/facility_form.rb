@@ -12,7 +12,11 @@ ActiveAdmin.register FacilityForm do
     column :title
     column :form do |facility_form|
       link_to facility_form.form_url, target: '_blank' do
-        image_tag(facility_form.form_url(:medium_thumb_pdf))
+        if facility_form.form_url(:medium_thumb_pdf)
+          image_tag(facility_form.form_url(:medium_thumb_pdf))
+        else
+          i class:"fa fa-file-pdf-o", aria_hidden: "true", style: 'font-size: 80px !important ;'
+        end
       end
     end
     column :created_at
@@ -41,7 +45,11 @@ ActiveAdmin.register FacilityForm do
       row :updated_at
       row :form do |facility_form|
         link_to facility_form.form_url, target: '_blank' do
-          image_tag(facility_form.form_url(:medium_thumb_pdf))
+          if facility_form.form_url(:medium_thumb_pdf)
+            image_tag(facility_form.form_url(:medium_thumb_pdf))
+          else
+            i class:"fa fa-file-pdf-o", aria_hidden: "true", style: 'font-size: 80px !important ;'
+          end
         end
       end
     end
